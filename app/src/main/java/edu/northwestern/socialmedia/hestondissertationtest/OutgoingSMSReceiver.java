@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.arch.persistence.room.Room;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,9 @@ public class OutgoingSMSReceiver extends Service {
     }
 
     class smsObserver extends ContentObserver {
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").build();
 
         private String lastSmsId;
         Context context;
@@ -45,9 +49,9 @@ public class OutgoingSMSReceiver extends Service {
 
 // build notification
 // the addAction re-use the same intent to keep the example short
-                Notification n  = new Notification.Builder(this.context)
-                        .setContentTitle("New mail from " + "test@gmail.com")
-                        .setContentText("Subject")
+                Notification n = new Notification.Builder(this.context)
+                        .setContentTitle("Texting Study Survey")
+                        .setContentText("Texting Study Survey")
                         .setSmallIcon(R.mipmap.icon)
                         .setContentIntent(pIntent).build();
 
@@ -56,6 +60,13 @@ public class OutgoingSMSReceiver extends Service {
                         (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
                 notificationManager.notify(0, n);
+
+                Message savedMessage = new Message();
+                savedMessage.setMessageText(message);
+                savedMessage.setMessageFrom(address);
+                db.messageDao().insert(savedMessage);
+
+
             }
         }
 
