@@ -13,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
-    @Query("SELECT * FROM message")
+    @Query("SELECT * FROM Message")
     List<Message> getAll();
 
     @Insert

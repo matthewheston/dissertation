@@ -18,7 +18,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ThankYouActivity" />
 
@@ -27,7 +26,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".SetupActivity">
+        <activity android:name=".SetupActivity"></activity>
+        <activity android:name=".MessageListActivity">
 
         </activity>
     </application>
