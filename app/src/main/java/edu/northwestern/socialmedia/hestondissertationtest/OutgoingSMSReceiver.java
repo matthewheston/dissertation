@@ -36,11 +36,12 @@ public class OutgoingSMSReceiver extends Service {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            Uri uriSMSURI = Uri.parse("content://sms/sent");
+            Uri uriSMSURI = Uri.parse("content://sms/");
             Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
             cur.moveToNext();
             String id = cur.getString(cur.getColumnIndex("_id"));
-            if (smsChecker(id)) {
+            int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
+            if ((sentOrReceived == 2) && (smsChecker(id))) {
 
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
