@@ -39,9 +39,19 @@ public class OutgoingSMSReceiver extends Service {
             cur.moveToNext();
             String id = cur.getString(cur.getColumnIndex("_id"));
             if (smsChecker(id)) {
+
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
-                // Use message content for desired functionality
+
+
+                //get sender info
+                final String SMS_URI_INBOX = "content://sms/inbox";
+                Uri uri = Uri.parse(SMS_URI_INBOX);
+                String[] projection = new String[] { "_id", "address", "person", "body", "date", "type" };
+                Cursor cur2 = getContentResolver().query(uri, projection, String.format("address = '%s'", address), null, "date desc");
+                if (cur2.moveToFirst() ) {
+                    String lastMessage = cur2.getString((cur2.getColumnIndex("body")));
+                }
 
                 Intent intent = new Intent(this.context, MainActivity.class);
                 intent.putExtra("sent_message", message);
