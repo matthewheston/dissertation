@@ -14,6 +14,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 
+import java.util.Date;
+
 public class OutgoingSMSReceiver extends Service {
     public OutgoingSMSReceiver() {
     }
@@ -50,34 +52,49 @@ public class OutgoingSMSReceiver extends Service {
                 String[] projection = new String[] { "_id", "address", "person", "body", "date", "type" };
                 Cursor cur2 = getContentResolver().query(uri, projection, String.format("address = '%s'", address), null, "date desc");
                 if (cur2.moveToFirst() ) {
-                    String lastMessage = cur2.getString((cur2.getColumnIndex("body")));
+                    String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
+                    Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
+                    final String SMS_URI = "content://sms/";
+                    Uri uri2 = Uri.parse(SMS_URI);
+                    String[] projection2 = new String[] { "_id", "address", "person", "body", "date", "type" };
+                    Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("address = '%s'", address), null, "date desc");
+                    if(cur3.moveToFirst()) {
+                        cur3.moveToNext();
+                        if (cur3.getInt(cur3.getColumnIndex(("type"))) == 1) {
+                            long diff = new Date().getTime() - lastReceived.getTime();
+                            long diffMinutes = diff / (60 * 1000) % 60;
+                            if (diffMinutes > 30) {
+                                notifyBaby(message, address);
+                            }
+                        }
+                    }
                 }
+            }
+        }
 
-                Intent intent = new Intent(this.context, MainActivity.class);
-                intent.putExtra("sent_message", message);
-                PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, 0);
+        private void notifyBaby(String message, String address) {
+            Intent intent = new Intent(this.context, MainActivity.class);
+            intent.putExtra("sent_message", message);
+            PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, 0);
 
 // build notification
 // the addAction re-use the same intent to keep the example short
-                Notification n = new Notification.Builder(this.context)
-                        .setContentTitle("Texting Study Survey")
-                        .setContentText("Texting Study Survey")
-                        .setSmallIcon(R.mipmap.icon)
-                        .setContentIntent(pIntent).build();
+            Notification n = new Notification.Builder(this.context)
+                    .setContentTitle("Texting Study Survey")
+                    .setContentText("Texting Study Survey")
+                    .setSmallIcon(R.mipmap.icon)
+                    .setContentIntent(pIntent).build();
 
 
-                NotificationManager notificationManager =
-                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                notificationManager.notify(0, n);
+            notificationManager.notify(0, n);
 
-                Message savedMessage = new Message();
-                savedMessage.setMessageText(message);
-                savedMessage.setMessageFrom(address);
-                db.messageDao().insert(savedMessage);
-
-
-            }
+            Message savedMessage = new Message();
+            savedMessage.setMessageText(message);
+            savedMessage.setMessageFrom(address);
+            db.messageDao().insert(savedMessage);
         }
 
         // Prevent duplicate results without overlooking legitimate duplicates
