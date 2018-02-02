@@ -15,15 +15,13 @@ import android.os.Handler;
 import android.os.IBinder;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class OutgoingSMSReceiver extends Service {
     public OutgoingSMSReceiver() {
     }
 
     class smsObserver extends ContentObserver {
-
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
 
         private String lastSmsId;
         Context context;
@@ -45,6 +43,7 @@ public class OutgoingSMSReceiver extends Service {
 
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
+                cur.close();
 
 
                 //get sender info
@@ -55,6 +54,7 @@ public class OutgoingSMSReceiver extends Service {
                 if (cur2.moveToFirst() ) {
                     String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
                     Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
+                    cur2.close();
                     final String SMS_URI = "content://sms/";
                     Uri uri2 = Uri.parse(SMS_URI);
                     String[] projection2 = new String[] { "_id", "address", "person", "body", "date", "type" };
@@ -63,20 +63,27 @@ public class OutgoingSMSReceiver extends Service {
                         cur3.moveToNext();
                         if (cur3.getInt(cur3.getColumnIndex(("type"))) == 1) {
                             long diff = new Date().getTime() - lastReceived.getTime();
-                            long diffMinutes = diff / (60 * 1000) % 60;
+                            long diffMinutes = diff / (60 * 1000);
                             if (diffMinutes > 30) {
                                 notifyBaby(message, address);
                             }
+                        cur3.close();
                         }
                     }
                 }
             }
         }
 
-        private void notifyBaby(String message, String address) {
+        public void notifyBaby(String message, String address) {
+            AppDatabase db = Database.getDb(getApplicationContext());
+            Message savedMessage = new Message();
+            savedMessage.setMessageText(message);
+            savedMessage.setMessageFrom(address);
+            long messageId = db.messageDao().insert(savedMessage);
+
             Intent intent = new Intent(this.context, MainActivity.class);
-            intent.putExtra("sent_message", message);
-            PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, 0);
+            intent.putExtra("message_id", messageId);
+            PendingIntent pIntent = PendingIntent.getActivity(this.context, UUID.randomUUID().hashCode(), intent, 0);
 
 // build notification
 // the addAction re-use the same intent to keep the example short
@@ -92,10 +99,7 @@ public class OutgoingSMSReceiver extends Service {
 
             notificationManager.notify(0, n);
 
-            Message savedMessage = new Message();
-            savedMessage.setMessageText(message);
-            savedMessage.setMessageFrom(address);
-            db.messageDao().insert(savedMessage);
+
         }
 
         // Prevent duplicate results without overlooking legitimate duplicates
@@ -125,5 +129,18 @@ public class OutgoingSMSReceiver extends Service {
         ContentResolver contentResolver = getBaseContext().getContentResolver();
         contentResolver.registerContentObserver(Uri.parse("content://sms/"),true, contentObserver);
         //Log.v("Caller History: Service Started.", "OutgoingSMSReceiverService");
+
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                notificationIntent, 0);
+
+        Notification n = new Notification.Builder(this)
+                .setContentTitle("Texting Study Service")
+                .setContentText("Texting Study Service")
+                .setSmallIcon(R.mipmap.icon)
+                .setContentIntent(pendingIntent).build();
+
+        startForeground(1337, n);
     }
 }

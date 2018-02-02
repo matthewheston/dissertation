@@ -16,11 +16,14 @@ public interface MessageDao {
     @Query("SELECT * FROM Message")
     List<Message> getAll();
 
+    @Query("SELECT * FROM Message WHERE uid = :uid LIMIT 1")
+    Message getById(String uid);
+
     @Insert
     void insertAll(Message... message);
 
     @Insert
-    void insert(Message message);
+    long insert(Message message);
 
     @Delete
     void delete(Message message);

@@ -1,5 +1,6 @@
 package edu.northwestern.socialmedia.hestondissertationtest;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -24,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
         Intent incomingIntent = getIntent();
         if (incomingIntent != null) {
-            String message = intent.getStringExtra("sent_message");
+            AppDatabase db = Database.getDb(getApplicationContext());
+            long messageId = incomingIntent.getLongExtra("message_id", -1);
+            if (messageId != -1) {
+                Message msg = db.messageDao().getById(Long.toString(messageId));
 
-            // Capture the layout's TextView and set the string as its text
-            TextView textView = findViewById(R.id.message_container);
-            textView.setText(message);
+                // Capture the layout's TextView and set the string as its text
+                TextView textView = findViewById(R.id.message_container);
+                textView.setText(msg.getMessageText());
+            }
         }
     }
 
