@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, ThankYouActivity.class);
         startActivity(intent);
+
+        RatingBar availabilityRating = (RatingBar) findViewById(R.id.availabilityRating);
+        int availability = Math.round(availabilityRating.getRating());
+
+        RatingBar urgencyRating = (RatingBar) findViewById(R.id.urgencyRating);
+        int urgency = Math.round(urgencyRating.getRating());
+
+        Intent incomingIntent = getIntent();
+        int messageId = (int) incomingIntent.getLongExtra("message_id", -1);
+
+        SurveyResult result = new SurveyResult();
+        result.setAvailability(availability);
+        result.setUrgency(urgency);
+        result.setMessageId(messageId);
+
+        Database.getDb(getApplicationContext()).surveyResultDao().insert(result);
     }
 }
 

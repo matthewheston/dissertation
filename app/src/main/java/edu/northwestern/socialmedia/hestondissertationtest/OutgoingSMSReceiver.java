@@ -39,7 +39,8 @@ public class OutgoingSMSReceiver extends Service {
             cur.moveToNext();
             String id = cur.getString(cur.getColumnIndex("_id"));
             int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
-            if ((sentOrReceived == 2) && (smsChecker(id))) {
+            String protocol = cur.getString(cur.getColumnIndex("protocol"));
+            if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id))) {
 
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
@@ -91,7 +92,8 @@ public class OutgoingSMSReceiver extends Service {
                     .setContentTitle("Texting Study Survey")
                     .setContentText("Texting Study Survey")
                     .setSmallIcon(R.mipmap.icon)
-                    .setContentIntent(pIntent).build();
+                    .setContentIntent(pIntent)
+                    .setAutoCancel(true).build();
 
 
             NotificationManager notificationManager =

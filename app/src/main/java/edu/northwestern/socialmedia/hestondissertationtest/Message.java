@@ -2,6 +2,7 @@ package edu.northwestern.socialmedia.hestondissertationtest;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  * Created by matthewheston on 1/23/18.
  */
 
-@Entity
+@Entity(indices = {@Index("uid")})
 public class Message {
     @PrimaryKey(autoGenerate = true)
     private int uid;

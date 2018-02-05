@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/message_container" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/availabilityRating"
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,10 +61,10 @@
         android:layout_marginTop="16dp"
         android:text="How urgent was this message on a scale of 1 to 5?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/availabilityRating" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/urgencyRating"
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

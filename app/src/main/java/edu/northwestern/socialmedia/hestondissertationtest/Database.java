@@ -13,7 +13,8 @@ public class Database {
     public static AppDatabase getDb(Context context) {
         if (db == null) {
             db = Room.databaseBuilder(context,
-                    AppDatabase.class, "database-name").allowMainThreadQueries().build();
+                    AppDatabase.class, "database-name").allowMainThreadQueries()
+                    .fallbackToDestructiveMigration().build();
         }
         return db;
     }
