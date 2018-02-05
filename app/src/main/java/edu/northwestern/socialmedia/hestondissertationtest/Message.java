@@ -24,6 +24,17 @@ public class Message {
     @ColumnInfo(name = "message_from")
     private String messageFrom;
 
+    public boolean isHandled() {
+        return handled;
+    }
+
+    public void setHandled(boolean handled) {
+        this.handled = handled;
+    }
+
+    @ColumnInfo(name = "handled")
+    private boolean handled;
+
     @ColumnInfo(name = "received_at")
     @TypeConverters({Converters.class})
     public Date receivedAt;

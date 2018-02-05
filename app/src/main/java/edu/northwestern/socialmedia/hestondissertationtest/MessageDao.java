@@ -16,8 +16,14 @@ public interface MessageDao {
     @Query("SELECT * FROM Message")
     List<Message> getAll();
 
+    @Query("SELECT * FROM Message WHERE handled != 1")
+    List<Message> getUnhandled();
+
     @Query("SELECT * FROM Message WHERE uid = :uid LIMIT 1")
     Message getById(String uid);
+
+    @Query("UPDATE Message SET handled = 1 WHERE uid = :uid")
+    int makeHandled(long uid);
 
     @Insert
     void insertAll(Message... message);

@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ThankYouActivity.class);
         startActivity(intent);
 
+        AppDatabase db = Database.getDb(getApplicationContext());
+
         RatingBar availabilityRating = (RatingBar) findViewById(R.id.availabilityRating);
         int availability = Math.round(availabilityRating.getRating());
 
@@ -57,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
         result.setUrgency(urgency);
         result.setMessageId(messageId);
 
-        Database.getDb(getApplicationContext()).surveyResultDao().insert(result);
+
+        db.messageDao().makeHandled(messageId);
+        db.surveyResultDao().insert(result);
     }
 }
 
