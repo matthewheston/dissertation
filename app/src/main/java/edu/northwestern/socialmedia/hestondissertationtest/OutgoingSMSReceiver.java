@@ -33,15 +33,15 @@ public class OutgoingSMSReceiver extends Service {
         }
 
         @Override
-        public void onChange(boolean selfChange) {
+        public void onChange(boolean selfChange, Uri incomingUri) {
             super.onChange(selfChange);
-            Uri uriSMSURI = Uri.parse("content://sms/");
+            Uri uriSMSURI = Uri.parse("content://sms");
             Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
             cur.moveToNext();
             String id = cur.getString(cur.getColumnIndex("_id"));
             int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
             String protocol = cur.getString(cur.getColumnIndex("protocol"));
-            if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id))) {
+            if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
 
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
@@ -53,7 +53,7 @@ public class OutgoingSMSReceiver extends Service {
                 final String SMS_URI_INBOX = "content://sms/inbox";
                 Uri uri = Uri.parse(SMS_URI_INBOX);
                 String[] projection = new String[] { "_id", "address", "person", "body", "date", "type" };
-                Cursor cur2 = getContentResolver().query(uri, projection, String.format("address = '%s'", address), null, "date desc");
+                Cursor cur2 = getContentResolver().query(uri, null, String.format("address = '%s'", address), null, "date desc");
                 if (cur2.moveToFirst() ) {
                     String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
                     Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
@@ -64,8 +64,11 @@ public class OutgoingSMSReceiver extends Service {
                     Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("address = '%s'", address), null, "date desc");
                     if(cur3.moveToFirst()) {
                         cur3.moveToNext();
-                        if (cur3.getInt(cur3.getColumnIndex(("type"))) == 1) {
-                            long diff = new Date().getTime() - lastReceived.getTime();
+                        Boolean isReponse = (cur3.getInt(cur3.getColumnIndex(("type"))) == 1);
+                        cur3.moveToNext();
+                        Date lastInteraction = new Date(cur3.getLong(cur3.getColumnIndex("date")));
+                        if (isReponse) {
+                            long diff = lastReceived.getTime() - lastInteraction.getTime();
                             long diffMinutes = diff / (60 * 1000);
                             if (diffMinutes > 30) {
                                 notifyBaby(message, address, receivedAt, lastMessage);
@@ -135,7 +138,7 @@ public class OutgoingSMSReceiver extends Service {
     public void onCreate() {
         smsObserver contentObserver = new smsObserver(getApplicationContext());
         ContentResolver contentResolver = getBaseContext().getContentResolver();
-        contentResolver.registerContentObserver(Uri.parse("content://sms/"),true, contentObserver);
+        contentResolver.registerContentObserver(Uri.parse("content://sms"),true, contentObserver);
         //Log.v("Caller History: Service Started.", "OutgoingSMSReceiverService");
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
