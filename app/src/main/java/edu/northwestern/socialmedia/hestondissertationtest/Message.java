@@ -21,6 +21,28 @@ public class Message {
     @ColumnInfo(name = "message_text")
     private String messageText;
 
+    public String getMessageFromName() {
+        return messageFromName;
+    }
+
+    public void setMessageFromName(String messageFromName) {
+        this.messageFromName = messageFromName;
+    }
+
+    @ColumnInfo(name = "message_from_name")
+    private String messageFromName;
+
+    @ColumnInfo(name = "in_response_to")
+    private String inResponseTo;
+
+    public String getInResponseTo() {
+        return inResponseTo;
+    }
+
+    public void setInResponseTo(String inResponseTo) {
+        this.inResponseTo = inResponseTo;
+    }
+
     @ColumnInfo(name = "message_from")
     private String messageFrom;
 

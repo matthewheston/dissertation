@@ -28,6 +28,11 @@ public class SetupActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(SetupActivity.this, new String[]{"android.permission.READ_SMS"}, REQUEST_CODE_ASK_PERMISSIONS);
         }
 
+        if(ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED) {
+            final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+            ActivityCompat.requestPermissions(SetupActivity.this, new String[]{"android.permission.READ_CONTACTS"}, REQUEST_CODE_ASK_PERMISSIONS);
+        }
+
         Intent intent = new Intent(this, OutgoingSMSReceiver.class);
         startService(intent);
 

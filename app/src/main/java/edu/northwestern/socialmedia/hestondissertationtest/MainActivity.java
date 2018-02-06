@@ -34,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 // Capture the layout's TextView and set the string as its text
                 TextView textView = findViewById(R.id.message_container);
                 textView.setText(msg.getMessageText());
+
+                TextView contactContainer = findViewById(R.id.contactContainer);
+                contactContainer.setText(msg.getMessageFromName());
+
+                TextView receivedMessageContainer = findViewById(R.id.receivedMsgContainer);
+                receivedMessageContainer.setText(msg.getInResponseTo());
             }
         }
     }

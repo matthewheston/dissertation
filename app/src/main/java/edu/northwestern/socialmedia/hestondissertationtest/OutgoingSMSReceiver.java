@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.ContactsContract;
 
 import java.util.Date;
 import java.util.UUID;
@@ -67,7 +68,7 @@ public class OutgoingSMSReceiver extends Service {
                             long diff = new Date().getTime() - lastReceived.getTime();
                             long diffMinutes = diff / (60 * 1000);
                             if (diffMinutes > 30) {
-                                notifyBaby(message, address, receivedAt);
+                                notifyBaby(message, address, receivedAt, lastMessage);
                             }
                         cur3.close();
                         }
@@ -76,13 +77,15 @@ public class OutgoingSMSReceiver extends Service {
             }
         }
 
-        public void notifyBaby(String message, String address, Date receivedAt) {
+        public void notifyBaby(String message, String address, Date receivedAt, String inResponseTo) {
             AppDatabase db = Database.getDb(getApplicationContext());
             Message savedMessage = new Message();
             savedMessage.setMessageText(message);
             savedMessage.setMessageFrom(address);
             savedMessage.setRespondedAt(receivedAt);
             savedMessage.setRespondedAt(new Date());
+            savedMessage.setMessageFromName(getContactbyPhoneNumber(getBaseContext(), address));
+            savedMessage.setInResponseTo(inResponseTo);
             long messageId = db.messageDao().insert(savedMessage);
 
             Intent intent = new Intent(this.context, MainActivity.class);
@@ -147,5 +150,29 @@ public class OutgoingSMSReceiver extends Service {
                 .setContentIntent(pendingIntent).build();
 
         startForeground(1337, n);
+    }
+
+    private String getContactbyPhoneNumber(Context c, String phoneNumber) {
+
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        String[] projection = {ContactsContract.PhoneLookup.DISPLAY_NAME};
+        Cursor cursor = c.getContentResolver().query(uri, projection, null, null, null);
+
+        if (cursor == null) {
+            return phoneNumber;
+        }else {
+            String name = phoneNumber;
+            try {
+
+                if (cursor.moveToFirst()) {
+                    name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+                }
+
+            } finally {
+                cursor.close();
+            }
+
+            return name;
+        }
     }
 }
