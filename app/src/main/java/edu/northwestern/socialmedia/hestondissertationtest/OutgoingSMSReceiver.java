@@ -44,6 +44,7 @@ public class OutgoingSMSReceiver extends Service {
 
                 String address = cur.getString(cur.getColumnIndex("address"));
                 String message = cur.getString(cur.getColumnIndex("body"));
+                Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
                 cur.close();
 
 
@@ -66,7 +67,7 @@ public class OutgoingSMSReceiver extends Service {
                             long diff = new Date().getTime() - lastReceived.getTime();
                             long diffMinutes = diff / (60 * 1000);
                             if (diffMinutes > 30) {
-                                notifyBaby(message, address);
+                                notifyBaby(message, address, receivedAt);
                             }
                         cur3.close();
                         }
@@ -75,11 +76,13 @@ public class OutgoingSMSReceiver extends Service {
             }
         }
 
-        public void notifyBaby(String message, String address) {
+        public void notifyBaby(String message, String address, Date receivedAt) {
             AppDatabase db = Database.getDb(getApplicationContext());
             Message savedMessage = new Message();
             savedMessage.setMessageText(message);
             savedMessage.setMessageFrom(address);
+            savedMessage.setRespondedAt(receivedAt);
+            savedMessage.setRespondedAt(new Date());
             long messageId = db.messageDao().insert(savedMessage);
 
             Intent intent = new Intent(this.context, MainActivity.class);

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,11 +51,14 @@ public class MessageAdapter extends BaseAdapter {
         View rowView = mInflater.inflate(R.layout.list_item_message, parent, false);
 
         TextView messageHolder = rowView.findViewById(R.id.list_message_holder);
-        TextView dateHolder = rowView.findViewById(R.id.date_holder);
+        TextView dateHolder = rowView.findViewById(R.id.list_date_holder);
 
         Message msg = (Message) getItem(position);
         String msgText = msg.getMessageText();
         messageHolder.setText(msgText);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+        String respondedAt = dateFormat.format(msg.getRespondedAt());
+        dateHolder.setText(respondedAt);
 
         return rowView;
     }

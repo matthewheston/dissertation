@@ -39,6 +39,18 @@ public class Message {
     @TypeConverters({Converters.class})
     public Date receivedAt;
 
+    public Date getRespondedAt() {
+        return respondedAt;
+    }
+
+    public void setRespondedAt(Date respondedAt) {
+        this.respondedAt = respondedAt;
+    }
+
+    @ColumnInfo(name = "responded_at")
+    @TypeConverters({Converters.class})
+    public Date respondedAt;
+
     public int getUid() {
         return uid;
     }
