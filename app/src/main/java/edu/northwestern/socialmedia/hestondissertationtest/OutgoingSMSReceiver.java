@@ -16,6 +16,7 @@ import android.os.IBinder;
 import android.provider.ContactsContract;
 
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 public class OutgoingSMSReceiver extends Service {
@@ -108,7 +109,7 @@ public class OutgoingSMSReceiver extends Service {
             NotificationManager notificationManager =
                     (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-            notificationManager.notify(0, n);
+            notificationManager.notify(new Random().nextInt(9999 - 1000) + 1000, n);
 
 
         }
