@@ -1,5 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger, Table
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -68,6 +67,9 @@ db = SQLAlchemy(app)
 
 @app.route('/message/', methods = ['POST'])
 def create_message():
+    if not db.session.query(Participant).filter(Participant.participant_id == request.json.get('participant_id')).first():
+        return Response("{'status':'failure'}", status=403, mimetype='application/json')
+
     message = Message(request.json.get('message_text'), request.json.get('message_from'), request.json.get('message_from_name'), request.json.get('in_response_to'), request.json.get('handled'), request.json.get('received_at'),
             request.json.get('responded_at'), request.json.get('participant_id'), request.json.get('puid'))
     db.session.add(message)
@@ -76,6 +78,9 @@ def create_message():
 
 @app.route('/surveyresult/', methods = ['POST'])
 def create_surveyresult():
+    if not db.session.query(Participant).filter(Participant.participant_id == request.json.get('participant_id')).first():
+        return Response("{'status':'failure'}", status=403, mimetype='application/json')
+
     surveyresult= SurveyResult(request.json.get('availability'), request.json.get('urgency'), request.json.get('message_id'), request.json.get('participant_id'), request.json.get('puid'))
     db.session.add(surveyresult)
     db.session.commit()
