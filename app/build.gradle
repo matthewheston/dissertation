@@ -28,4 +28,5 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     implementation 'com.mindorks:placeholderview:0.7.2'
+    implementation 'com.mashape.unirest:unirest-android:1.0+'
 }

@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         db.messageDao().makeHandled(messageId);
+        Message msg = db.messageDao().getById(Integer.toString(messageId));
+        WebPoster.PostMessage(msg);
         db.surveyResultDao().insert(result);
     }
 }

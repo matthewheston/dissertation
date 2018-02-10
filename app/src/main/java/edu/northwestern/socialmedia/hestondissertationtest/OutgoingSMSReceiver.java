@@ -86,7 +86,7 @@ public class OutgoingSMSReceiver extends Service {
             Message savedMessage = new Message();
             savedMessage.setMessageText(message);
             savedMessage.setMessageFrom(address);
-            savedMessage.setRespondedAt(receivedAt);
+            savedMessage.setReceivedAt(receivedAt);
             savedMessage.setRespondedAt(new Date());
             savedMessage.setMessageFromName(getContactbyPhoneNumber(getBaseContext(), address));
             savedMessage.setInResponseTo(inResponseTo);
