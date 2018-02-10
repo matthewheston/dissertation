@@ -1,5 +1,7 @@
 package edu.northwestern.socialmedia.hestondissertationtest;
 
+import android.content.Context;
+
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -7,6 +9,14 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.Future;
 
 /**
@@ -15,22 +25,38 @@ import java.util.concurrent.Future;
 
 public class WebPoster {
 
-    public static void PostMessage(Message message) {
+    public static void PostMessage(Context context, Message message) {
         try {
+            String FILENAME = "id_file";
+            String participantId = "";
+            FileInputStream fis;
+            try {
+                fis = context.openFileInput(FILENAME);
+                byte[] input = new byte[fis.available()];
+                while (fis.read(input) != -1) {}
+                participantId += new String(input);
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+            }
 
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("message_from", message.getMessageFrom());
+            jsonObj.put("message_from_name", message.getMessageFromName());
+            jsonObj.put("in_response_to", message.getInResponseTo());
             jsonObj.put("handled", message.isHandled() ? 1 : 0);
             jsonObj.put("received_at", message.getReceivedAt().getTime());
             jsonObj.put("responded_at", message.getRespondedAt().getTime());
             jsonObj.put("message_text", message.getMessageText());
+            jsonObj.put("puid", message.getUid());
+            jsonObj.put("participant_id", participantId);
 
             try {
                 Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/message/")
-                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
                         .asStringAsync();
             }
+
             catch (Exception ex) {
 
             }
@@ -39,6 +65,47 @@ public class WebPoster {
         catch(JSONException ex) {
             // still a bad developer tbh
         }
+        catch (Exception ex) {
+
+        }
+
     }
+
+    public static void PostSurveyResult(Context context, SurveyResult result) {
+        try {
+            String FILENAME = "id_file";
+            String participantId = "";
+            FileInputStream fis;
+            try {
+                fis = context.openFileInput(FILENAME);
+                byte[] input = new byte[fis.available()];
+                while (fis.read(input) != -1) {
+                }
+                participantId += new String(input);
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+
+            }
+
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("availability", result.getAvailability());
+            jsonObj.put("urgency", result.getUrgency());
+            jsonObj.put("message_id", result.getMessageId());
+            jsonObj.put("participant_id", participantId);
+            jsonObj.put("puid", result.getUid());
+
+            try {
+                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/surveyresult/")
+                        .header("Content-Type", "application/json")
+                        .body(jsonObj.toString())
+                        .asStringAsync();
+            } catch (Exception e) {
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+    
 }
 
