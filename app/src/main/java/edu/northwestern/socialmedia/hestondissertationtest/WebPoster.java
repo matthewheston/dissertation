@@ -5,18 +5,14 @@ import android.content.Context;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.scottyab.aescrypt.AESCrypt;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.concurrent.Future;
 
 /**
@@ -24,6 +20,8 @@ import java.util.concurrent.Future;
  */
 
 public class WebPoster {
+
+    static String enc = "enc";
 
     public static void PostMessage(Context context, Message message) {
         try {
@@ -40,13 +38,13 @@ public class WebPoster {
             }
 
             JSONObject jsonObj = new JSONObject();
-            jsonObj.put("message_from", message.getMessageFrom());
-            jsonObj.put("message_from_name", message.getMessageFromName());
-            jsonObj.put("in_response_to", message.getInResponseTo());
+            jsonObj.put("message_from", AESCrypt.encrypt(enc,message.getMessageFrom()));
+            jsonObj.put("message_from_name", AESCrypt.encrypt(enc,message.getMessageFromName()));
+            jsonObj.put("in_response_to", AESCrypt.encrypt(enc,message.getInResponseTo()));
             jsonObj.put("handled", message.isHandled() ? 1 : 0);
             jsonObj.put("received_at", message.getReceivedAt().getTime());
             jsonObj.put("responded_at", message.getRespondedAt().getTime());
-            jsonObj.put("message_text", message.getMessageText());
+            jsonObj.put("message_text", AESCrypt.encrypt(enc,message.getMessageText()));
             jsonObj.put("puid", message.getUid());
             jsonObj.put("participant_id", participantId);
 
