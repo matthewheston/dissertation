@@ -105,5 +105,78 @@ public class WebPoster {
         }
     }
 
+    public static void PostAllMessage(Context context, AllMessage message) {
+        try {
+            String FILENAME = "id_file";
+            String participantId = "";
+            FileInputStream fis;
+            try {
+                fis = context.openFileInput(FILENAME);
+                byte[] input = new byte[fis.available()];
+                while (fis.read(input) != -1) {
+                }
+                participantId += new String(input);
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+
+            }
+
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("body", AESCrypt.encrypt(enc,message.getBody()));
+            jsonObj.put("thread_id", message.getThreadId());
+            jsonObj.put("type", message.getType());
+            jsonObj.put("received_at", message.getDate().getTime());
+            jsonObj.put("participant_id", participantId);
+
+
+            try {
+                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/allmessage/")
+                        .header("Content-Type", "application/json")
+                        .body(jsonObj.toString())
+                        .asStringAsync();
+            } catch (Exception e) {
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static void PostThread(Context context, Thread thread) {
+        try {
+            String FILENAME = "id_file";
+            String participantId = "";
+            FileInputStream fis;
+            try {
+                fis = context.openFileInput(FILENAME);
+                byte[] input = new byte[fis.available()];
+                while (fis.read(input) != -1) {
+                }
+                participantId += new String(input);
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+
+            }
+
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("uid", thread.getUid());
+            jsonObj.put("contact_name", AESCrypt.encrypt(enc,thread.getContactName()));
+            jsonObj.put("address", AESCrypt.encrypt(enc,thread.getAddress()));
+            jsonObj.put("participant_id", participantId);
+
+
+            try {
+                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/thread/")
+                        .header("Content-Type", "application/json")
+                        .body(jsonObj.toString())
+                        .asStringAsync();
+            } catch (Exception e) {
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
 }
 

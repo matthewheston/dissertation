@@ -42,11 +42,13 @@ public class OutgoingSMSReceiver extends Service {
             String id = cur.getString(cur.getColumnIndex("_id"));
             int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
             String protocol = cur.getString(cur.getColumnIndex("protocol"));
+            String address = cur.getString(cur.getColumnIndex("address"));
+            String message = cur.getString(cur.getColumnIndex("body"));
+            Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
+            int threadId = cur.getInt(cur.getColumnIndex("thread_id"));
+            logSMS(address,message,threadId,sentOrReceived,receivedAt);
             if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
 
-                String address = cur.getString(cur.getColumnIndex("address"));
-                String message = cur.getString(cur.getColumnIndex("body"));
-                Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
                 cur.close();
 
 
@@ -79,6 +81,26 @@ public class OutgoingSMSReceiver extends Service {
                     }
                 }
             }
+        }
+
+        private void logSMS(String address, String message, int threadId, int sentOrReceived, Date receivedAt) {
+
+            if (Database.getDb(getApplicationContext()).threadDao().getById(Integer.toString(threadId)) == null) {
+                Thread thread = new Thread();
+                thread.setUid(threadId);
+                thread.setAddress(address);
+                thread.setContactName(getContactbyPhoneNumber(getBaseContext(), address));
+                Database.getDb((getApplicationContext())).threadDao().insert(thread);
+                WebPoster.PostThread(getBaseContext(), thread);
+            }
+
+            AllMessage msg = new AllMessage();
+            msg.setBody(message);
+            msg.setDate(receivedAt);
+            msg.setType(sentOrReceived);
+            msg.setThreadId(threadId);
+            Database.getDb((getApplicationContext())).allMessageDao().insert(msg);
+            WebPoster.PostAllMessage(getBaseContext(),msg);
         }
 
         public void notifyBaby(String message, String address, Date receivedAt, String inResponseTo) {
