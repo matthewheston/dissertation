@@ -68,15 +68,18 @@ public class OutgoingSMSReceiver extends Service {
                     if(cur3.moveToFirst()) {
                         cur3.moveToNext();
                         Boolean isReponse = (cur3.getInt(cur3.getColumnIndex(("type"))) == 1);
-                        cur3.moveToNext();
-                        Date lastInteraction = new Date(cur3.getLong(cur3.getColumnIndex("date")));
-                        if (isReponse) {
-                            long diff = lastReceived.getTime() - lastInteraction.getTime();
-                            long diffMinutes = diff / (60 * 1000);
-                            if (diffMinutes > 30) {
-                                notifyBaby(message, address, receivedAt, lastMessage);
+                            if (isReponse) {
+                            Cursor cur4 = getContentResolver().query(uri2, projection2, String.format("address = '%s' AND type = 2", address), null, "date desc");
+                            if (cur4.moveToFirst() && cur4.moveToNext()) {
+                                Date lastInteraction = new Date(cur4.getLong(cur4.getColumnIndex("date")));
+                                long diff = Math.abs(lastReceived.getTime() - lastInteraction.getTime());
+                                long diffMinutes = diff / (60 * 1000);
+                                if (diffMinutes > 30) {
+                                    notifyBaby(message, address, receivedAt, lastMessage);
+                                }
+                                cur4.close();
                             }
-                        cur3.close();
+                            cur3.close();
                         }
                     }
                 }
