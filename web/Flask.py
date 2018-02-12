@@ -89,7 +89,7 @@ class Thread(Base):
         self.address = address
         self.participant_id = participant_id
 
-from flask import Flask, abort, request, jsonify, Response
+from flask import Flask, abort, request, jsonify, Response, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -136,6 +136,15 @@ def create_allmessage():
     db.session.add(allmessage)
     db.session.commit()
     return Response("{'status':'success'}", status=201, mimetype='application/json')
+
+@app.route('/finalsurvey/<participant_id>', methods = ['GET'] )
+def get_final_survey(participant_id):
+    if not db.session.query(Participant).filter(Participant.participant_id == participant_id).first():
+        return Response("{'status':'failure'}", status=403, mimetype='application/json')
+
+    contacts = db.session.query(Message.message_from_name).filter(Message.participant_id == participant_id).distinct()
+    return render_template('survey.html', contacts=contacts)
+
 
 if __name__ == "__main__":
         app.run()

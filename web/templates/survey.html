@@ -1,0 +1,226 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Texting Study Survey</title>
+
+<style>
+html,body {padding:0;margin:0;}
+.wrap {
+  font:12px Arial, san-serif;
+}
+h1.likert-header {
+  padding-left:4.25%;
+  margin:20px 0 0;
+}
+form .statement {
+  display:block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 30px 0 0 4.25%;
+  margin-bottom:10px;
+}
+form .likert {
+  list-style:none;
+  width:100%;
+  margin:0;
+  padding:0 0 35px;
+  display:block;
+  border-bottom:2px solid #efefef;
+}
+form .likert:last-of-type {border-bottom:0;}
+form .likert:before {
+  content: '';
+  position:relative;
+  top:11px;
+  left:9.5%;
+  display:block;
+  background-color:#efefef;
+  height:4px;
+  width:78%;
+}
+form .likert li {
+  display:inline-block;
+  width:19%;
+  text-align:center;
+  vertical-align: top;
+}
+form .likert li input[type=radio] {
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+  
+}
+form .likert li label {width:100%;}
+form .buttons {
+  margin:30px 0;
+  padding:0 4.25%;
+  text-align:right
+} 
+form .buttons button {
+  padding: 5px 10px;
+  background-color: #67ab49;
+  border: 0;
+  border-radius: 3px;
+}
+form .buttons .clear {background-color: #e9e9e9;}
+form .buttons .submit {background-color: #67ab49;} 
+form .buttons .clear:hover {background-color: #ccc;}
+form .buttons .submit:hover {background-color: #14892c;} 
+</style>
+
+</head>
+
+<body>
+  <div class="wrap">
+  <form>
+  {% for contact in contacts %}
+  <h1>Please answer the following questions about {{ contact }}.</h1>
+
+ <label class="statement">How often do you feel close to him/her? </label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Very Rarely</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Rarely</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Sometimes</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Often</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Very Often</label>
+      </li>
+    </ul>
+ <label class="statement">How close do you feel to him/her most of the time?</label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Not close</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Slightly close</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Fairly close</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Close</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Very close</label>
+      </li>
+    </ul>
+ <label class="statement">How important is your relationship with him/her? </label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Not important</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Slightly important</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Fairly important</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Important</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Very important</label>
+      </li>
+    </ul>
+ <label class="statement">He/she can influence my decision making.</label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Strongly disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Neutral</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Agree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Strongly agree</label>
+      </li>
+    </ul>
+ <label class="statement">He/she has power over what I do.</label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Strongly disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Neutral</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Agree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Strongly agree</label>
+      </li>
+    </ul>
+ <label class="statement">He/she tends to structure and lead our conversations.</label>
+    <ul class='likert'>
+      <li>
+        <input type="radio" name="likert" value="1">
+        <label>Strongly disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="2">
+        <label>Disagree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="3">
+        <label>Neutral</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="4">
+        <label>Agree</label>
+      </li>
+      <li>
+        <input type="radio" name="likert" value="5">
+        <label>Strongly agree</label>
+      </li>
+    </ul>
+  {% endfor %}
+  </form>
+  </div>
+</body>
+</html>
