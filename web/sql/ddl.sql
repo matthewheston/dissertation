@@ -12,3 +12,5 @@ CREATE TABLE `Participant` (`uid` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL, `
 CREATE TABLE `AllMessage` (`uid` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL, `body` TEXT, `thread_id` INTEGER NOT NULL, `type` INTEGER NOT NULL, `received_at` BIGINT, `participant_id` TEXT);
 
 CREATE TABLE `Thread` (`uid` INTEGER NOT NULL, `contact_name` TEXT, `address` TEXT, `participant_id` TEXT, PRIMARY KEY(`uid`));
+
+CREATE TABLE `RelationalSurvey` (`uid` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL, `intimacy1` INTEGER NOT NULL, `intimacy2` INTEGER NOT NULL, `intimacy3` INTEGER NOT NULL, `power1` INTEGER NOT NULL, `power2` INTEGER NOT NULL, `power3` INTEGER NOT NULL,`contact_name` TEXT, `participant_id` TEXT);

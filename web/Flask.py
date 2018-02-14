@@ -140,10 +140,14 @@ def create_allmessage():
 @app.route('/finalsurvey/<participant_id>', methods = ['GET'] )
 def get_final_survey(participant_id):
     if not db.session.query(Participant).filter(Participant.participant_id == participant_id).first():
-        return Response("{'status':'failure'}", status=403, mimetype='application/json')
+        return Response("Access with participant id.", status=401)
 
     contacts = db.session.query(Message.message_from_name).filter(Message.participant_id == participant_id).distinct()
     return render_template('survey.html', contacts=contacts)
+
+@app.route('/processform/', methods=['POST']):
+    
+
 
 
 if __name__ == "__main__":

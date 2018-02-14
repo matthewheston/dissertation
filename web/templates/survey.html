@@ -77,76 +77,76 @@ form .buttons .submit:hover {background-color: #14892c;}
 
 <body>
   <div class="wrap">
-  <form>
+  <form action="/processform" method = "post" id="theForm">
   {% for contact in contacts %}
   <h1>Please answer the following questions about {{ contact }}.</h1>
 
  <label class="statement">How often do you feel close to him/her? </label>
     <ul class='likert'>
       <li>
-        <input type="radio" name="likert" value="1">
+        <input type="radio" name="intimacy1" value="1">
         <label>Very Rarely</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="2">
+        <input type="radio" name="intimacy1" value="2">
         <label>Rarely</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="3">
+        <input type="radio" name="intimacy1" value="3">
         <label>Sometimes</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="4">
+        <input type="radio" name="intimacy1" value="4">
         <label>Often</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="5">
+        <input type="radio" name="intimacy1" value="5">
         <label>Very Often</label>
       </li>
     </ul>
  <label class="statement">How close do you feel to him/her most of the time?</label>
     <ul class='likert'>
       <li>
-        <input type="radio" name="likert" value="1">
+        <input type="radio" name="intimacy2" value="1">
         <label>Not close</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="2">
+        <input type="radio" name="intimacy2" value="2">
         <label>Slightly close</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="3">
+        <input type="radio" name="intimacy2" value="3">
         <label>Fairly close</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="4">
+        <input type="radio" name="intimacy2" value="4">
         <label>Close</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="5">
+        <input type="radio" name="intimacy2" value="5">
         <label>Very close</label>
       </li>
     </ul>
  <label class="statement">How important is your relationship with him/her? </label>
     <ul class='likert'>
       <li>
-        <input type="radio" name="likert" value="1">
+        <input type="radio" name="intimacy3" value="1">
         <label>Not important</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="2">
+        <input type="radio" name="intimacy3" value="2">
         <label>Slightly important</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="3">
+        <input type="radio" name="intimacy3" value="3">
         <label>Fairly important</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="4">
+        <input type="radio" name="intimacy3" value="4">
         <label>Important</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="5">
+        <input type="radio" name="intimacy3" value="5">
         <label>Very important</label>
       </li>
     </ul>
@@ -176,50 +176,51 @@ form .buttons .submit:hover {background-color: #14892c;}
  <label class="statement">He/she has power over what I do.</label>
     <ul class='likert'>
       <li>
-        <input type="radio" name="likert" value="1">
+        <input type="radio" name="power2" value="1">
         <label>Strongly disagree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="2">
+        <input type="radio" name="power2" value="2">
         <label>Disagree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="3">
+        <input type="radio" name="power2" value="3">
         <label>Neutral</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="4">
+        <input type="radio" name="power2" value="4">
         <label>Agree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="5">
+        <input type="radio" name="power2" value="5">
         <label>Strongly agree</label>
       </li>
     </ul>
  <label class="statement">He/she tends to structure and lead our conversations.</label>
     <ul class='likert'>
       <li>
-        <input type="radio" name="likert" value="1">
+        <input type="radio" name="power3" value="1">
         <label>Strongly disagree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="2">
+        <input type="radio" name="power3" value="2">
         <label>Disagree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="3">
+        <input type="radio" name="power3" value="3">
         <label>Neutral</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="4">
+        <input type="radio" name="power3" value="4">
         <label>Agree</label>
       </li>
       <li>
-        <input type="radio" name="likert" value="5">
+        <input type="radio" name="power3" value="5">
         <label>Strongly agree</label>
       </li>
     </ul>
   {% endfor %}
+  <button type="submit" form="theForm" value="Submit">Submit</button>
   </form>
   </div>
 </body>
