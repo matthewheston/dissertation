@@ -3,6 +3,7 @@ package edu.northwestern.socialmedia.hestondissertationtest;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
             final int REQUEST_CODE_ASK_PERMISSIONS = 123;
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_SMS"}, REQUEST_CODE_ASK_PERMISSIONS);
         }
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Intent intent = new Intent(this, OutgoingSMSReceiver.class);
         startService(intent);
         super.onCreate(savedInstanceState);

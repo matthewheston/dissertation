@@ -1,6 +1,8 @@
 package edu.northwestern.socialmedia.hestondissertationtest;
 
 import android.content.Context;
+import android.os.StrictMode;
+import android.util.Log;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -21,6 +23,7 @@ import java.util.concurrent.Future;
 
 public class WebPoster {
 
+
     static String enc = "enc";
 
     public static void PostMessage(Context context, Message message) {
@@ -39,7 +42,7 @@ public class WebPoster {
 
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("message_from", AESCrypt.encrypt(enc,message.getMessageFrom()));
-            jsonObj.put("message_from_name", AESCrypt.encrypt(enc,message.getMessageFromName()));
+            jsonObj.put("message_from_name", message.getMessageFromName());
             jsonObj.put("in_response_to", AESCrypt.encrypt(enc,message.getInResponseTo()));
             jsonObj.put("handled", message.isHandled() ? 1 : 0);
             jsonObj.put("received_at", message.getReceivedAt().getTime());
@@ -49,14 +52,14 @@ public class WebPoster {
             jsonObj.put("participant_id", participantId);
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/message/")
+                HttpResponse<String> future = Unirest.post("http://smsstudy.soc.northwestern.edu/message/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
-                        .asStringAsync();
+                        .asString();
             }
 
             catch (Exception ex) {
-
+                Log.e(ex.toString(), ex.toString());
             }
 
         }
@@ -93,7 +96,7 @@ public class WebPoster {
             jsonObj.put("puid", result.getUid());
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/surveyresult/")
+                Future<HttpResponse<String>> future = Unirest.post("http://smsstudy.soc.northwestern.edu/surveyresult/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
                         .asStringAsync();
@@ -130,7 +133,7 @@ public class WebPoster {
 
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/allmessage/")
+                Future<HttpResponse<String>> future = Unirest.post("http://smsstudy.soc.northwestern.edu/allmessage/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
                         .asStringAsync();
@@ -160,16 +163,16 @@ public class WebPoster {
 
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("uid", thread.getUid());
-            jsonObj.put("contact_name", AESCrypt.encrypt(enc,thread.getContactName()));
+            jsonObj.put("contact_name", thread.getContactName());
             jsonObj.put("address", AESCrypt.encrypt(enc,thread.getAddress()));
             jsonObj.put("participant_id", participantId);
 
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://10.0.2.2:5000/thread/")
+                HttpResponse<String> future = Unirest.post("http://smsstudy.soc.northwestern.edu/thread/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
-                        .asStringAsync();
+                        .asString();
             } catch (Exception e) {
             }
 

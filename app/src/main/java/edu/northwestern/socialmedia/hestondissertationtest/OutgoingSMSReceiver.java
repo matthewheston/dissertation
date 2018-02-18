@@ -17,6 +17,7 @@ import android.provider.ContactsContract;
 
 import java.util.Date;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class OutgoingSMSReceiver extends Service {
@@ -167,7 +168,7 @@ public class OutgoingSMSReceiver extends Service {
         contentResolver.registerContentObserver(Uri.parse("content://sms"),true, contentObserver);
         //Log.v("Caller History: Service Started.", "OutgoingSMSReceiverService");
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, SetupActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
