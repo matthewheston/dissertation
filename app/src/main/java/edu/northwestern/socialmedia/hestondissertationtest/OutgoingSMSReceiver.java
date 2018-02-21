@@ -61,7 +61,7 @@ public class OutgoingSMSReceiver extends Service {
                     final String SMS_URI_INBOX = "content://sms/inbox";
                     Uri uri = Uri.parse(SMS_URI_INBOX);
                     String[] projection = new String[]{"_id", "address", "person", "body", "date", "type"};
-                    Cursor cur2 = getContentResolver().query(uri, null, String.format("address LIKE '%%%s%%'", address.replaceAll("[^0-9]", "")), null, "date desc");
+                    Cursor cur2 = getContentResolver().query(uri, null, String.format("thread_id = %s", threadId), null, "date desc");
                     if (cur2.moveToFirst()) {
                         String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
                         Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
@@ -69,12 +69,12 @@ public class OutgoingSMSReceiver extends Service {
                         final String SMS_URI = "content://sms/";
                         Uri uri2 = Uri.parse(SMS_URI);
                         String[] projection2 = new String[]{"_id", "address", "person", "body", "date", "type"};
-                        Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("address LIKE '%%%s%%'", address.replaceAll("[^0-9]", "")), null, "date desc");
+                        Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("thread_id = %s", threadId), null, "date desc");
                         if (cur3.moveToFirst()) {
                             cur3.moveToNext();
                             Boolean isReponse = (cur3.getInt(cur3.getColumnIndex(("type"))) == 1);
                             if (isReponse) {
-                                Cursor cur4 = getContentResolver().query(uri2, projection2, String.format("address LIKE '%%%s%%' AND type = 2", address.replaceAll("[^0-9]", "")), null, "date desc");
+                                Cursor cur4 = getContentResolver().query(uri2, projection2, String.format("thread_id = %s AND type = 2", threadId), null, "date desc");
                                 if (cur4.moveToFirst() && cur4.moveToNext()) {
                                     Date lastInteraction = new Date(cur4.getLong(cur4.getColumnIndex("date")));
                                     long diff = Math.abs(lastReceived.getTime() - lastInteraction.getTime());
