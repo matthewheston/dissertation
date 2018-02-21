@@ -36,54 +36,62 @@ public class OutgoingSMSReceiver extends Service {
 
         @Override
         public void onChange(boolean selfChange, Uri incomingUri) {
-            super.onChange(selfChange);
-            Uri uriSMSURI = Uri.parse("content://sms");
-            Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
-            cur.moveToNext();
-            String id = cur.getString(cur.getColumnIndex("_id"));
-            int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
-            String protocol = cur.getString(cur.getColumnIndex("protocol"));
-            String address = cur.getString(cur.getColumnIndex("address"));
-            String message = cur.getString(cur.getColumnIndex("body"));
-            Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
-            int threadId = cur.getInt(cur.getColumnIndex("thread_id"));
-            logSMS(address,message,threadId,sentOrReceived,receivedAt);
-            if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
+            try {
+                super.onChange(selfChange);
 
-                cur.close();
+                Uri uriSMSURI = Uri.parse("content://sms");
+                Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
+                cur.moveToNext();
+                String id = cur.getString(cur.getColumnIndex("_id"));
+                int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
+                String protocol = cur.getString(cur.getColumnIndex("protocol"));
+                String address = cur.getString(cur.getColumnIndex("address"));
+                String message = cur.getString(cur.getColumnIndex("body"));
+                Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
+                int threadId = cur.getInt(cur.getColumnIndex("thread_id"));
 
 
-                //get sender info
-                final String SMS_URI_INBOX = "content://sms/inbox";
-                Uri uri = Uri.parse(SMS_URI_INBOX);
-                String[] projection = new String[] { "_id", "address", "person", "body", "date", "type" };
-                Cursor cur2 = getContentResolver().query(uri, null, String.format("address = '%s'", address), null, "date desc");
-                if (cur2.moveToFirst() ) {
-                    String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
-                    Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
-                    cur2.close();
-                    final String SMS_URI = "content://sms/";
-                    Uri uri2 = Uri.parse(SMS_URI);
-                    String[] projection2 = new String[] { "_id", "address", "person", "body", "date", "type" };
-                    Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("address = '%s'", address), null, "date desc");
-                    if(cur3.moveToFirst()) {
-                        cur3.moveToNext();
-                        Boolean isReponse = (cur3.getInt(cur3.getColumnIndex(("type"))) == 1);
+                logSMS(address, message, threadId, sentOrReceived, receivedAt);
+                if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
+
+                    cur.close();
+
+
+                    //get sender info
+                    final String SMS_URI_INBOX = "content://sms/inbox";
+                    Uri uri = Uri.parse(SMS_URI_INBOX);
+                    String[] projection = new String[]{"_id", "address", "person", "body", "date", "type"};
+                    Cursor cur2 = getContentResolver().query(uri, null, String.format("address LIKE '%%%s%%'", address.replaceAll("[^0-9]", "")), null, "date desc");
+                    if (cur2.moveToFirst()) {
+                        String lastMessage = cur2.getString(cur2.getColumnIndex("body"));
+                        Date lastReceived = new Date(cur2.getLong(cur2.getColumnIndex("date")));
+                        cur2.close();
+                        final String SMS_URI = "content://sms/";
+                        Uri uri2 = Uri.parse(SMS_URI);
+                        String[] projection2 = new String[]{"_id", "address", "person", "body", "date", "type"};
+                        Cursor cur3 = getContentResolver().query(uri2, projection2, String.format("address LIKE '%%%s%%'", address.replaceAll("[^0-9]", "")), null, "date desc");
+                        if (cur3.moveToFirst()) {
+                            cur3.moveToNext();
+                            Boolean isReponse = (cur3.getInt(cur3.getColumnIndex(("type"))) == 1);
                             if (isReponse) {
-                            Cursor cur4 = getContentResolver().query(uri2, projection2, String.format("address = '%s' AND type = 2", address), null, "date desc");
-                            if (cur4.moveToFirst() && cur4.moveToNext()) {
-                                Date lastInteraction = new Date(cur4.getLong(cur4.getColumnIndex("date")));
-                                long diff = Math.abs(lastReceived.getTime() - lastInteraction.getTime());
-                                long diffMinutes = diff / (60 * 1000);
-                                if (diffMinutes > 30) {
-                                    notifyBaby(message, address, receivedAt, lastMessage);
+                                Cursor cur4 = getContentResolver().query(uri2, projection2, String.format("address LIKE '%%%s%%' AND type = 2", address.replaceAll("[^0-9]", "")), null, "date desc");
+                                if (cur4.moveToFirst() && cur4.moveToNext()) {
+                                    Date lastInteraction = new Date(cur4.getLong(cur4.getColumnIndex("date")));
+                                    long diff = Math.abs(lastReceived.getTime() - lastInteraction.getTime());
+                                    long diffMinutes = diff / (60 * 1000);
+                                    if (diffMinutes > 30) {
+                                        notifyBaby(message, address, receivedAt, lastMessage);
+                                    }
+                                    cur4.close();
                                 }
-                                cur4.close();
+                                cur3.close();
                             }
-                            cur3.close();
                         }
                     }
                 }
+            }
+            catch(Exception e) {
+
             }
         }
 
@@ -129,7 +137,10 @@ public class OutgoingSMSReceiver extends Service {
                     .setContentText("Texting Study Survey")
                     .setSmallIcon(R.mipmap.icon)
                     .setContentIntent(pIntent)
-                    .setAutoCancel(true).build();
+                    .setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .build();
 
 
             NotificationManager notificationManager =
