@@ -1,5 +1,6 @@
 package edu.northwestern.socialmedia.hestondissertationtest;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.FileInputStream;
@@ -23,20 +25,14 @@ public class SetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-        if(ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_SMS") != PackageManager.PERMISSION_GRANTED) {
-            final int REQUEST_CODE_ASK_PERMISSIONS = 123;
-            ActivityCompat.requestPermissions(SetupActivity.this, new String[]{"android.permission.READ_SMS"}, REQUEST_CODE_ASK_PERMISSIONS);
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = { Manifest.permission.READ_CONTACTS, Manifest.permission.READ_SMS, Manifest.permission.INTERNET };
+
+
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
 
-        if(ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED) {
-            final int REQUEST_CODE_ASK_PERMISSIONS = 123;
-            ActivityCompat.requestPermissions(SetupActivity.this, new String[]{"android.permission.READ_CONTACTS"}, REQUEST_CODE_ASK_PERMISSIONS);
-        }
-
-        if(ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.INTERNET") != PackageManager.PERMISSION_GRANTED) {
-            final int REQUEST_CODE_ASK_PERMISSIONS = 123;
-            ActivityCompat.requestPermissions(SetupActivity.this, new String[]{"android.permission.INTERNET"}, REQUEST_CODE_ASK_PERMISSIONS);
-        }
 
         Intent intent = new Intent(this, OutgoingSMSReceiver.class);
         startService(intent);
@@ -55,6 +51,11 @@ public class SetupActivity extends AppCompatActivity {
         try {
             EditText editText = findViewById(R.id.idText);
             editText.setText(idText);
+            if (!idText.isEmpty()) {
+                Button btn = (Button) findViewById(R.id.button2);
+                btn.setText("Saved");
+                btn.setEnabled(false);
+            }
         }
         catch (Exception e) {
             // lol
@@ -67,6 +68,9 @@ public class SetupActivity extends AppCompatActivity {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
             fos.write(idText.getBytes());
+            Button btn = (Button) findViewById(R.id.button2);
+            btn.setText("Saved");
+            btn.setEnabled(false);
         }
         catch (Exception e) {
             // WOW I AM A GOOD DEVELOPER
@@ -76,5 +80,16 @@ public class SetupActivity extends AppCompatActivity {
     public void gotoMessageList(View view) {
         Intent intent = new Intent(this, MessageListActivity.class);
         startActivity(intent);
+    }
+
+    private boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
