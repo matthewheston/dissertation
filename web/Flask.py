@@ -158,7 +158,7 @@ def get_final_survey(participant_id):
     contacts = [c[0] for c in db.session.query(Message.message_from_name).filter(Message.participant_id == participant_id).distinct()]
     return render_template('survey.html', contacts=contacts, participant_id=participant_id)
 
-@app.route('/processform/<participant_id>', methods=['POST']):
+@app.route('/processform/<participant_id>', methods=['POST'])
 def process_form(participant_id):
     if not db.session.query(Participant).filter(Participant.participant_id == participant_id).first():
         return Response("Access with participant id.", status=401)
@@ -167,12 +167,12 @@ def process_form(participant_id):
         result = RelationalSurvey()
         result.contact_name = contact
         result.participant_id = participant_id
-        result.intimacy1 = result.form.get("intimacy1- " + contact, None)
-        result.intimacy2 = result.form.get("intimacy2- " + contact, None)
-        result.intimacy3 = result.form.get("intimacy3- " + contact, None)
-        result.power1 = result.form.get("power1- " + contact, None)
-        result.power2 = result.form.get("power2- " + contact, None)
-        result.power3 = result.form.get("power3- " + contact, None)
+        result.intimacy1 = request.form.get("intimacy1- " + contact, None)
+        result.intimacy2 = request.form.get("intimacy2- " + contact, None)
+        result.intimacy3 = request.form.get("intimacy3- " + contact, None)
+        result.power1 = request.form.get("power1- " + contact, None)
+        result.power2 = request.form.get("power2- " + contact, None)
+        result.power3 = request.form.get("power3- " + contact, None)
         db.session.add(result)
         db.session.commit()
     return Response("Thank you! You have completed the study. You will receive your compensation in your email soon. Please contact heston@u.northwestern.edu if you have any questions.", status=200, mimetype="text/html")
