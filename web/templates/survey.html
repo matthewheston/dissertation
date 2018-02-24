@@ -77,7 +77,7 @@ form .buttons .submit:hover {background-color: #14892c;}
 
 <body>
   <div class="wrap">
-  <form action="/processform" method = "post" id="theForm">
+  <form action="/processform/{{ participant_id }}" method = "post" id="theForm">
   {% for contact in contacts %}
   <h1>Please answer the following questions about {{ contact }}.</h1>
 
