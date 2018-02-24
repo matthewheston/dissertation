@@ -38,9 +38,8 @@ public class OutgoingSMSReceiver extends Service {
         public void onChange(boolean selfChange, Uri incomingUri) {
             try {
                 super.onChange(selfChange);
-
                 Uri uriSMSURI = Uri.parse("content://sms");
-                Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
+                Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, "date desc");
                 cur.moveToNext();
                 String id = cur.getString(cur.getColumnIndex("_id"));
                 int sentOrReceived = cur.getInt(cur.getColumnIndex("type"));
@@ -50,10 +49,7 @@ public class OutgoingSMSReceiver extends Service {
                 Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
                 int threadId = cur.getInt(cur.getColumnIndex("thread_id"));
 
-
-                logSMS(address, message, threadId, sentOrReceived, receivedAt);
-                if ((sentOrReceived == 2) && (protocol == null) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
-
+                if ((sentOrReceived == 2) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
                     cur.close();
 
 
@@ -89,6 +85,7 @@ public class OutgoingSMSReceiver extends Service {
                         }
                     }
                 }
+                logSMS(address, message, threadId, sentOrReceived, receivedAt);
             }
             catch(Exception e) {
 
@@ -141,7 +138,6 @@ public class OutgoingSMSReceiver extends Service {
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .build();
-
 
             NotificationManager notificationManager =
                     (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

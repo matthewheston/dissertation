@@ -96,10 +96,10 @@ public class WebPoster {
             jsonObj.put("puid", result.getUid());
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://smsstudy.soc.northwestern.edu/surveyresult/")
+                HttpResponse<String> future = Unirest.post("http://smsstudy.soc.northwestern.edu/surveyresult/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
-                        .asStringAsync();
+                        .asString();
             } catch (Exception e) {
             }
 
@@ -133,10 +133,10 @@ public class WebPoster {
 
 
             try {
-                Future<HttpResponse<String>> future = Unirest.post("http://smsstudy.soc.northwestern.edu/allmessage/")
+                HttpResponse<String> future = Unirest.post("http://smsstudy.soc.northwestern.edu/allmessage/")
                         .header("Content-Type", "application/json")
                         .body(jsonObj.toString())
-                        .asStringAsync();
+                        .asString();
             } catch (Exception e) {
             }
 
@@ -180,6 +180,7 @@ public class WebPoster {
 
         }
     }
+
 
 }
 
