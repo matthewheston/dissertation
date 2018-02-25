@@ -1,6 +1,7 @@
 package edu.northwestern.socialmedia.hestondissertationtest;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -11,9 +12,12 @@ import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import java.util.Date;
 import java.util.Random;
@@ -25,6 +29,10 @@ public class OutgoingSMSReceiver extends Service {
     }
 
     class smsObserver extends ContentObserver {
+
+        // Sets an ID for the notification, so it can be updated.
+        String CHANNEL_ID = "sms-study-chanel"; // The id of the channel.
+        CharSequence channelName = "SMS Study"; // The user-visible name of the channel
 
         private String lastSmsId;
         Context context;
@@ -48,9 +56,9 @@ public class OutgoingSMSReceiver extends Service {
                 String message = cur.getString(cur.getColumnIndex("body"));
                 Date receivedAt = new Date(cur.getLong(cur.getColumnIndex("date")));
                 int threadId = cur.getInt(cur.getColumnIndex("thread_id"));
+                cur.close();
 
                 if ((sentOrReceived == 2) && (smsChecker(id)) && (incomingUri.getLastPathSegment().equals(id))) {
-                    cur.close();
 
 
                     //get sender info
@@ -123,26 +131,47 @@ public class OutgoingSMSReceiver extends Service {
             savedMessage.setInResponseTo(inResponseTo);
             long messageId = db.messageDao().insert(savedMessage);
 
+
+
             Intent intent = new Intent(this.context, MainActivity.class);
             intent.putExtra("message_id", messageId);
             PendingIntent pIntent = PendingIntent.getActivity(this.context, UUID.randomUUID().hashCode(), intent, 0);
 
-// build notification
-// the addAction re-use the same intent to keep the example short
-            Notification n = new Notification.Builder(this.context)
-                    .setContentTitle("Texting Study Survey")
-                    .setContentText("Texting Study Survey")
-                    .setSmallIcon(R.mipmap.icon)
-                    .setContentIntent(pIntent)
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .build();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_HIGH);
+                mChannel.setDescription("Texting Study Survey");
+                NotificationManager notificationManager =
+                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.createNotificationChannel(mChannel);
 
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Notification n = new NotificationCompat.Builder(this.context, CHANNEL_ID)
+                        .setContentTitle("Texting Study Survey")
+                        .setContentText("Texting Study Survey")
+                        .setSmallIcon(R.drawable.notify_icon)
+                        .setContentIntent(pIntent)
+                        .setAutoCancel(true)
+                        .build();
 
-            notificationManager.notify(new Random().nextInt(9999 - 1000) + 1000, n);
+
+                notificationManager.notify(new Random().nextInt(9999 - 1000) + 1000, n);
+            }
+            else {
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                Notification n = new Notification.Builder(this.context)
+                        .setContentTitle("Texting Study Survey")
+                        .setContentText("Texting Study Survey")
+                        .setSmallIcon(R.drawable.notify_icon)
+                        .setContentIntent(pIntent)
+                        .setAutoCancel(true)
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setPriority(Notification.PRIORITY_HIGH)
+                        .build();
+
+
+                notificationManager.notify(new Random().nextInt(9999 - 1000) + 1000, n);
+            }
 
 
         }
@@ -180,11 +209,30 @@ public class OutgoingSMSReceiver extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
 
-        Notification n = new Notification.Builder(this)
-                .setContentTitle("Texting Study Service")
-                .setContentText("Texting Study Service")
-                .setSmallIcon(R.mipmap.icon)
-                .setContentIntent(pendingIntent).build();
+        Notification n = null;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String CHANNEL_ID = "sms-study-chanel"; // The id of the channel.
+            CharSequence channelName = "SMS Study"; // The user-visible name of the channel
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_LOW);
+            mChannel.setDescription("Texting Study Survey");
+
+            n = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                    .setContentTitle("Texting Study Survey")
+                    .setContentText("Texting Study Survey")
+                    .setSmallIcon(R.drawable.notify_icon)
+                    .setContentIntent(pendingIntent)
+                    .build();
+
+        } else {
+
+
+            n = new Notification.Builder(this)
+                    .setContentTitle("Texting Study Service")
+                    .setContentText("Texting Study Service")
+                    .setSmallIcon(R.drawable.notify_icon)
+                    .setContentIntent(pendingIntent).build();
+        }
 
         startForeground(1337, n);
     }
