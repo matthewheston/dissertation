@@ -42,7 +42,7 @@ public class WebPoster {
 
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("message_from", AESCrypt.encrypt(enc,message.getMessageFrom()));
-            jsonObj.put("message_from_name", message.getMessageFromName());
+            jsonObj.put("message_from_name", AnonymizeName(message.getMessageFromName()));
             jsonObj.put("in_response_to", AESCrypt.encrypt(enc,message.getInResponseTo()));
             jsonObj.put("handled", message.isHandled() ? 1 : 0);
             jsonObj.put("received_at", message.getReceivedAt().getTime());
@@ -163,7 +163,7 @@ public class WebPoster {
 
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("uid", thread.getUid());
-            jsonObj.put("contact_name", thread.getContactName());
+            jsonObj.put("contact_name", AnonymizeName(thread.getContactName()));
             jsonObj.put("address", AESCrypt.encrypt(enc,thread.getAddress()));
             jsonObj.put("participant_id", participantId);
 
@@ -179,6 +179,19 @@ public class WebPoster {
         } catch (Exception e) {
 
         }
+    }
+
+    public static String AnonymizeName(String name) {
+        String anonymized = "";
+        if (name.split(" ").length == 1) {
+            anonymized = name;
+        } else {
+            String splitName[] = name.split(" ");
+            anonymized += splitName[0];
+            anonymized += " ";
+            anonymized += splitName[1].charAt(0);
+        }
+        return anonymized;
     }
 
 
