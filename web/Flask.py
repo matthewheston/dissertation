@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger, Table, Boolean
+from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger, Table
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -45,7 +45,7 @@ class SurveyResult(Base):
 
     uid = Column(Integer, primary_key=True)
     availability = Column(Integer, nullable=False)
-    unavailability = Column(Boolean, nullable=False)
+    unavailability = Column(Integer)
     urgency = Column(Integer, nullable=False)
     friend_urgency = Column(Integer, nullable=False)
     message_id = Column(ForeignKey(u'Message.uid'), nullable=False, index=True)
@@ -57,6 +57,8 @@ class SurveyResult(Base):
         self.availability = availability
         self.urgency = urgency
         self.message_id = message_id,
+        self.friend_urgency = friend_urgency
+        self.unavailability = unavailability
         self.participant_id = participant_id
         self.puid = puid
 
