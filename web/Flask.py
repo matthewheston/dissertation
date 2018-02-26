@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger, Table
+from sqlalchemy import Column, ForeignKey, Integer, Text, BigInteger, Table, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -45,13 +45,15 @@ class SurveyResult(Base):
 
     uid = Column(Integer, primary_key=True)
     availability = Column(Integer, nullable=False)
+    unavailability = Column(Boolean, nullable=False)
     urgency = Column(Integer, nullable=False)
+    friend_urgency = Column(Integer, nullable=False)
     message_id = Column(ForeignKey(u'Message.uid'), nullable=False, index=True)
     participant_id = Column(Text)
     puid = Column(Integer)
 
 
-    def __init__(self, availability, urgency, message_id, participant_id, puid):
+    def __init__(self, availability, urgency, message_id, participant_id, puid, unavailability, friend_urgency):
         self.availability = availability
         self.urgency = urgency
         self.message_id = message_id,
@@ -125,7 +127,7 @@ def create_surveyresult():
     if not db.session.query(Participant).filter(Participant.participant_id == request.json.get('participant_id')).first():
         return Response("{'status':'failure'}", status=403, mimetype='application/json')
 
-    surveyresult= SurveyResult(request.json.get('availability'), request.json.get('urgency'), request.json.get('message_id'), request.json.get('participant_id'), request.json.get('puid'))
+    surveyresult= SurveyResult(request.json.get('availability'), request.json.get('urgency'), request.json.get('message_id'), request.json.get('participant_id'), request.json.get('puid'), request.json.get('unavailability'), request.json.get('friend_urgency'))
     db.session.add(surveyresult)
     db.session.commit()
     return Response("{'status':'success'}", status=201, mimetype='application/json')

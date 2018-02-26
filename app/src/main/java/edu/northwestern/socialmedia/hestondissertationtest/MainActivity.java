@@ -9,8 +9,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,14 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView receivedMessageContainer = findViewById(R.id.receivedMsgContainer);
                 receivedMessageContainer.setText(msg.getInResponseTo());
+
+                TextView dateContainer = findViewById(R.id.dateContainer);
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String reportDate = df.format(msg.getReceivedAt());
+                dateContainer.setText(reportDate);
             }
         }
     }
 
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, ThankYouActivity.class);
-        startActivity(intent);
 
         AppDatabase db = Database.getDb(getApplicationContext());
 
@@ -62,12 +69,20 @@ public class MainActivity extends AppCompatActivity {
         RatingBar urgencyRating = (RatingBar) findViewById(R.id.urgencyRating);
         int urgency = Math.round(urgencyRating.getRating());
 
+        RatingBar friendUrgencyRating = (RatingBar) findViewById(R.id.urgencyRating2);
+        int friendUrgency = Math.round(friendUrgencyRating.getRating());
+
+        CheckBox availabilityCheck = (CheckBox) findViewById(R.id.availabilityCheckBox);
+        int availabilityBinary = availabilityCheck.isChecked() ? 1 : 0;
+
         Intent incomingIntent = getIntent();
         int messageId = (int) incomingIntent.getLongExtra("message_id", -1);
 
         SurveyResult result = new SurveyResult();
         result.setAvailability(availability);
         result.setUrgency(urgency);
+        result.setFriendUrgency(friendUrgency);
+        result.setUnavailable(availabilityBinary);
         result.setMessageId(messageId);
 
 
@@ -76,6 +91,20 @@ public class MainActivity extends AppCompatActivity {
         WebPoster.PostMessage(this, msg);
         db.surveyResultDao().insert(result);
         WebPoster.PostSurveyResult(this, result);
+
+        Intent intent = new Intent(this, ThankYouActivity.class);
+        startActivity(intent);
+    }
+
+    public void cancelMessage(View view) {
+        AppDatabase db = Database.getDb(getApplicationContext());
+
+        Intent incomingIntent = getIntent();
+        int messageId = (int) incomingIntent.getLongExtra("message_id", -1);
+        db.messageDao().makeHandled(messageId);
+
+        Intent intent = new Intent(this, ThankYouActivity.class);
+        startActivity(intent);
     }
 }
 

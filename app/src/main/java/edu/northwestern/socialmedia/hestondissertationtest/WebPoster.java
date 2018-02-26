@@ -91,6 +91,8 @@ public class WebPoster {
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("availability", result.getAvailability());
             jsonObj.put("urgency", result.getUrgency());
+            jsonObj.put("friend_urgency", result.getFriendUrgency());
+            jsonObj.put("unavailability", result.getUnavailable());
             jsonObj.put("message_id", result.getMessageId());
             jsonObj.put("participant_id", participantId);
             jsonObj.put("puid", result.getUid());

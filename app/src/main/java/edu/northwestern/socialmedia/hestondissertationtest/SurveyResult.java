@@ -38,6 +38,14 @@ public class SurveyResult {
         this.urgency = urgency;
     }
 
+    public int getFriendUrgency() {
+        return friendUrgency;
+    }
+
+    public void setFriendUrgency(int friendUrgency) {
+        this.friendUrgency = friendUrgency;
+    }
+
     public int getMessageId() {
         return messageId;
     }
@@ -55,6 +63,20 @@ public class SurveyResult {
     @ColumnInfo(name="urgency")
     private int urgency;
 
+    @ColumnInfo(name="friend_urgency")
+    private int friendUrgency;
+
     @ColumnInfo(name="message_id")
     private int messageId;
+
+    public int getUnavailable() {
+        return unavailable;
+    }
+
+    public void setUnavailable(int unavailable) {
+        this.unavailable = unavailable;
+    }
+
+    @ColumnInfo(name="unavailable")
+    private int unavailable;
 }
