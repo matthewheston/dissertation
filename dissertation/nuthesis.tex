@@ -1,0 +1,146 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% nuthesis-template.tex - Miguel A, Lerma - 3/31/2013
+%                         mlerma@math.northwestern.edu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%% DISCLAIMER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% In spite of the effort to accommodate this template and the nuthesis
+% class to the official requirements of the university to write a 
+% Ph.D. dissertation, it is not possible to guarantee that it will 
+% always work, and the author of the dissertation remains responsible
+% for checking that such requirements are actually fulfilled by 
+% his/her final work.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[12pt]{nuthesis}	% The nuthesis class is based on 
+				% amsbook.cls.
+				
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[natbibapa]{apacite}
+\usepackage{comment}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DATA OF AUTHOR AND DISSERTATION %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Matthew Heston}
+
+\title{The Effect of Contextual and Relational Variables on Predicting Mobile Responsiveness}
+
+%\degree{DOCTOR OF PHILOSOPHY}  % Default: DOCTOR OF PHILOSOPHY
+
+\field{Technology and Social Behavior}            % Default: Mathematics
+
+%\graduationmonth{June}         % The default is June or December
+                                % depending on current date.
+
+%\graduationyear{2003}          % Default: current year.
+
+
+				% Use \includeonly to select the 
+%\includeonly{chap1,chap2,...}	% chapters to include if you are 
+				% using the \include command below.
+				% This way you can latex only a the 
+				% part you are working on, which 
+				% is faster than latexing the entire 
+				% thesis. 
+
+
+\begin{document}
+%	
+%	THE BODY OF YOUR THESIS STARTS HERE
+%
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Some initial stuff %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter		% Preliminary pages start here.
+
+\maketitle		% Produces the title page.
+
+\copyrightpage		% Creates the copyright page.
+
+
+\abstract		% Abstract.
+
+This is the abstract.
+
+\acknowledgements	% Acknowledgements (optional).
+
+Text for acknowledgments.
+
+\preface		% Preface (optional).
+
+This is the preface.
+
+
+%% A few more optional pages (uncomment if needed)
+%
+%\listofabbreviations 
+%
+%This is the list of abbreviations (optional).
+%
+%\glossary
+%
+%This is the glossary (optional).
+%
+%\nomenclature
+%
+%This is the nomenclature (optional).
+%
+%% Note that the dedication text must be passed as an argument
+%% of the \dedication command
+%\dedication{This is the dedication (optional).}
+%
+
+\clearpage\phantomsection % needed for the hyperlinks to work correctly
+\tableofcontents	% Table of Contents will be automatically
+			% generated and placed here.
+
+\clearpage\phantomsection % needed for the hyperlinks to work correctly
+\listoftables		% List of Tables and List of Figures will be placed
+
+\clearpage\phantomsection % needed for the hyperlinks to work correctly
+\listoffigures		% here, if applicable (optional).
+
+
+
+\mainmatter             % Actual text starts here.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Actual text starts here %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% If there is an introduction it must be the first chapter
+
+\chapter{Introduction}
+
+\chapter{Theoretical and Conceptual Background}
+
+\chapter{The Current Project}
+
+\chapter{Discussion}
+
+ \renewcommand\refname{\begin{centering}References\end{centering}}
+ \bibliography{references.bib}
+ \bibliographystyle{apacite} %or another suitable style.
+
+
+
+% \appendix		% Appendix begins here (optional).
+
+%\appendices	        % If more than one appendix chapters,
+				% use appendices instead of appendix
+
+
+
+
+\end{document}
+
