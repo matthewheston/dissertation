@@ -84,7 +84,7 @@ public class OutgoingSMSReceiver extends Service {
                                     long diff = Math.abs(lastReceived.getTime() - lastInteraction.getTime());
                                     long diffMinutes = diff / (60 * 1000);
                                     if (diffMinutes > 30) {
-                                        notifyBaby(message, address, receivedAt, lastMessage);
+                                        notifyBaby(message, address, lastReceived, lastMessage);
                                     }
                                     cur4.close();
                                 }
@@ -216,11 +216,14 @@ public class OutgoingSMSReceiver extends Service {
             CharSequence channelName = "SMS Study"; // The user-visible name of the channel
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_LOW);
             mChannel.setDescription("Texting Study Survey");
+            NotificationManager notificationManager =
+                    (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(mChannel);
 
             n = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                    .setContentTitle("Texting Study Survey")
-                    .setContentText("Texting Study Survey")
-                    .setSmallIcon(R.drawable.notify_icon)
+                    .setContentTitle("Texting Study Service")
+                    .setContentText("Texting Study Service")
+                    .setSmallIcon(R.drawable.service_icon)
                     .setContentIntent(pendingIntent)
                     .build();
 
@@ -230,7 +233,7 @@ public class OutgoingSMSReceiver extends Service {
             n = new Notification.Builder(this)
                     .setContentTitle("Texting Study Service")
                     .setContentText("Texting Study Service")
-                    .setSmallIcon(R.drawable.notify_icon)
+                    .setSmallIcon(R.drawable.service_icon)
                     .setContentIntent(pendingIntent).build();
         }
 
