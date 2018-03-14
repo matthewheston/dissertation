@@ -103,6 +103,7 @@ class RelationalSurvey(Base):
     power1 = Column(Integer, nullable=False)
     power2 = Column(Integer, nullable=False)
     power3 = Column(Integer, nullable=False)
+    distance = Column(Integer)
     contact_name = Column(Text)
     participant_id = Column(Text)
 
@@ -177,6 +178,7 @@ def process_form(participant_id):
         result.power1 = request.form.get("power1- " + contact, None)
         result.power2 = request.form.get("power2- " + contact, None)
         result.power3 = request.form.get("power3- " + contact, None)
+        result.distance= request.form.get("distance- " + contact, None)
         db.session.add(result)
         db.session.commit()
     return Response("Thank you! You have completed the study. You will receive your compensation in your email soon. Please contact heston@u.northwestern.edu if you have any questions.", status=200, mimetype="text/html")

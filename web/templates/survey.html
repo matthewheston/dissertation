@@ -219,6 +219,14 @@ form .buttons .submit:hover {background-color: #14892c;}
         <label>Strongly agree</label>
       </li>
     </ul>
+  <label class="statement">How far away does this person live?</label>
+  <select name="distance- {{ contact }}">
+      <option value="1">We live together.</option>
+      <option value="2">In the same city, but we don't live together.</option>
+      <option value="3">In the same state, but not the same city.</option>
+      <option value="4">In the same timezone, but not the same state.</option>
+      <option value="5">In a different timezone.</option>
+  </select><br />
   {% endfor %}
   <button type="submit" form="theForm" value="Submit">Submit</button>
   </form>
