@@ -203,6 +203,40 @@ Quantifying the effect of relational variables on responsiveness behavior will b
 
 \chapter{Methods}
 
+\section{Participants}
+
+\section{Procedure}
+
+\subsection{Pre-Study Survey}
+
+Recruitment materials directed participants to an initial survey, which was used to collect demographic information, information about how participants used their phones, as well as a personality assessment.
+
+\subsubsection{Demographic Data}
+\todo[inline]{Put demographics here.}
+
+\subsubsection{Texting Use}
+\todo[inline]{Put texting info here.}
+
+\subsubsection{Personality Data}
+Prior work has demonstrated a link between the ``Big 5'' personality traits~\citep{john1991big} and various mobile phone behaviors, including frequency of SMS use as well as responsiveness to SMS messages~\citep{chittaranjan2011s,de2013predicting,lepp2015exploring}, suggesting these traits may be a useful covariate to include in a responsiveness model. These traits were measured using a modified short version of the scale developed by \citet{rammstedt2007measuring}.
+\todo[inline]{Put texting info here.}
+
+\subsection{SMS Tracking Application}
+
+After completing the pre-study survey, participants were emailed a link to a custom Android application developed to collect their text messages and experience sampling data when responding to messages. They were also provided with detailed instructions about the app and measures involved.
+
+A background service monitored participants' SMS database, storing all messages sent and received during the study period on an external database, managed by Northwestern School of Communication IT. All sensitive information, including phone numbers and message content, were encrypted before being sent to the database. These encrypted values were also stored in the database to help ensure participant privacy. Multimedia content, such as photographs, were not stored. \todo[inline]{dyads}
+
+The focus of this study is on responses to what ~\citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.
+
+An SIA is any incoming message that is received after some threshold of time has passed since the last interaction between the message sender and receiver. For example, if the threshold was set to one hour, in Figure 1, the incoming message that starts ``Hey, I don't want to wait...'' would be considered an SIA since days have passed since the last interaction, whereas the ``ok'' emoji would not, since only 11 minutes have passed.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/example_sia}
+\caption{Example text message exchange}
+\end{figure}
+
 
 \chapter{Discussion}
 
