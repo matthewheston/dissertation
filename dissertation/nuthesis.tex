@@ -221,37 +221,72 @@ Quantifying the effect of relational variables on responsiveness behavior will b
 
 \section{Participants}
 
+Participants were recruited online using Craigslist ads, Facebook ads, and Reddit posts. Ads were posted in the 10 most populous US cities. Participants were required to be at least 18 years old, native English speakers, and own an Android phone running at least version 6.0 of the Android OS~\footnote{At the time the study was run, Android 6.0 was the minimum OS version still being actively supported.}. Participants were compensated with a \$20 Amazon gift card in exchange for participation in the study. A total of 233 participants took the initial survey. Of those participants, 126 installed the Android application. Of those that installed the application, 93 completed the entire study. All analysis results refer to these 93 participants that completed the study procedure.
+
+Gender was slightly skewed with 58\% female participants. A majority of participants were Caucasian (72\%), while 15\% were Black / African American, 13\% were Asian, and 4\% were American Indian. One participant preferred not to disclose ethnicity. Participant age ranged from 18 to 71 years old, with a median age of 30 years old. Age distribution is shown in Figure~\ref{fig:age}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/age_distribution}
+\caption{Distribution of participant ages}
+\label{fig:age}
+\end{figure}
+
+
 \section{Procedure}
 
 \subsection{Pre-Study Survey}
 
-Recruitment materials directed participants to an initial survey, which was used to collect demographic information, information about how participants used their phones, as well as a personality assessment.
-
-\subsubsection{Demographic Data}
-\todo[inline]{Put demographics here.}
+Recruitment materials directed participants to an initial survey, which was used to collect the demographic information reported above, information about how participants used their phones, as well as a personality assessment.
 
 \subsubsection{Texting Use}
-\todo[inline]{Put texting info here.}
+Given that restrictions on texting, such as having a limited text plan, could influence the texting behavior of interest in the study, participants were asked if they were aware of any limits on their SMS plan. No participants reported having such limits.
 
-\subsubsection{Personality Data}
-Prior work has demonstrated a link between the ``Big 5'' personality traits~\citep{john1991big} and various mobile phone behaviors, including frequency of SMS use as well as responsiveness to SMS messages~\citep{chittaranjan2011s,de2013predicting,lepp2015exploring}, suggesting these traits may be a useful covariate to include in a responsiveness model. These traits were measured using a modified short version of the scale developed by \citet{rammstedt2007measuring}.
-\todo[inline]{Put texting info here.}
+While the focus of this study is on SMS, other messaging platforms such as Google Hangouts and Facebook Messenger are also popular. Participants were asked what other messaging applications they use, and how their use of SMS compared to the use of these other platforms. All participants reported using at least one other messaging application. Forty-six percent of participants said they used SMS more often than these other applications, and 28\% reported using SMS about the same amount as the other applications. Twenty-five percent said they use SMS somewhat less often than other messaging applications, with only 1\% reporting using SMS a lot less often.
+
+%\subsubsection{Personality Data}
+%Prior work has demonstrated a link between the ``Big 5'' personality traits~\citep{john1991big} and various mobile phone behaviors, including frequency of SMS use as well as responsiveness to SMS messages~\citep{chittaranjan2011s,de2013predicting,lepp2015exploring}, suggesting these traits may be a useful covariate to include in a responsiveness model. These traits were measured using a modified short version of the scale developed by \citet{rammstedt2007measuring}.
+%\todo[inline]{Put texting info here.}
 
 \subsection{SMS Tracking Application}
 
-After completing the pre-study survey, participants were emailed a link to a custom Android application developed to collect their text messages and experience sampling data when responding to messages. They were also provided with detailed instructions about the app and measures involved.
+After completing the pre-study survey, participants were emailed a link to a custom Android application developed to collect their text messages and experience sampling data when responding to messages. They were also provided with detailed instructions about the app and measures involved. Participants were required to run the app for 7 days. No data after 7 days was collected.
 
-A background service monitored participants' SMS database, storing all messages sent and received during the study period on an external database, managed by Northwestern School of Communication IT. All sensitive information, including phone numbers and message content, were encrypted before being sent to the database. These encrypted values were also stored in the database to help ensure participant privacy. Multimedia content, such as photographs, were not stored. \todo[inline]{dyads}
+A background service monitored participants' SMS database, storing all messages sent and received during the study period on an external database, managed by Northwestern School of Communication IT. All sensitive information, including phone numbers and message content, were encrypted before being sent to the database. These encrypted values were also stored in the database to help ensure participant privacy. Multimedia content, such as photographs, were not stored. Only dyadic conversations were stored (i.e., not group texts).
 
-The focus of this study is on responses to what ~\citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.
+\subsection{Session Initiation Attempts}
 
-An SIA is any incoming message that is received after some threshold of time has passed since the last interaction between the message sender and receiver. For example, if the threshold was set to one hour, in Figure 1, the incoming message that starts ``Hey, I don't want to wait...'' would be considered an SIA since days have passed since the last interaction, whereas the ``ok'' emoji would not, since only 11 minutes have passed.
+The focus of this study is on responses to what \citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.
+
+SIA's were identified using a heuristic similar to \citet{avrahami2006responsiveness}, where an SIA is any incoming message from a contact that is sent after some threshold has passed since the last received message from that contact. The threshold chosen for this study was 30 minutes, which was selected after reviewing large scale studies of texting behavior~\citep{battestini2010large,birnholtz2017attending}, as well as discussion with pilot study participants. To illustrate SIA's, note that in Figure~\ref{fig:sia} the incoming message that starts ``Hey, I don't want to wait...'' would be considered an SIA since days have passed since the last interaction, as would ``So like 1 or 2'' since it has been more than 30 minutes since the last message the ``What time do you want to leave?'' message was sent, whereas the ``ok'' emoji would not, since only 11 minutes have passed.
+
+%A potential issue with this heuristic approach is that it ignores ``follow up'' texts. Imagine, for example, that the session initiator in Figure~\ref{fig:sia} followed up their 12:56pm ``What time do you want to leave'' text with a 1:00pm text that just said ``??'', a technique that has been observed to heighten attention from a contact~\citep{heston2017worth}. In this case, we are still interested in responsiveness as it related to the initial 12:56pm text. To deal with this, if a message was registered as an SIA, any follow up texts sent during the next half hour were grouped with that initial text.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=.7\textwidth]{figures/example_sia}
 \caption{Example text message exchange}
+\label{fig:sia}
 \end{figure}
+
+
+\subsection{Experience Sampling}
+
+Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling~\citep{conner2009experience,csikszentmihalyi2014validity}. Ideally, experience sampling would be triggered immediately at the moment of interest~\citep{hormuth1986sampling}. In this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
+
+When taken to the questionnaire, participants were shown the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
+
+\subsubsection{Availability}
+
+Participants were asked to rate their availability in 2 ways. The first involve a dichotomous ``unavailable'' measure. Participants could make themselves as totally unavailable in the case of having left their phone at home, their phone being in their backpack, or any situation in which they could not reasonable access their phone at all.
+
+If a participant was not totally unavailable, they were asked to rate their availability on a scale of 1--5, with 1 indicating being very busy or otherwise distracted, and 5 representing being not busy at all.  A similar single item scale was used to assess availability in ~\citet{fogarty2005predicting}.
+
+Other responsiveness studies have used sensor data, such as phone activity, to make inferences about availability, rather than using experience sampling to collect this directly~\citep[e.g.,][]{pielot2014didn}. However, such studies focus only on predicting responsiveness, rather than explaining responsiveness behavior. Given the focus of this work on understanding how different variables affect responsiveness, capturing an availability measure directly should allow for better inference in how message content and sender-receiver relationship interact with a participant's own subjective feeling of availability.
+
+\subsubsection{Message Importance}
+
+
 
 
 \chapter{Discussion}
