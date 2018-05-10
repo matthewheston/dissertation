@@ -254,7 +254,7 @@ After completing the pre-study survey, participants were emailed a link to a cus
 
 A background service monitored participants' SMS database, storing all messages sent and received during the study period on an external database, managed by Northwestern School of Communication IT. All sensitive information, including phone numbers and message content, were encrypted before being sent to the database. These encrypted values were also stored in the database to help ensure participant privacy. Multimedia content, such as photographs, were not stored. Only dyadic conversations were stored (i.e., not group texts).
 
-\subsection{Session Initiation Attempts}
+\subsubsection{Session Initiation Attempts}
 
 The focus of this study is on responses to what \citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.
 
@@ -272,21 +272,64 @@ SIA's were identified using a heuristic similar to \citet{avrahami2006responsive
 
 \subsection{Experience Sampling}
 
-Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling~\citep{conner2009experience,csikszentmihalyi2014validity}. Ideally, experience sampling would be triggered immediately at the moment of interest~\citep{hormuth1986sampling}. In this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
+Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling~\citep{conner2009experience,csikszentmihalyi2014validity}. It is normally recommended experience sampling  be triggered immediately at the moment of interest~\citep{hormuth1986sampling}, e.g., in this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
 
 When taken to the questionnaire, participants were shown the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
 
-\subsubsection{Availability}
-
-Participants were asked to rate their availability in 2 ways. The first involve a dichotomous ``unavailable'' measure. Participants could make themselves as totally unavailable in the case of having left their phone at home, their phone being in their backpack, or any situation in which they could not reasonable access their phone at all.
+\textbf{Availability.} Participants were asked to rate their availability in 2 ways. The first involve a dichotomous ``unavailable'' measure. Participants could make themselves as totally unavailable in the case of having left their phone at home, their phone being in their backpack, or any situation in which they could not reasonable access their phone at all.
 
 If a participant was not totally unavailable, they were asked to rate their availability on a scale of 1--5, with 1 indicating being very busy or otherwise distracted, and 5 representing being not busy at all.  A similar single item scale was used to assess availability in ~\citet{fogarty2005predicting}.
 
 Other responsiveness studies have used sensor data, such as phone activity, to make inferences about availability, rather than using experience sampling to collect this directly~\citep[e.g.,][]{pielot2014didn}. However, such studies focus only on predicting responsiveness, rather than explaining responsiveness behavior. Given the focus of this work on understanding how different variables affect responsiveness, capturing an availability measure directly should allow for better inference in how message content and sender-receiver relationship interact with a participant's own subjective feeling of availability.
 
-\subsubsection{Message Importance}
+\textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. Participants rated each SIA on a two 1--5 scales, ``How important is this message to you?'' and ``How important do you think this message is to the person who sent it to you?''
 
 
+\subsection{Post-Study Survey}
+
+After running the SMS tracking application for 7 days, participants were sent a final survey where they rated each of their contacts who sent them an SIA during the study on 2 relational scales. Intimacy was measured using a 3 item scale adapted from \citet{miller1982assessment}. Power was measured using a 3 item scale adapted from \citet{farrell2015relationship}. The distribution of these variables across contacts are shown in Figures \ref{fig:intimacy} and \ref{fig:power}. To account for potential differences in texting behavior based on the proximity of the message sender to the message receiver (e.g., a person may have different texting habits with someone who lives in their same city that they see often versus a friend who lives in a different state who they see rarely), for each contact, participants also specified proximity from one of the following options: ``We live together,'' ``In the same city, but we don't live together,'' ``In the same state, but not the same city,'' ``In the same timezone, but not the same state,'' ''In a different time zone.''
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/intimacy_distribution}
+\caption{Distribution of measured intimacy across contacts.}
+\label{fig:intimacy}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/power_distribution}
+\caption{Distribution of measured power across contacts.}
+\label{fig:power}
+\end{figure}
+
+\subsection{Post-Study Content Coding}
+
+Requests for information or action have been shown to increase the likelihood of engaging with a message~\citep{dabbish2005understanding}. After data collection was completed, content coding was performed on SIA's to categorize them as either being a request or not.
+
+\section{Analysis}
+
+Given the hierarchical nature of the collected data (e.g., SIA's are grouped within contacts which are grouped within participants), data was analyzed using a series of multi-level models~\citep{gelman2007data}.
+
+In all regression models, the dependent variable was the natural log of the seconds in response latency between the receipt of an SIA and the response. The distribution of response time in seconds, shown in Figure~\ref{fig:response_time}, is highly skewed, which is typical of response time distributions~\citep{kalman2006pauses}. Taking the log of this variable results in a more normal distribution, as shown in Figure~\ref{fig:log_response_time}. Other approaches to dealing with this type of skewed data include different classes of generalized linear models~\citep[see e.g.,][]{buntin2004too,dick2004beyond,manning2001estimating}, but experimentation with these models demonstrated poor model fit for the collected data.
+
+To understand the impact of how different classes of independent variables (i.e., contextual variables and relational variables) affect responsiveness, a hierarchical regression process was followed wherein a series of regression models were fit introducing a new class of variables at each step~\citep{gurnsey2017statistics}. To test whether or not variables improved model fit, likelihood ratio tests were used to compare models. In addition to these tests, model fit parameters such as the Akaike information criterion (AIC) were compared, as suggested by \citet{gelman2007data}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/response_time_distribution}
+\caption{Distribution of response time in seconds.}
+\label{fig:response_time}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/log_response_time_distribution}
+\caption{Distribution of the natural log of response time in seconds.}
+\label{fig:log_response_time}
+\end{figure}
 
 
 \chapter{Discussion}
