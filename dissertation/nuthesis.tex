@@ -331,7 +331,82 @@ To understand the impact of how different classes of independent variables (i.e.
 \label{fig:log_response_time}
 \end{figure}
 
+\section{Results}
 
+% Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, May 10, 2018 - 17:38:33
+\begin{table}[!htbp] \tiny \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{log(response\_delay)} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ age & 0.005 & 0.005 & 0.006 & 0.007 \\ 
+  & (0.017) & (0.017) & (0.017) & (0.017) \\ 
+  & & & & \\ 
+ genderMale & $-$0.207 & $-$0.243 & $-$0.289 & $-$0.287 \\ 
+  & (0.281) & (0.284) & (0.284) & (0.281) \\ 
+  & & & & \\ 
+ sent\_total & $-$0.083 & $-$0.092 & $-$0.113 & $-$0.117 \\ 
+  & (0.105) & (0.106) & (0.106) & (0.105) \\ 
+  & & & & \\ 
+ availability & $-$0.497$^{***}$ & $-$0.492$^{***}$ & $-$0.490$^{***}$ & $-$0.531$^{***}$ \\ 
+  & (0.032) & (0.032) & (0.032) & (0.068) \\ 
+  & & & & \\ 
+ importance &  & $-$0.190$^{***}$ & $-$0.195$^{***}$ & $-$0.134$^{**}$ \\ 
+  &  & (0.054) & (0.054) & (0.059) \\ 
+  & & & & \\ 
+ importance\_to\_contact &  & 0.112$^{**}$ & 0.114$^{**}$ & 0.042 \\ 
+  &  & (0.055) & (0.055) & (0.059) \\ 
+  & & & & \\ 
+ power &  &  & 0.191 & 0.222$^{*}$ \\ 
+  &  &  & (0.124) & (0.127) \\ 
+  & & & & \\ 
+ intimacy &  &  & $-$0.070 & $-$0.087 \\ 
+  &  &  & (0.098) & (0.100) \\ 
+  & & & & \\ 
+ distance\_factorDifferent Timezone &  &  & $-$0.167 & $-$0.204 \\ 
+  &  &  & (0.329) & (0.329) \\ 
+  & & & & \\ 
+ distance\_factorLive Together &  &  & $-$0.502$^{*}$ & $-$0.479$^{*}$ \\ 
+  &  &  & (0.276) & (0.276) \\ 
+  & & & & \\ 
+ distance\_factorSame State &  &  & 0.096 & 0.104 \\ 
+  &  &  & (0.221) & (0.221) \\ 
+  & & & & \\ 
+ distance\_factorSame Timezone &  &  & $-$0.255 & $-$0.284 \\ 
+  &  &  & (0.380) & (0.380) \\ 
+  & & & & \\ 
+ availability:importance &  &  &  & $-$0.077$^{**}$ \\ 
+  &  &  &  & (0.030) \\ 
+  & & & & \\ 
+ availability:importance\_to\_contact &  &  &  & 0.099$^{***}$ \\ 
+  &  &  &  & (0.030) \\ 
+  & & & & \\ 
+ availability:power &  &  &  & $-$0.047 \\ 
+  &  &  &  & (0.041) \\ 
+  & & & & \\ 
+ availability:intimacy &  &  &  & 0.018 \\ 
+  &  &  &  & (0.035) \\ 
+  & & & & \\ 
+ Constant & 6.574$^{***}$ & 6.714$^{***}$ & 6.899$^{***}$ & 6.947$^{***}$ \\ 
+  & (0.497) & (0.511) & (0.529) & (0.526) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 1,635 & 1,635 & 1,635 & 1,635 \\ 
+Log Likelihood & $-$3,339.033 & $-$3,332.933 & $-$3,329.743 & $-$3,323.137 \\ 
+Akaike Inf. Crit. & 6,694.066 & 6,685.866 & 6,691.487 & 6,686.274 \\ 
+Bayesian Inf. Crit. & 6,737.261 & 6,739.860 & 6,777.877 & 6,794.262 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
 \chapter{Discussion}
 
  \renewcommand\refname{\begin{centering}References\end{centering}}
