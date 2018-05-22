@@ -331,11 +331,11 @@ To understand the impact of how different classes of independent variables (i.e.
 
 \section{Results}
 
+\subsection{Regression Results}
+
 % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
 % Date and time: Thu, May 10, 2018 - 17:38:33
-\begin{table}[!htbp] \tiny \centering 
-  \caption{} 
-  \label{} 
+\begin{table}[!htbp] \fontsize{7}{7.5}\selectfont \centering 
 \begin{tabular}{@{\extracolsep{5pt}}lcccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -344,67 +344,129 @@ To understand the impact of how different classes of independent variables (i.e.
 \\[-1.8ex] & \multicolumn{4}{c}{log(response\_delay)} \\ 
 \\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
 \hline \\[-1.8ex] 
- age & 0.005 & 0.005 & 0.006 & 0.007 \\ 
+ age & 0.005 & 0.004 & 0.004 & 0.005 \\ 
   & (0.017) & (0.017) & (0.017) & (0.017) \\ 
   & & & & \\ 
- genderMale & $-$0.207 & $-$0.243 & $-$0.289 & $-$0.287 \\ 
-  & (0.281) & (0.284) & (0.284) & (0.281) \\ 
+ genderMale & $-$0.210 & $-$0.286 & $-$0.329 & $-$0.326 \\ 
+  & (0.287) & (0.294) & (0.295) & (0.292) \\ 
   & & & & \\ 
- sent\_total & $-$0.083 & $-$0.092 & $-$0.113 & $-$0.117 \\ 
-  & (0.105) & (0.106) & (0.106) & (0.105) \\ 
+ sent\_total & $-$0.089 & $-$0.104 & $-$0.129 & $-$0.128 \\ 
+  & (0.112) & (0.114) & (0.115) & (0.114) \\ 
   & & & & \\ 
- availability & $-$0.497$^{***}$ & $-$0.492$^{***}$ & $-$0.490$^{***}$ & $-$0.531$^{***}$ \\ 
-  & (0.032) & (0.032) & (0.032) & (0.068) \\ 
+ availability & $-$0.497$^{***}$ & $-$0.500$^{***}$ & $-$0.499$^{***}$ & $-$0.549$^{***}$ \\ 
+  & (0.032) & (0.032) & (0.032) & (0.070) \\ 
   & & & & \\ 
- importance &  & $-$0.190$^{***}$ & $-$0.195$^{***}$ & $-$0.134$^{**}$ \\ 
+ importance &  & $-$0.167$^{***}$ & $-$0.173$^{***}$ & $-$0.108$^{*}$ \\ 
   &  & (0.054) & (0.054) & (0.059) \\ 
   & & & & \\ 
- importance\_to\_contact &  & 0.112$^{**}$ & 0.114$^{**}$ & 0.042 \\ 
-  &  & (0.055) & (0.055) & (0.059) \\ 
+ importance\_to\_contact &  & 0.069 & 0.072 & 0.009 \\ 
+  &  & (0.055) & (0.055) & (0.060) \\ 
   & & & & \\ 
- power &  &  & 0.191 & 0.222$^{*}$ \\ 
-  &  &  & (0.124) & (0.127) \\ 
+ requestar &  & 1.512$^{***}$ & 1.511$^{***}$ & 1.246$^{***}$ \\ 
+  &  & (0.207) & (0.207) & (0.231) \\ 
   & & & & \\ 
- intimacy &  &  & $-$0.070 & $-$0.087 \\ 
-  &  &  & (0.098) & (0.100) \\ 
+ requestir &  & $-$0.010 & $-$0.021 & $-$0.016 \\ 
+  &  & (0.125) & (0.125) & (0.133) \\ 
   & & & & \\ 
- distance\_factorDifferent Timezone &  &  & $-$0.167 & $-$0.204 \\ 
-  &  &  & (0.329) & (0.329) \\ 
+ power &  &  & 0.182 & 0.207 \\ 
+  &  &  & (0.125) & (0.128) \\ 
   & & & & \\ 
- distance\_factorLive Together &  &  & $-$0.502$^{*}$ & $-$0.479$^{*}$ \\ 
-  &  &  & (0.276) & (0.276) \\ 
+ intimacy &  &  & $-$0.049 & $-$0.061 \\ 
+  &  &  & (0.099) & (0.101) \\ 
   & & & & \\ 
- distance\_factorSame State &  &  & 0.096 & 0.104 \\ 
-  &  &  & (0.221) & (0.221) \\ 
+ distance\_factorDifferent Timezone &  &  & $-$0.041 & $-$0.082 \\ 
+  &  &  & (0.331) & (0.330) \\ 
   & & & & \\ 
- distance\_factorSame Timezone &  &  & $-$0.255 & $-$0.284 \\ 
-  &  &  & (0.380) & (0.380) \\ 
+ distance\_factorLive Together &  &  & $-$0.551$^{**}$ & $-$0.532$^{*}$ \\ 
+  &  &  & (0.279) & (0.278) \\ 
   & & & & \\ 
- availability:importance &  &  &  & $-$0.077$^{**}$ \\ 
+ distance\_factorSame State &  &  & 0.064 & 0.063 \\ 
+  &  &  & (0.222) & (0.222) \\ 
+  & & & & \\ 
+ distance\_factorSame Timezone &  &  & $-$0.243 & $-$0.291 \\ 
+  &  &  & (0.382) & (0.381) \\ 
+  & & & & \\ 
+ availability:importance &  &  &  & $-$0.069$^{**}$ \\ 
   &  &  &  & (0.030) \\ 
   & & & & \\ 
- availability:importance\_to\_contact &  &  &  & 0.099$^{***}$ \\ 
+ availability:importance\_to\_contact &  &  &  & 0.087$^{***}$ \\ 
   &  &  &  & (0.030) \\ 
   & & & & \\ 
- availability:power &  &  &  & $-$0.047 \\ 
+ availability:requestar &  &  &  & 0.319$^{***}$ \\ 
+  &  &  &  & (0.123) \\ 
+  & & & & \\ 
+ availability:requestir &  &  &  & $-$0.007 \\ 
+  &  &  &  & (0.071) \\ 
+  & & & & \\ 
+ availability:power &  &  &  & $-$0.024 \\ 
   &  &  &  & (0.041) \\ 
   & & & & \\ 
- availability:intimacy &  &  &  & 0.018 \\ 
+ availability:intimacy &  &  &  & 0.007 \\ 
   &  &  &  & (0.035) \\ 
   & & & & \\ 
- Constant & 6.574$^{***}$ & 6.714$^{***}$ & 6.899$^{***}$ & 6.947$^{***}$ \\ 
-  & (0.497) & (0.511) & (0.529) & (0.526) \\ 
+ Constant & 6.601$^{***}$ & 6.735$^{***}$ & 6.925$^{***}$ & 6.948$^{***}$ \\ 
+  & (0.530) & (0.548) & (0.567) & (0.564) \\ 
   & & & & \\ 
 \hline \\[-1.8ex] 
 Observations & 1,635 & 1,635 & 1,635 & 1,635 \\ 
-Log Likelihood & $-$3,339.033 & $-$3,332.933 & $-$3,329.743 & $-$3,323.137 \\ 
-Akaike Inf. Crit. & 6,694.066 & 6,685.866 & 6,691.487 & 6,686.274 \\ 
-Bayesian Inf. Crit. & 6,737.261 & 6,739.860 & 6,777.877 & 6,794.262 \\ 
+Log Likelihood & $-$3,347.506 & $-$3,320.159 & $-$3,321.296 & $-$3,325.114 \\ 
+Akaike Inf. Crit. & 6,711.012 & 6,664.319 & 6,678.592 & 6,698.228 \\ 
+Bayesian Inf. Crit. & 6,754.207 & 6,729.112 & 6,775.781 & 6,827.813 \\ 
 \hline 
 \hline \\[-1.8ex] 
 \textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
+  \caption{Fixed Effect Estimates} 
+  \label{tab:fixed_effects} 
 \end{table} 
+
+Estimated fixed effects from regression models are shown in Table~\ref{tab:fixed_effects}. All models included age and gender as covariates. In order to control for the texting activity, the log of the number of texts a participant sent over the 1 week study period was also included as a covariate. Model 1 included these control variables as well as the 0-5 availability measure. Model 2 introduced the message content variables importance, importance to contact, and if the message was a request. Model 3 included the relational variables intimacy, power, as well as propinquity. Model 4 included interactions between message content and relational variables and availability.
+
+\subsubsection{Availability}
+
+\textit{RQ1} asked what is the relationship between a user's current availability and their mobile responsiveness. As seen in Table~\ref{tab:fixed_effects}, the availability variable has a large, significant effect on predicting mobile responsiveness.  A unit increase on the 0-5 availability scale is associated with a decrease in response time in seconds by approximately 40\%.
+
+\subsubsection{Message Attributes}
+
+\textit{RQ2} asked about the relationship between message attributes and mobile responsiveness to that message. Model 2, which introduced these message attribute variables, significantly improved model fit over Model 1 which only included responsiveness ($\chi^2(4) = 66.64$, p < .001). Participants rated messages on 1-5 scales on how important a message was to them and how important they believe the message was to the contact who sent it to them. A unit increase on the importance to participant scale is associated with a significant 15\% decrease in responsiveness. The effect of the importance to contact variable was small and insignificant.
+
+Messages were coded as not a request, an information request, or an action request. Information requests did not differ significantly from non-requests. On the other hand, responses to action requests took approximately 4.5 times longer than responses to non-requests.
+
+
+\subsubsection{Relational Variables}
+
+\textit{RQ3} asked about how message sender--receiver relationship affects mobile responsiveness. Model 3 introduced the power, intimacy, and propinquity variables. Power and intimacy are continuous variables measured on a 5 point scale and propinquity is a factor.
+
+These variables did not significantly improve model fit ($\chi^2(6) = 6.46$, p = .37). Responses to a contact that a participant lived with were significantly 40\% faster than to contacts who only lived in the same city as the participant, but neither power or intimacy had significant effects on responsiveness.
+
+\subsubsection{How Message Attributes and Relational Variables}
+
+Both \textit{RQ2} and \textit{RQ3} asked how message attributes and relational variables moderate the effect of availability on mobile responsiveness. Model 4 included interaction terms between message attribute and relational variables with availability.
+
+The inclusion of these interaction terms significantly improved model fit ($\chi^2(10) = 21.00$, p = .02). Significant interactions with availability were found for both importance measures as well as action requests. Figures~\ref{fig:importance_availability_interaction},~\ref{fig:importance_contact_availability_interaction}, and \ref{fig:request_availability_interaction} display predicted values from Model 4 to visualize these interactions.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/importance_availability_interaction}
+\caption{Distribution of response time in seconds.}
+\label{fig:importance_availability_interaction}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/importance_contact_availability_interaction}
+\caption{Distribution of response time in seconds.}
+\label{fig:importance_contact_availability_interaction}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/request_availability_interaction}
+\caption{Distribution of response time in seconds.}
+\label{fig:request_availability_interaction}
+\end{figure}
+
+
 \chapter{Discussion}
 
  \renewcommand\refname{\begin{centering}References\end{centering}}
