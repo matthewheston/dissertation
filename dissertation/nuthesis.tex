@@ -340,9 +340,9 @@ To understand the impact of how different classes of independent variables (i.e.
 
 \section{Descriptive Statistics}
 
-\subsection{Texting Behavior}
+\subsection{General Texting Behavior}
 
-The 92 participants who completed the study sent and received a total of 21,818 messages across 426 different contacts. About 50\% (10,941) of those were messages received by participants. The distribution of number of messages received over the 7-day study period across participants is shown in Figure~\ref{fig:received_messages}. The median number of received messages over the study period was 68.5. 
+The 92 participants who completed the study sent and received a total of 21,818 messages across 1,285 different contacts. About 50\% (10,941) of those were messages received by participants. The distribution of number of messages received over the 7-day study period across participants is shown in Figure~\ref{fig:received_messages}. The median number of received messages over the study period was 68.5. 
 
 \begin{figure}[h]
 \centering
@@ -351,7 +351,7 @@ The 92 participants who completed the study sent and received a total of 21,818 
 \label{fig:received_messages}
 \end{figure}
 
-The median number of contacts that participants texted with over the 7 day study period was 12. This distribution is shown in Figure~\ref{fig:num_contacts}. As seen in Figure~\ref{fig:received_messages_by_contact}, a large number of messages were sent by a small number of contacts, with the distribution of messages received across contacts being highly skewed.
+The median number of contacts that participants texted with over the 7 day study period was 12. This distribution is shown in Figure~\ref{fig:num_contacts}. As seen in Figure~\ref{fig:received_messages_by_contact}, a large number of messages were received from a small number of contacts, with the distribution of messages received across contacts being highly skewed.
 
 \begin{figure}[h]
 \centering
@@ -362,20 +362,45 @@ The median number of contacts that participants texted with over the 7 day study
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.7\textwidth]{figures/all_messages_received_distribution}
-\caption{Distribution of number of messages received over 7 day study period across participants.}
+\includegraphics[width=.7\textwidth]{figures/messages_received_by_contact_distribution}
+\caption{Distribution of number of messages received over 7 day study period across contacts.}
 \label{fig:received_messages_by_contact}
 \end{figure}
 
 
 \subsection{Session Initiation Attempts}
 
-Of the 10,491 received messages, 1,635 were identified as SIA's. The median number of received SIA's over the study period was 12. The median number of 
+Of the 10,491 received messages, 1,635 were identified as SIA's. The median number of SIA's received by a participant over the study period was 12, which followed a similarly skewed pattern as the number of total received messages (see Figure~\ref{received_sia_messages}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/sia_received_distribution}
+\caption{Distribution of number of SIA messages received over 7 day study period across participants.}
+\label{fig:received_sia_messages}
+\end{figure}
+
+SIA's came from a much smaller subset of contacts. Of the 1,285 contacts present in the total dataset, only 426 appear in the SIA data. The median number of contacts who sent a participant an SIA over the study period was 4 (see Figure~\ref{fig:sia_num_contacts}). The large difference in the number of contacts when considering all messages versus only SIA's can be explained in part by the skew seen in Figure~\ref{fig:received_messages_by_contact}. Of the 1,285 contacts represented in the dataset, 527 sent participants only `1 message. If a participant sent a contact a message, and then got a reply, and then they never communicated again during the study period, then they would not appear in the SIA data. If a participant received one message from a contact and never responded, they would also not appear in the SIA data.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/sia_messages_contacts_distribution}
+\caption{Distribution of number of contacts who sent SIA's with over 7 day study period across participants.}
+\label{fig:sia_num_contacts}
+\end{figure}
+
+Figure~\ref{fig:sia_heatmap} displays a heat map showing the days of the week and the time of day SIA's were received.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/sia_heatmap}
+\caption{Number of SIA's received on day of week and hour of day.}
+\label{fig:sia_heatmap}
+\end{figure}
 
 
 \section{Regression Results}
 
-Results from the estimated regression models are shown in Table~\ref{tab:fixed_effects}. All models included age and gender as covariates. In order to control for the texting activity, the log of the number of texts a participant sent over the 1 week study period was also included as a covariate. Model 1 included these control variables as well as the 0-5 availability measure. Model 2 introduced the message content variables importance, importance to contact, and dummy variables indicating if the message was a request. Model 3 included the relational variables intimacy, power, as well as proximity. Model 4 included interactions between message content and relational variables and availability. Because the dependent variable in the regression models was the natural log of response time in seconds, the estimated $\beta$ coefficients can be interpreted as multiplicative effects on responsiveness, i.e., $exp(\beta) - 1 $ represents the percent change in response time.
+Results from the estimated regression models are shown in Table~\ref{tab:fixed_effects}. All models included age and gender as covariates. In order to control for the how active the user was in texting, the log of the number of texts a participant sent over the 1 week study period was also included as a covariate. Model 1 included these control variables as well as the 0-5 availability measure. Model 2 introduced the message content variables importance, importance to contact, and dummy variables indicating if the message was a request. Model 3 included the relational variables intimacy, power, as well as proximity. Model 4 included interactions between message content and relational variables and availability. Because the dependent variable in the regression models was the natural log of response time in seconds, the estimated $\beta$ coefficients can be interpreted as multiplicative effects on responsiveness, i.e., $exp(\beta) - 1 $ represents the percent change in response time.
 
 % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
 % Date and time: Thu, May 10, 2018 - 17:38:33
@@ -478,7 +503,7 @@ Messages were coded as not a request, an information request, or an action reque
 
 \subsection{Relational Variables}
 
-\textit{RQ3} asked about how message sender--receiver relationship affects mobile responsiveness. Model 3 introduced the power, intimacy, and proximity variables. Power and intimacy are continuous variables measured on a 5 point scale and propinquity is a factor.
+\textit{RQ3} asked about how message sender--receiver relationship affects mobile responsiveness. Model 3 introduced the power, intimacy, and proximity variables. Power and intimacy are continuous variables measured on a 5 point scale and proximity is a factor.
 
 These variables did not significantly improve model fit ($\chi^2(6) = 6.46$, p = .37). Responses to a contact that a participant lived with were significantly 40\% faster than to contacts who only lived in the same city as the participant, but neither power or intimacy had significant effects on responsiveness.
 
