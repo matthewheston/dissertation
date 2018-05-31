@@ -33,7 +33,7 @@
 
 \author{Matthew Heston}
 
-\title{The Effect of Contextual and Relational Variables on Predicting Mobile Responsiveness}
+\title{The Effect of Availability, Message Attributes, and Relational Variables on Predicting Mobile Responsiveness}
 
 %\degree{DOCTOR OF PHILOSOPHY}  % Default: DOCTOR OF PHILOSOPHY
 
@@ -72,20 +72,20 @@
 
 \abstract		% Abstract.
 
-This is the abstract.
+Responsiveness -- the time it takes for a message recipient to respond to a message -- has long been of interest to scholars in the fields of computer-mediated communication (CMC) and human-computer interaction (HCI). It has been hypothesized that responsiveness is used to signal emotional information in CMC, and many empirical studies have demonstrated that responding too slowly is associated with negative evaluations. The increasing use of mobile devices for messaging complicates our understanding of how people decide when to respond to a message. While early work focused on desktop computers and the workplace, the rise of mobile messaging means people can be reached anywhere, at any time, and likely from many different types of contacts they communicate with on their device. As a result, the decision of responding immediately or delaying response is affected by many previously unconsidered factors.
+
+To understand how much these different factors affect mobile responsiveness, 92 Android phone owners from around the United States were recruited to participate in this project. Both log data and questionnaire data were collected using a custom built Android app that participants ran on their phones for 7 days, which was analyzed using a series of multilevel regression models. Results indicate that a user's subjective rating of their availability at the time a message was received is strongly associated with responsiveness. Message attributes, such as how important a message is to the person who received it, have modest effects on responsiveness. Certain types of messages were also associated with much longer delays in responsiveness. Relational variables, such as how close the message recipient is to the message sender, were not found to have large effects on responsiveness. 
 
 \acknowledgements	% Acknowledgements (optional).
 
 Text for acknowledgments.
 
-\preface		% Preface (optional).
-
-This is the preface.
 
 
 %% A few more optional pages (uncomment if needed)
 %
 \listofabbreviations
+\noindent
 CMC --- Computer Mediated Communication \\
 ESM --- Experience Sampling Method \\
 FtF --- Face-to-face conversation \\
@@ -153,7 +153,7 @@ A useful way to think about responsiveness is as a nonverbal cue in CMC. In face
 
 The seeming lack of nonverbal cues (such as gaze and touch) was central to early theoretical approaches to CMC. Social Presence Theory~\citep{short1976social} described all media as fitting on a one-dimensional spectrum of \textit{social presence}, which refers to ``the degree of salience of the other person in an interaction''. Greater social presence was often tied directly to the nonverbal cues present in FtF interaction~\citep[e.g.,][]{burgoon1984relational}, such that CMC, and especially text-based interaction, were thought to result in less social presence. It was also hypothesized that communicators would choose an appropriate medium for their message, e.g., avoid communicating potentially ambiguous message over a less rich medium given the higher likelihood of being misinterpreted~\citep{daft1986organizational}.
 
-Such theories comprise what \citet{walther2002cues} refers to as ``cues filtered out'' theories of CMC, so called because of their emphasis on the lack of nonverbal cues driving behavior. Instead, Social Information Processing (SIP)~\citep{walther1992interpersonal}, rejects the notion that the lack of certain nonverbal cues restricts communicators' abilities. 
+Such theories comprise what \citet{walther2002cues} refer to as ``cues filtered out'' theories of CMC, so called because of their emphasis on the lack of nonverbal cues driving behavior. Instead, Social Information Processing (SIP)~\citep{walther1992interpersonal}, rejects the notion that the lack of certain nonverbal cues restricts communicators' abilities. 
 
 Conceptual models of social cognition in psychology described a ``social information processing'' system in which individuals decode various social stimuli about an interaction partner (e.g., physical traits and behaviors) over time to form a representation of the person~\citep{lord1985information}. This process was described as goal-motivated. \citet{wyer1980processing}, for example, discuss how the focus of information processing changes depending on whether you just want to get to know someone or are deciding to take them out to dinner. \citet{walther1992interpersonal} applied this model to CMC, assuming that communicators have the same goals and motivations to form impressions of others in online environments. Rather than focusing on the lack of certain nonverbal cues or social stimuli such as physical traits, \citeauthor{walther1992interpersonal} noted that linguistic cues are also often used to convey relational information, such as form of address~\citep{argyle1976gaze} and other lexical choices~\citep{wiener1968language}. In addition to relying on these linguistic cues in CMC, communicators also use paralinguistic cues, such as emoticons, to convey emotion in CMC~\citep{carey1980paralanguage,sherblom1988direction}. In other words, whereas \citet{daft1986organizational} may suggest email is simply not appropriate for certain types of communication which may be thought of ambiguous, \citeauthor{walther1992interpersonal} would instead suggest email users adapt to the medium, encoding various cues to ensure a lack of ambiguity.
 
@@ -174,7 +174,7 @@ Although these examples demonstrate the utility of mobile devices, perpetual con
 
 \citet{hall2012calling} refer to this as a ``duality of interdependence,'' drawing on relational dialectics~\citep{baxter1993relationship}. The relational dialectic model suggests that relationships have several core tensions that must be negotiated. One of these is a tension between connection and autonomy, wherein individuals in a relationship need to sacrifice some individual autonomy to take part in the relationship, but do not want to sacrifice too much as to maintain freedom and independence. The work by \citeauthor{hall2012calling} suggests that mobile devices have complicated this negotiation process by encouraging individuals towards connection at the expense of autonomy, which in turn leads to dissatisfaction in the relationship.
 
-HCI scholars have explored various ways of easing this tension through the design of communication platforms. In an experimental study on mobile phone calls, \citet{avrahami2007improving} found that by providing contextual information to a caller about a call recipient, the calls were able to better time their messages as to not interrupt the receivers at an inappropriate time. A similar approach was suggested by \citet{pielot2014didn}, who developed a machine learning model to infer a receiver's likelihood of engaging with a received message in order to inform a message sender of the receiver's current availability. By providing message senders with contextual information about the recipient, senders may have better expectations about the likelihood of getting the attention of the recipient. They may also not send messages at inappropriate times, causing less stress to message recipients.
+HCI scholars have explored various ways of easing this tension through the design of communication platforms. In an experimental study on mobile phone calls, \citet{avrahami2007improving} found that by providing contextual information to a caller about a call recipient, the callers were able to better time their messages as to not interrupt the receivers at an inappropriate time. A similar approach was suggested by \citet{pielot2014didn}, who developed a machine learning model to infer a receiver's likelihood of engaging with a received message in order to inform a message sender of the receiver's current availability. By providing message senders with contextual information about the recipient, senders may have better expectations about the likelihood of getting the attention of the recipient. They may also not send messages at inappropriate times, causing less stress to message recipients.
 
 Still other work suggests that only considering context may not be enough when determining how a message recipient will react to a message. In a field study of cell phone use, \citet{grandhi2010technology} found that who sent a message and what the content of the message were more important in the decision to engage with it than the user's current availability. Interview participants in a study by \citet{wohn2015ambient} also described content and sender--receiver relationship to be important factors in deciding when to respond to a message. In other words, when users are deciding how to deal with being reachable at any time, there is some evidence that who is trying to reach them and what the message is are important considerations.
 
@@ -198,7 +198,7 @@ The effect of these relational attributes on conversational behaviors has been o
 
 \chapter{The Current Project}
 
-The above studies suggest that mobile messaging users consider many different variables when deciding whether or not to respond immediately to a message or postpone response until later.
+The above studies suggest that many different variables affect mobile messaging users; decision of whether or not to respond immediately to a message or postpone response until later.
 
 The first is simply the message receiver's availability. The ``always on'' nature of mobile messaging means that device owners can receive a message anywhere at any time. On the one hand, it seems sensible to think that there is an inverse relationship between availability and responsiveness: if a user is more available, they are more likely to respond quickly than if they are not available. Users may be aware of normative expectations for fast responsiveness~\citep{church2013s,rettie2009mobile}, and therefore respond quickly whenever they are able to. Some mobile messaging users also report using messaging applications simply because they are bored or to kill time~\citep{battestini2010large}, and we might therefore expect users to respond quickly if they are already on their phone.
 
@@ -206,17 +206,17 @@ However, some mobile phone owners have reported dissatisfaction with the social 
 
 %In addition to simply not having access to their device, ~\citet{avrahami2007improving} noted various situational factors that could affect a cell phone owner's decision to take a call, such as if they were currently with a group and would be soon as rude for leaving to accept the call. Even now as social norms shift and being on a phone to respond to a message may seem less inappropriate~\citep{rainie2015americans}, individual users likely have their own set of guidelines that govern a subjective sense of being available for incoming mobile messages.
 
-If availability were the primary factor driving responsiveness behavior, responsiveness would represent a unique type of cue from a SIP perspective. Although we know mobile messaging users' impressions of others are sometimes based in part on their responsiveness behavior~\citep{church2013s}, responsiveness in this situation would not actually indicate immediacy and care as hypothesized by ~\citet{walther1995nonverbal}, but instead simply mean a user happened to be available to respond. Investigating the relationship between availability and responsiveness also provides a baseline to compare how important other factors are in affecting responsiveness. My first research question then is:
+If availability were the primary factor driving responsiveness behavior, responsiveness would represent a unique type of cue from a SIP perspective. Although we know mobile messaging users' impressions of others are sometimes based in part on their responsiveness behavior~\citep{church2013s}, responsiveness in this situation would not actually indicate immediacy and care as hypothesized by \citet{walther1995nonverbal}, but instead simply mean a user happened to be available to respond. Investigating the relationship between availability and responsiveness also provides a baseline to compare how important other factors are in affecting responsiveness. My first research question then is:
 
 \textit{RQ1: What is the relationship between a user's current availability and their mobile responsiveness?}
 
-Other factors may also affect responsiveness, however. From a turn-taking perspective of conversation~\citep{sacks1974simplest}, a participant in a conversation will know how to use his turn based on  cues from the previous turn. In mobile messaging, a user might decide to respond quickly based on certain attributes of a received message. For example, someone might be busy and not want to get involved in a text conversation, but nevertheless choose to respond right away to an request for information from someone, under the assumption that that will be the end of their exchange. Furthermore, certain cues in CMC have been associated with heightened urgency or immediacy~\citep{nguyen2014lexical}, which may cause a message receiver to respond more quickly. In an interview study of mobile messaging users by \citet{cui2016beyond}, users reported feeling the necessity to quickly respond to messages they knew were important to the person messaging them, as well as goal-oriented messages (e.g., asking someone for information). These effects may ``override'' a user's current availability, assuming they are available enough to see the message.
+Other factors may also affect responsiveness, however. From a turn-taking perspective of conversation~\citep{sacks1974simplest}, a participant in a conversation will know how to use his turn based on  cues from the previous turn. In mobile messaging, a user might decide to respond quickly based on certain attributes of a received message. For example, someone might be busy and not want to get involved in a text conversation, but nevertheless choose to respond right away to a request for information from someone, under the assumption that that will be the end of their exchange. Furthermore, certain cues in CMC have been associated with heightened urgency or immediacy~\citep{nguyen2014lexical}, which may cause a message receiver to respond more quickly. In an interview study of mobile messaging users by \citet{cui2016beyond}, users reported feeling the need to quickly respond to messages they knew were important to the person messaging them, as well as goal-oriented messages (e.g., asking someone for information). These effects may ``override'' a user's current availability, assuming they are available enough to see the message.
 
 If these effects were strong, responsiveness more closely resembles the type of cues hypothesized by scholars such as ~\citet{walther1995nonverbal} and ~\citet{kalman2006pauses}, where the responsiveness behavior is a deliberate choice made by a conversation participant in response to cues they perceive in a received message. My second research question is:
 
 \textit{RQ2: What is the relationship between attributes of an incoming message and responsiveness? Is this relationship affected by a user's current availability?}
 
-Finally, the relationship between a message sender and receiver could also affect responsiveness decisions. Work within sociolinguistics has suggested various relational attributes that affect the conversation dynamics between parties~\citep{brown1987politeness,goldberg1990interrupting,west1979against,wolfson1990bulge}, and qualitative studies of mobile messaging have suggested social pressure can affect responsiveness behavior~\citep{church2013s,laursen2005please,tjora2011invisible,weilenmann2003can}. In particular, the degree of closeness between individuals, sometimes referred to as intimacy, along with power differences between individuals have been empirically shown to affect various nonverbal communication behaviors~\citep{guerrero1991waxing,henley1973power,leffler1982effects,sternglanz2004reading}.  At the same time, recent work has argued certain pragmatic behavior that exists in FtF is less important in CMC~\citep{schulze2017knowledge,stromer2015context}, so the relational attributes previously focused on by conversation analysts may not be as important in CMC, at least with regard to responsiveness decisions. In the same way as message-level attributes may ``override'' situational factors, the same may occur with these relational variables, i.e., a user may respond quickly to his boss even if he is busy because he feels pressure to seem available given their relationship.
+Finally, the relationship between a message sender and receiver could also affect responsiveness decisions. Work within sociolinguistics has suggested various relational attributes that affect the conversation dynamics between parties~\citep{brown1987politeness,goldberg1990interrupting,west1979against,wolfson1990bulge}, and qualitative studies of mobile messaging have suggested social pressure can affect responsiveness behavior~\citep{church2013s,laursen2005please,tjora2011invisible,weilenmann2003can}. In particular, the degree of closeness between individuals, sometimes referred to as intimacy, along with power differences between individuals have been empirically shown to affect various nonverbal communication behaviors~\citep{guerrero1991waxing,henley1973power,leffler1982effects,sternglanz2004reading}.  At the same time, recent work has argued certain pragmatic behavior that exists in FtF is less important in CMC~\citep{schulze2017knowledge,stromer2015context}, so the relational attributes previously focused on by conversation analysts may not be as important in CMC, at least with regard to responsiveness decisions. In the same way as message-level attributes may ``override'' situational factors, the same may occur with these relational variables, e.g., a user may respond quickly to his boss even if he is busy because he feels pressure to seem available given their relationship.
 
 Quantifying the effect of relational variables on responsiveness behavior will both allow us to see if the same relational attributes demonstrated to affect FtF conversation behavior also exists in CMC, as well as understand how responsiveness as a cue might vary based on relationship, building on work that has studied how other SIP cues change based on relational context~\citep[e.g.,][]{hancock2007expressing}. My final research question is:
 
@@ -246,6 +246,8 @@ Gender was slightly skewed with 58\% female participants. A majority of particip
 Recruitment materials directed participants to an initial survey, which was used to collect the demographic information reported above and information about how participants used their phones.
 
 \subsubsection{Texting Use}
+This study collects SMS data. This choice is in part pragmatic -- the Android SMS database is accessible via Android API's, and therefore any Android application can access this data. Other mobile messaging platforms are proprietary, and their message data could not be collected as easily, if at all. While the use of other mobile messaging apps is on the rise~\citep{duggan2015mobile}, SMS still remains a popular option~\citep{smith2015us}. 
+
 Given that restrictions on texting, such as having a limited text plan, could influence the texting behavior of interest in the study, participants were asked if they were aware of any limits on their SMS plan. No participants reported having such limits.
 
 While the focus of this study is on SMS, other messaging platforms such as Google Hangouts and Facebook Messenger are also popular. Participants were asked what other messaging applications they use, and how their use of SMS compared to the use of these other platforms. All participants reported using at least one other messaging application. Forty-six percent of participants said they used SMS more often than these other applications, and 28\% reported using SMS about the same amount as the other applications. Twenty-five percent said they use SMS somewhat less often than other messaging applications, with only 1\% reporting using SMS a lot less often.
@@ -278,15 +280,17 @@ SIA's were identified using a heuristic similar to \citet{avrahami2006responsive
 
 \subsection{Experience Sampling}
 
-Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling~\citep{conner2009experience,csikszentmihalyi2014validity}. It is normally recommended experience sampling  be triggered immediately at the moment of interest~\citep{hormuth1986sampling}, e.g., in this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
+Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling method (ESM)~\citep{conner2009experience,csikszentmihalyi2014validity}. It is normally recommended experience sampling  be triggered immediately at the moment of interest~\citep{hormuth1986sampling}, e.g., in this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
 
-When taken to the questionnaire, participants were shown the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
+It is important to note that, as a result of this decision, this study focuses only on SIA's that received a response during the study period. If an SIA was never responded to, no data about it could be collected. In other words, results should be interpreted as factors that affect mobile how quickly a user responds in the case where a message eventually receives a response, not if a user ever decides to respond at all.
 
-\textbf{Availability.} Participants were asked to rate their availability in 2 ways. The first involve a dichotomous ``unavailable'' measure. Participants could make themselves as totally unavailable in the case of having left their phone at home, their phone being in their backpack, or any situation in which they could not reasonably access their phone at all.
+It should also be noted that SIA's were identified using a heuristic, and like any heuristic, it could at times be inaccurate. Consider, for example, a case where a participant texts a contact ``Goodnight'' at the end of the day. The contact doesn't see the message until an hour later, but still responds ``Goodnight.'' The following morning, the participant texts the contact ``Are we still on for lunch today?'' The app would consider this a response to an SIA, because since over 30 minutes has passed since they last sent a message, the contact's ``Goodnight'' would be considered an SIA. But including this in the dataset is inaccurate, since the participants morning message is not a response to the ``Goodnight'' message. To deal with these cases, participants were able to dismiss an ESM prompt as not being an SIA response.
 
-If a participant was not totally unavailable, they were asked to rate their availability on a scale of 1--5, with 1 indicating being very busy or otherwise distracted, and 5 representing being not busy at all.  A similar single item scale was used to assess availability in ~\citet{fogarty2005predicting}.
+When participants were taken to the questionnaire, however, they were shown the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
 
-Other responsiveness studies have used sensor data, such as phone activity, to make inferences about availability, rather than using experience sampling to collect this directly~\citep[e.g.,][]{pielot2014didn}. However, such studies focus only on predicting responsiveness, rather than making inferences about responsiveness behavior. Given the focus of this work on understanding how different variables affect responsiveness, capturing an availability measure directly should allow for better inference in how message content and sender-receiver relationship interact with a participant's own subjective feeling of availability.
+\textbf{Availability.} Participants first declared themselves as unavailable or available. If these were available, they then rated their availability on a 1--5 scale, with lower values indicating being busy or distracted and higher values indicating not being busy at all. In the results presented below, these values were collapsed into a 0-6 scale, where 0 indicates the participant having marked themselves as unavailable.
+
+Other responsiveness studies have used sensor data, such as phone activity, to make inferences about availability, rather than using ESM to collect this directly~\citep[e.g.,][]{pielot2014didn}. However, such studies focus only on predicting responsiveness, rather than making inferences about responsiveness behavior. Given the focus of this work on understanding how different variables affect responsiveness, capturing an availability measure directly should allow for better inference in how message content and sender-receiver relationship interact with a participant's own subjective feeling of availability.
 
 \textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. Participants rated each SIA on a two 1--5 scales, ``How important is this message to you?'' (referred to in results as ``importance to participant'') and ``How important do you think this message is to the person who sent it to you?'' (referred to in results as ``importance to contact'').
 
@@ -313,15 +317,15 @@ After running the SMS tracking application for 7 days, participants were sent a 
 
 \subsection{Post-Study Content Coding}
 
-Mobile messaging users have reported feeling the need to respond to certain types of messages faster, such as those requesting help with a task~\citep{cui2016beyond}. Following content coding used in \citet{dabbish2005understanding}, messages were coded as either not a request, an action request (asking someone for some offline action, e.g., ``Can you pick up milk on your way home?'') or an information request (e.g., ``What time do you get off work tonight?'')
+Mobile messaging users have reported feeling the need to respond to certain types of messages faster, such as those requesting help with a task~\citep{cui2016beyond}. Following content coding used in \citet{dabbish2005understanding}, messages were coded as either not a request, an action request (asking someone for some offline action, e.g., ``Can you pick up milk on your way home?'') or an information request (e.g., ``What time do you get off work tonight?'') A majority of messages (72\%) were non-requests, 22\% were information requests, and 6\% were action requests.
 
 \section{Analysis}
 
-Given the hierarchical nature of the collected data (e.g., SIA's are grouped within contacts which are grouped within participants), data was analyzed using a series of multi-level models~\citep{gelman2007data}.
+Given the hierarchical nature of the collected data (i.e., SIA's are grouped within contacts which are grouped within participants), data was analyzed using a series of multilevel models~\citep{gelman2007data}.
 
 In all regression models, the dependent variable was the natural log of the seconds in response latency between the receipt of an SIA and the response. The distribution of response time in seconds, shown in Figure~\ref{fig:response_time}, is highly skewed, which is typical of response time distributions~\citep{kalman2006pauses}. Taking the log of this variable results in a more normal distribution, as shown in Figure~\ref{fig:log_response_time}. Other approaches to dealing with this type of skewed data include different classes of generalized linear models~\citep[see e.g.,][]{buntin2004too,dick2004beyond,manning2001estimating}, but experimentation with these models demonstrated poor model fit for the collected data.
 
-To understand the impact of how different classes of independent variables (i.e., contextual variables and relational variables) affect responsiveness, a hierarchical regression process was followed wherein a series of regression models were fit introducing a new class of variables at each step~\citep{gurnsey2017statistics}. To test whether or not variables improved model fit, likelihood ratio tests were used to compare models. In addition to these tests, model fit parameters such as the Akaike information criterion (AIC) were compared, as suggested by \citet{gelman2007data}.
+To understand the impact of how different classes of independent variables (i.e., message attributes and relational variables) affect responsiveness, a hierarchical regression process was followed wherein a series of regression models were fit introducing a new class of variables at each step~\citep{gurnsey2017statistics}. To test whether or not variables improved model fit, likelihood ratio tests were used to compare models. In addition to these tests, model fit parameters such as the Akaike information criterion (AIC) were compared, as suggested by \citet{gelman2007data}.
 
 \begin{figure}[h]
 \centering
@@ -342,6 +346,7 @@ To understand the impact of how different classes of independent variables (i.e.
 \section{Descriptive Statistics}
 
 \subsection{General Texting Behavior}
+\label{sec:texting}
 
 The 92 participants who completed the study sent and received a total of 21,818 messages across 1,285 different contacts. About 50\% (10,941) of those were messages received by participants. The distribution of number of messages received over the 7-day study period across participants is shown in Figure~\ref{fig:received_messages}. The median number of received messages over the study period was 68.5. 
 
@@ -371,7 +376,7 @@ The median number of contacts that participants texted with over the 7 day study
 
 \subsection{Session Initiation Attempts}
 
-Of the 10,491 received messages, 1,635 were identified as SIA's. The median number of SIA's received by a participant over the study period was 12, which followed a similarly skewed pattern as the number of total received messages (see Figure~\ref{received_sia_messages}).
+Of the 10,491 received messages, 1,635 were identified as SIA's. The median number of SIA's received by a participant over the study period was 12, which followed a similarly skewed pattern as the number of total received messages (see Figure~\ref{fig:received_sia_messages}).
 
 \begin{figure}[h]
 \centering
@@ -380,7 +385,7 @@ Of the 10,491 received messages, 1,635 were identified as SIA's. The median numb
 \label{fig:received_sia_messages}
 \end{figure}
 
-SIA's came from a much smaller subset of contacts. Of the 1,285 contacts present in the total dataset, only 426 appear in the SIA data. The median number of contacts who sent a participant an SIA over the study period was 4 (see Figure~\ref{fig:sia_num_contacts}). The large difference in the number of contacts when considering all messages versus only SIA's can be explained in part by the skew seen in Figure~\ref{fig:received_messages_by_contact}. Of the 1,285 contacts represented in the dataset, 527 sent participants only `1 message. If a participant sent a contact a message, and then got a reply, and then they never communicated again during the study period, then they would not appear in the SIA data. If a participant received one message from a contact and never responded, they would also not appear in the SIA data.
+SIA's came from a much smaller subset of contacts. Of the 1,285 contacts present in the total dataset, only 426 appear in the SIA data. The median number of contacts who sent a participant an SIA over the study period was 4 (see Figure~\ref{fig:sia_num_contacts}). The large difference in the number of contacts when considering all messages versus only SIA's can be explained in part by the skew seen in Figure~\ref{fig:received_messages_by_contact}. Of the 1,285 contacts represented in the dataset, 527 sent participants only 1 message. If a participant sent a contact a message, and then got a reply, and then they never communicated again during the study period, then they would not appear in the SIA data. If a participant received one message from a contact and never responded, they would also not appear in the SIA data. Furthermore, it is likely that some amount of ``contacts'' present in all messages do not represent true contacts and messages that would receive a response. For example, receiving a login code from a website via SMS would appear in the data shown in Section~\ref{sec:texting}, but not in SIA data.
 
 \begin{figure}[h]
 \centering
@@ -389,7 +394,7 @@ SIA's came from a much smaller subset of contacts. Of the 1,285 contacts present
 \label{fig:sia_num_contacts}
 \end{figure}
 
-Figure~\ref{fig:sia_heatmap} displays a heat map showing the days of the week and the time of day SIA's were received.
+To demonstrate when SIA messages were received by participants, Figure~\ref{fig:sia_heatmap} displays a heat map showing the days of the week and the time of day SIA's were received.
 
 \begin{figure}[h]
 \centering
@@ -405,88 +410,94 @@ Results from the estimated regression models are shown in Table~\ref{tab:fixed_e
 
 % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
 % Date and time: Thu, May 10, 2018 - 17:38:33
-\begin{table}[!htbp] \fontsize{7}{7.5}\selectfont \centering 
+\begin{table}[!htbp] \fontsize{7}{7.2}\selectfont \centering 
 \begin{tabular}{@{\extracolsep{5pt}}lcccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
 \cline{2-5} 
-\\[-1.8ex] & \multicolumn{4}{c}{log(response\_delay)} \\ 
+\\[-1.8ex] & \multicolumn{4}{c}{log(Response Delay in Seconds)} \\ 
 \\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
 \hline \\[-1.8ex] 
- age & 0.005 & 0.004 & 0.004 & 0.005 \\ 
+ Age & 0.005 & 0.004 & 0.004 & 0.005 \\ 
   & (0.017) & (0.017) & (0.017) & (0.017) \\ 
   & & & & \\ 
- genderMale & $-$0.210 & $-$0.286 & $-$0.329 & $-$0.326 \\ 
+ Gender (Male) & $-$0.210 & $-$0.286 & $-$0.329 & $-$0.326 \\ 
   & (0.287) & (0.294) & (0.295) & (0.292) \\ 
   & & & & \\ 
- sent\_total & $-$0.089 & $-$0.104 & $-$0.129 & $-$0.128 \\ 
+ log(Total Messages Sent by Participant over Study Period) & $-$0.089 & $-$0.104 & $-$0.129 & $-$0.128 \\ 
   & (0.112) & (0.114) & (0.115) & (0.114) \\ 
   & & & & \\ 
- availability & $-$0.497$^{***}$ & $-$0.500$^{***}$ & $-$0.499$^{***}$ & $-$0.549$^{***}$ \\ 
+ Availability & $-$0.497$^{***}$ & $-$0.500$^{***}$ & $-$0.499$^{***}$ & $-$0.549$^{***}$ \\ 
   & (0.032) & (0.032) & (0.032) & (0.070) \\ 
   & & & & \\ 
- importance &  & $-$0.167$^{***}$ & $-$0.173$^{***}$ & $-$0.108$^{*}$ \\ 
+ Importance to Participant &  & $-$0.167$^{***}$ & $-$0.173$^{***}$ & $-$0.108$^{*}$ \\ 
   &  & (0.054) & (0.054) & (0.059) \\ 
   & & & & \\ 
- importance\_to\_contact &  & 0.069 & 0.072 & 0.009 \\ 
+ Importance to Contact &  & 0.069 & 0.072 & 0.009 \\ 
   &  & (0.055) & (0.055) & (0.060) \\ 
   & & & & \\ 
- requestar &  & 1.512$^{***}$ & 1.511$^{***}$ & 1.246$^{***}$ \\ 
+ Action Request &  & 1.512$^{***}$ & 1.511$^{***}$ & 1.246$^{***}$ \\ 
   &  & (0.207) & (0.207) & (0.231) \\ 
   & & & & \\ 
- requestir &  & $-$0.010 & $-$0.021 & $-$0.016 \\ 
+ Information Request &  & $-$0.010 & $-$0.021 & $-$0.016 \\ 
   &  & (0.125) & (0.125) & (0.133) \\ 
   & & & & \\ 
- power &  &  & 0.182 & 0.207 \\ 
+ Power &  &  & 0.182 & 0.207 \\ 
   &  &  & (0.125) & (0.128) \\ 
   & & & & \\ 
- intimacy &  &  & $-$0.049 & $-$0.061 \\ 
+ Intimacy &  &  & $-$0.049 & $-$0.061 \\ 
   &  &  & (0.099) & (0.101) \\ 
   & & & & \\ 
- distance\_factorDifferent Timezone &  &  & $-$0.041 & $-$0.082 \\ 
+ Different Timezone &  &  & $-$0.041 & $-$0.082 \\ 
   &  &  & (0.331) & (0.330) \\ 
   & & & & \\ 
- distance\_factorLive Together &  &  & $-$0.551$^{**}$ & $-$0.532$^{*}$ \\ 
+Live Together &  &  & $-$0.551$^{**}$ & $-$0.532 \\ 
   &  &  & (0.279) & (0.278) \\ 
   & & & & \\ 
- distance\_factorSame State &  &  & 0.064 & 0.063 \\ 
+Same State &  &  & 0.064 & 0.063 \\ 
   &  &  & (0.222) & (0.222) \\ 
   & & & & \\ 
- distance\_factorSame Timezone &  &  & $-$0.243 & $-$0.291 \\ 
+ Same Timezone &  &  & $-$0.243 & $-$0.291 \\ 
   &  &  & (0.382) & (0.381) \\ 
   & & & & \\ 
- availability:importance &  &  &  & $-$0.069$^{**}$ \\ 
+ Availability:Importance to Participant &  &  &  & $-$0.069$^{**}$ \\ 
   &  &  &  & (0.030) \\ 
   & & & & \\ 
- availability:importance\_to\_contact &  &  &  & 0.087$^{***}$ \\ 
+ Availability:Importance To Contact &  &  &  & 0.087$^{***}$ \\ 
   &  &  &  & (0.030) \\ 
   & & & & \\ 
- availability:requestar &  &  &  & 0.319$^{***}$ \\ 
+ Availability:Action Request &  &  &  & 0.319$^{***}$ \\ 
   &  &  &  & (0.123) \\ 
   & & & & \\ 
- availability:requestir &  &  &  & $-$0.007 \\ 
+ Availability:Information Request &  &  &  & $-$0.007 \\ 
   &  &  &  & (0.071) \\ 
   & & & & \\ 
- availability:power &  &  &  & $-$0.024 \\ 
+ Availability:Power &  &  &  & $-$0.024 \\ 
   &  &  &  & (0.041) \\ 
   & & & & \\ 
- availability:intimacy &  &  &  & 0.007 \\ 
+ Availability:Intimacy &  &  &  & 0.007 \\ 
   &  &  &  & (0.035) \\ 
   & & & & \\ 
  Constant & 6.601$^{***}$ & 6.735$^{***}$ & 6.925$^{***}$ & 6.948$^{***}$ \\ 
   & (0.530) & (0.548) & (0.567) & (0.564) \\ 
   & & & & \\ 
 \hline \\[-1.8ex] 
-Observations & 1,635 & 1,635 & 1,635 & 1,635 \\ 
+\\[-1.8ex] & \multicolumn{4}{c}{Random Effects} \\ 
+\hline \\[-1.8ex] 
+ $\sigma_{participant}$ & 0.760 & 0.834 & 0.809 & 0.780 \\
+ $\sigma_{contact}$ & 1.673 & 1.676 & 1.684 & 1.694 \\
+ $\epsilon$ & 2.585 & 2.462 & 2.462 & 2.443 \\
+ \hline \\[-1.8ex] 
+ \hline \\[-1.8ex] 
 Log Likelihood & $-$3,347.506 & $-$3,320.159 & $-$3,321.296 & $-$3,325.114 \\ 
 Akaike Inf. Crit. & 6,711.012 & 6,664.319 & 6,678.592 & 6,698.228 \\ 
-Bayesian Inf. Crit. & 6,754.207 & 6,729.112 & 6,775.781 & 6,827.813 \\ 
 \hline 
 \hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\textit{Notes:}  & \multicolumn{4}{p{\dimexpr 0.55\linewidth-2\tabcolsep}}{ Age is centered on it's mean. All scale variables are centered at the mid-point of their scale. Female is used as the reference level for gender. Non-requests are the reference level for request type. ``Same City'' is the reference level for proximity. Parenthetical values are standard errors. $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\\
 \end{tabular} 
-  \caption{Fixed Effect Estimates} 
+  \caption{Multilevel Regression Results} 
   \label{tab:fixed_effects} 
 \end{table} 
 
@@ -497,7 +508,7 @@ Bayesian Inf. Crit. & 6,754.207 & 6,729.112 & 6,775.781 & 6,827.813 \\
 
 \subsection{Message Attributes}
 
-\textit{RQ2} asked about the relationship between message attributes and mobile responsiveness to that message. Model 2, which introduced these message attribute variables, significantly improved model fit over Model 1 which only included responsiveness ($\chi^2(4) = 66.64$, p < .001). Participants rated messages on 1-5 scales on how important a message was to them and how important they believe the message was to the contact who sent it to them. A unit increase on the importance to participant scale is associated with a significant 15\% decrease in responsiveness. The effect of the importance to contact variable was small and insignificant.
+\textit{RQ2} asked about the relationship between message attributes and mobile responsiveness to that message. Model 2, which introduced these message attribute variables, significantly improved model fit over Model 1 which only included availability ($\chi^2(4) = 66.64$, p < .001). Participants rated messages on 1-5 scales on how important a message was to them and how important they believe the message was to the contact who sent it to them. A unit increase on the importance to participant scale is associated with a significant 15\% decrease in responsiveness. The effect of the importance to contact variable was small and insignificant.
 
 Messages were coded as not a request, an information request, or an action request. Information requests did not differ significantly from non-requests. On the other hand, responses to action requests took approximately 4.5 times longer than responses to non-requests.
 
@@ -508,11 +519,11 @@ Messages were coded as not a request, an information request, or an action reque
 
 These variables did not significantly improve model fit ($\chi^2(6) = 6.46$, p = .37). Responses to a contact that a participant lived with were significantly 40\% faster than to contacts who only lived in the same city as the participant, but neither power or intimacy had significant effects on responsiveness.
 
-\subsection{How Message Attributes and Relational Variables Moderate Availability}
+\subsection{Interaction Effects}
 
 Both \textit{RQ2} and \textit{RQ3} asked how message attributes and relational variables moderate the effect of availability on mobile responsiveness. Model 4 included interaction terms between message attribute and relational variables with availability.
 
-The inclusion of these interaction terms significantly improved model fit ($\chi^2(10) = 21.00$, p = .02). Significant interactions with availability were found for both importance measures as well as action requests. To better understand these effects, Figures~\ref{fig:importance_availability_interaction},~\ref{fig:importance_contact_availability_interaction}, and \ref{fig:request_availability_interaction} plot predicted values from Model 4 to visualize these interactions.
+The inclusion of these interaction terms significantly improved model fit ($\chi^2(10) = 21.00$, p = .02). Significant interactions with availability were found for both importance measures as well as action requests. Figures~\ref{fig:importance_availability_interaction},~\ref{fig:importance_contact_availability_interaction}, and \ref{fig:request_availability_interaction} plot predicted values from Model 4 to visualize these interactions.
 
 \begin{figure}[h]
 \centering
@@ -538,6 +549,8 @@ The inclusion of these interaction terms significantly improved model fit ($\chi
 
 \chapter{Discussion}
 
+The effects of the different types of variables studied -- availability, message content, and relational variables -- can be interpreted with regards to prior work on responsiveness. Taken together, these findings have both theoretical and practical implications.
+
 \section{Availability}
 
 Availability had a strong, consistent effect across models. Holding other variables constant, a participant who rated themselves on the lowest end of the availability scale would take an average of about 32 minutes to respond, whereas a participant who rated themselves on the highest end of the availability scale would take an average of about 2 minutes. This is one of the largest observed effects.
@@ -545,6 +558,8 @@ Availability had a strong, consistent effect across models. Holding other variab
 It is interesting also to note the interaction between availability and the importance to contact measure shown in Figure~\ref{fig:importance_contact_availability_interaction}. When participants were highly unavailable, increased importance to contact had a large effect on decreasing response time. However, when participants were highly available, importance to contact had barely any effect. This may be interpreted as that, at least for certain types of messages, participants are already very likely to respond quickly so long as they view themselves as very available, and so certain message attributes have little effect on responsiveness.
 
 An inverse relationship between availability and response time seems fairly intuitive -- a device owner should take more time to respond if they are distracted or busy. At the same time, the strength of this effect should be considered in relation to how users have reported their own behavior in prior work. Interview participants in \citet{wohn2015ambient}, for example, described sometimes intentionally delaying response, even when they were available, to lower future expectations about responsiveness, consistent with other reports of otherwise being overwhelmed by constant connection~\citep[e.g.,][]{ames2013managing,hall2012calling}. If this were a common practice, we would expect a weaker availability effect. On the contrary, at least among participants in this study, availability was a strong predictor of responsiveness.
+
+Outside of the regression models, also of note is just how frequently participants rated themselves on the high end of the availability scale. Participants rated themselves as a 4 or a 5 in 68\% of cases. Comparing this to the heat map figure shown in Figure~\ref{fig:sia_heatmap} may be illustrative. Figure~\ref{fig:sia_availability_heatmap} shows a similar heat map, but instead plots the mean availability for SIA's received at that time. While certain times in the morning correspond to low availability, many other times have higher values. So, in addition to availability having a large effect on responsiveness, participants also view themselves on the higher end of the availability scale fairly often.
 
 \begin{figure}[h]
 \centering
@@ -590,7 +605,7 @@ Social Information Processing~\citep{walther1992interpersonal} suggests CMC user
 
 On one hand, the failure to find a large relational effect in the regression models could indicate this is not the case -- at least not for SIA messages. If responsiveness was used to indicate closeness, we would expect on average that contacts who were rated higher in intimacy to receive quicker responses.
 
-On the other hand, the modest effects of the message importance measures could be related to a SIP process. We know that CMC communicators interpret certain lexical cues as relating to an interaction partner being more involved in a conversation~\citep{nguyen2014lexical,nguyen2016effects} or desiring faster responses~\citep{cui2016beyond}. As seen in Figure~\ref{fig:importance_contact_availability_interaction}, when participants are unavailable, higher levels of importance to contact are associated with quicker responses. From a SIP perspective, it could be that mobile messaging users recognize cues indicating a message is important to the person contacting them, and update their responsiveness appropriately.
+On the other hand, the modest effects of the message importance measures could be related to a SIP process. We know that CMC communicators interpret certain lexical cues as relating to heightened urgency~\citep{nguyen2014lexical,nguyen2016effects} or desiring faster responses~\citep{cui2016beyond}. As seen in Figure~\ref{fig:importance_contact_availability_interaction}, when participants are unavailable, higher levels of importance to contact are associated with quicker responses. From a SIP perspective, it could be that mobile messaging users recognize cues indicating a message is important to the person contacting them, and update their responsiveness appropriately.
 
 Still, this effect is strongest when users are largely unavailable. So while faster responses could mean a user is reacting to a cue in a received message, it could also just mean the user happened to be available to respond. As such, while responsiveness may sometimes be considered a cue (e.g., ``I am busy, but I am responding as soon as I can because I know this is important to you.''), it often just signals availability.
 
@@ -604,31 +619,34 @@ As such, responsiveness may represent one avenue to think about misunderstanding
 
 \subsection{Perpetual Contact}
 
-A motivating argument for this work was that while responsiveness has long been considered important in CMC~\citep[e.g.,][]{kalman2006pauses,kalman2013online,tyler2003,candabbish2005understandin,gwalther1995nonverbal}, mobile responsiveness represents a fundamentally different problem, because mobile users can be contacted anywhere at any time, and often use their device to communicate with many different types of contacts. In other words, the decision of when to respond now occurs in a world of perpetual contact~\citep{katz2002perpetual}.
+A motivating argument for this work was that while responsiveness has long been considered important in CMC~\citep[e.g.][]{avrahami2006responsiveness,dabbish2005understanding,kalman2006pauses,kalman2013online,tyler2003can,walther1995nonverbal}, mobile responsiveness represents a fundamentally different problem, because mobile users can be contacted anywhere at any time, and often use their device to communicate with many different types of contacts. In other words, the decision of when to respond now occurs in a world of perpetual contact~\citep{katz2002perpetual}.
 
 \citet{bayer2015connection} argue that constant connection has become a societal norm, and as such, we have developed habits which lead us to constantly checking our devices. My data cannot speak directly to to such claims. It is interesting to note, however, that participants marked themselves as the highest level of availability 50\% of the time, and as shown in Figure~\ref{fig:sia_availability_heatmap}, average availability was relatively high throughout many times of the day. So while my data cannot directly support sociological arguments about connection norms or mobile habits, we do see evidence that device owners' subjective assessments of availability throughout the day tends to be high, which may be of interest to future work investigating attention and mobile devices.
 
-In qualitative studies, mobile owners have discussed prioritizing messages based on sender--receiver relationship and message content to deal with the ``always on'' nature of mobile messaging~\citep[e.g.,][]{cui2016beyond,wohn2015ambient}. My results support previous findings on message content -- in my data, action requests seem to be determined low priority as far as needing immediate response. Sender--receiver relationship -- at least as captured by intimacy and power scales -- did not seem to affect responsiveness.
+It is also worth noting that users have reported turning off their phones or using airplane mode to get a break from constant connection~\citep{ames2013managing,smith2015us}. Availability was shown to have a strong effect on predicting responsiveness. While participants often rated themselves high on the availability scale, it is possible that some instances of low availability represent users deliberately leaving their phones unattended, although because users were not asked to specify why they chose the availability level they did, this is not necessarily true.
 
-It is worth noting, however, that users also report turning off their phones or using airplane mode to get a break from constant connection~\citep{ames2013managing,smith2015us}. Availability was shown to have a strong effect on predicting responsiveness. While participants often rated themselves high on the availability scale, it is possible that some instances of low availability represent users deliberately leaving their phones unattended. Again, the data collected for this project can not directly address whether or not this is the case. 
+However, the data does provide some evidence for prior work. In qualitative studies, mobile owners have discussed prioritizing messages based on message content to deal with the ``always on'' nature of mobile messaging~\citep[e.g.,][]{cui2016beyond,wohn2015ambient}. My results support previous findings on message content -- in my data, action requests seem to be determined low priority as far as needing immediate response. So although availability had a large effect on responsiveness, users did not simply always respond to every type of message if they were available. As such, there does seem to be some sort of prioritization happening, although not necessarily considering sender--receiver relationship, which has been noted elsewhere~\citep{laursen2005please,wohn2015ambient}.
+
+Taken together, my findings do suggest that users are in many ways ``always on,'' but availability is not the sole factor in determining responsiveness. There are times where users rate themselves as available to respond to a message, but still choose to wait.
+
 
 \section{Practical Implications}
 
-My findings also have practical implications for the design of mobile messaging platforms. Research in CSCW and HCI has attempted to build predictive models of responsiveness~\citep[e.g.,][]{avrahami2006responsiveness,avrahami2007improving,dabbish2005understanding}, in part to build better awareness displays. Especially within the workplace, it has been demonstrated that displaying a potential message recipient's current work status to a message sender can allow the sender to better time their message and not interrupt the recipient at an inopportune time (i.e., if the recipient is in the middle of a very focused task, the sender may delay sending the message as to not interrupt and disrupt the recipient)~\citep{dabbish2004awareness}. Predictive systems that can infer how busy a worker is would be useful in automatically setting an awareness display.
+My findings also have practical implications for the design of mobile messaging platforms. Research in CSCW and HCI has attempted to build predictive models of responsiveness~\citep[e.g.,][]{avrahami2007improving,avrahami2008waiting,dabbish2005understanding}, in part to build better awareness displays. Especially within the workplace, it has been demonstrated that displaying a potential message recipient's current work status to a message sender can allow the sender to better time their message and not interrupt the recipient at an inopportune time (i.e., if the recipient is in the middle of a very focused task, the sender may delay sending the message as to not interrupt and disrupt the recipient)~\citep{dabbish2004awareness}. Predictive systems that can infer how busy a worker is would be useful in automatically setting an awareness display.
 
 Recently, \citet{pielot2014didn} suggested a similar system for mobile messaging applications. They suggest displaying to a message sender the likelihood of receiving a quick response, motivated less by reducing interruptions and distractions, and instead mitigating the negative effects of the recipient violating responsiveness expectations by giving the message sender a more realistic expectation of when to expect a response. This is done through machine learning, using phone activity as features in the machine learning model to predict the likelihood of a user seeing a message and therefore responding to it quickly.
 
 In some ways, my results validate this approach. Responsiveness was strongly correlated with availability in my results, and the features used by \citet{pielot2014didn} (such as time of day, when the screen was last on, etc.) should be good indicators of availability. Had relational variables had a stronger effect, there might be higher concern that such a model lacked an understanding of relationship effects.
 
-Nevertheless, the distribution of messages across contacts and the relatively high estimate of contact-level variance may be useful to consider. Within my sample, participants tended to have one or two contacts they texted with a lot, and many contacts that they texted with a lot more rarely. It may be that a machine learning model is very good at learning responsiveness behavior for an individual's top few most texted with contacts, but that these predictions are not as useful for contacts that text much more rarely. If the goal of such a system is to mitigate negative effects stemming from responsiveness expectations, it should perhaps be much more conservative in its estimates displayed to these less communicated with contacts.
+Nevertheless, the distribution of messages across contacts and the relatively high contact-level variance may be useful to consider. Within my sample, participants tended to have one or two contacts they texted with a lot, and many contacts that they texted with a lot more rarely. It may be that a machine learning model is very good at learning responsiveness behavior for an individual's top few most texted with contacts, but that these predictions are not as useful for contacts that text much more rarely. If the goal of such a system is to mitigate negative effects stemming from responsiveness expectations, it should perhaps be much more conservative in its estimates displayed to these less communicated with contacts.
 
 Finally, action requests received significantly slower responses than other types of messages. As such, predictive models such as that in \citet{pielot2014didn} may also want to consider lexical features of a received message, which could increase model performance.
 
 \section{Limitations and Future Work}
 
-To the best of my knowledge, this study is the first to use a custom developed application to collect both experience sampling data and SMS log data to study mobile responsiveness with naturalistic data. While the findings contribute to our understanding of mobile responsiveness, they should be considered in light of the following limitations, which present opportunities for future work. 
+To the best of my knowledge, this study is the first to use a custom developed application to collect both ESM data and SMS log data to study mobile responsiveness with naturalistic data. While the findings contribute to our understanding of mobile responsiveness, they should be considered in light of the following limitations, which present opportunities for future work. 
 
-The first is that this study focused only on SIA's, and importantly, only SIA's that received a response during the study period. The decision to focus on SIA's was that they represent a unique moment in deciding whether or not to engage with a message, as once a mobile messaging user is already involved in a conversation, they tend to respond quickly. Nevertheless, SIA messages made up only about 15\% of total messages collected. Once a user is engaged in conversation, expectations about responsiveness likely change, and different considerations may be made when considering when to respond. For example, models of SIA responsiveness reported here largely found no relational effects. It may be, however, that after a user engages with an SIA, response time to more intimate friends is faster than with less intimate acquaintances. Qualitative work that has participants review previous conversations~\citep[e.g.,]{cui2016beyond} is useful for understanding responsiveness for these messages. Future work could potentially have participants retroactively rate many messages in a conversation on various scales for quantitative analysis. The experience sampling approach taken in the current study is likely unsuitable for studying conversations as they occur, as participants would not want to continually answer questions about every text they receive during a conversation.
+The first is that this study focused only on SIA's, and importantly, only SIA's that received a response during the study period. The decision to focus on SIA's was that they represent a unique moment in deciding whether or not to engage with a message, as once a mobile messaging user is already involved in a conversation, they tend to respond quickly. Nevertheless, SIA messages made up only about 15\% of total messages collected. Once a user is engaged in conversation, expectations about responsiveness likely change, and different considerations may be made when considering when to respond. For example, models of SIA responsiveness reported here largely found no relational effects. It may be, however, that after a user engages with an SIA, response time to more intimate friends is faster than with less intimate acquaintances. Qualitative work that has participants review previous conversations~\citep[e.g.,][]{cui2016beyond} is useful for understanding responsiveness for these messages. Future work could potentially have participants retroactively rate many messages in a conversation on various scales for quantitative analysis. The experience sampling approach taken in the current study is likely unsuitable for studying conversations as they occur, as participants would not want to continually answer questions about every text they receive during a conversation.
 
 Participants were asked to answer questions about an SIA at the moment of responding to it. This was done, in part, as it ensured that participants were already on their device having just responded to a message, and therefore were available to fill out a questionnaire. In addition, the goal was to not influence participant behavior toward text messages. Had the questionnaire been sent at the moment an SIA was received, a user would receive 2 different notifications about a single message, which could possibly draw more attention to a message and change their response behavior (i.e., by encouraging them to respond more quickly after receiving back to back notifications about it). However, as a result, any SIA which did not receive a response in turn never delivered the ESM questionnaire. The results presented then should be interpreted in terms of factors which effect responsiveness for messages which eventually get a response. This leaves open the question of why a mobile messaging user might never respond to a message, or at least not respond for over 1 week. A study similar to the one presented here could be used and ask participants to retroactively fill out questionnaires for SIA's never responded to during the study period at the end of the study period. However, this does run a risk of participants having recall issues discussing texts that they received over a week ago. Future studies relying only on log data, however, could be useful and avoid recall issues.
 
@@ -638,7 +656,11 @@ Some unexpected findings from this study suggest useful avenues for future resea
 
 The lack of difference in responsiveness between non-requests and information requests compared to the large difference between non-requests and action requests is noteworthy. As discussed above, this suggests that some suggests typologies of mobile messages may not fully explain how users think about message content and how it affects their responsiveness behavior. Qualitative work is useful for better understanding why this is the case.
 
-Finally, it should be noted that modeling observed naturalistic behavior is useful for understanding mobile responsiveness as it occurs in the world, but there are many questions this approach cannot answer. As indicated by the large variance terms in the above models, mobile responsiveness is complex and cannot be perfectly explained with the variables discussed here. While it is certainly useful to measure the average effects of different types of variables, these models necessarily lack the nuance gained from qualitative studies. Throughout this discussion, I have noted various areas where the observed effects in regression models differed from what would be expected based on qualitative findings. These differences may be useful in preparing future qualitative work. Furthermore, observational studies also necessarily include very noisy data. Controlled experiments would be a useful next step in better understanding how variables explored here cause differences in responsiveness. While lab-based experiments will likely have a difficult time truly capturing the mobile context, they may nevertheless be useful in measuring some of these effects in a controlled setting~\citep[see e.g.,]{avrahami2007improving}. Novel quasi-experimental designs could also be useful~\citep[e.g.,][] {tsapeli2015investigating}.
+Finally, it should be noted that modeling observed naturalistic behavior is useful for understanding mobile responsiveness as it occurs in the world, but there are many questions this approach cannot answer. As indicated by the large variance terms in the above models, mobile responsiveness is complex and cannot be perfectly explained with the variables discussed here. While it is certainly useful to measure the average effects of different types of variables, these models necessarily lack the nuance gained from qualitative studies. Throughout this discussion, I have noted various areas where the observed effects in regression models differed from what would be expected based on qualitative findings. These differences may be useful in preparing future qualitative work. Furthermore, observational studies also necessarily include very noisy data. Controlled experiments would be a useful next step in better understanding how variables explored here cause differences in responsiveness. While lab-based experiments will likely have a difficult time truly capturing the mobile context, they may nevertheless be useful in measuring some of these effects in a controlled setting~\citep[see e.g.,][]{avrahami2007improving}. Novel quasi-experimental designs could also be useful~\citep[e.g.,][] {tsapeli2015investigating}.
+
+\chapter{Conclusion}
+
+This study was conducted to understand the effects of availability, message attributes, and relational variables on mobile responsiveness. Results indicated that in many cases, availability is strongly associated with responsiveness, but this is not true for all types of messages. These results should be of interest to CMC scholars, where results did not strongly support hypotheses of responsiveness as a nonverbal cue in CMC, and responsiveness studies could provide an entry point to thinking more about misunderstandings in how cues are constructed by a sender and interpreted by a receiver. These results should also be of interest broadly to scholars of mobile device use, as they provide some evidence of how users may choose to prioritize certain messages in a world of perpetual contact. Finally, HCI scholars interested in the design of mobile messaging platforms, and especially predictive systems to display information about message recipients, will find useful information in these results related to when their systems might fail and what other types of features may be useful to consider when predicting responsiveness.
 
  \renewcommand\refname{\begin{centering}References\end{centering}}
  \bibliography{references.bib}
