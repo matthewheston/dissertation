@@ -265,9 +265,13 @@ A background service monitored participants' SMS database, storing all messages 
 
 \subsubsection{Session Initiation Attempts}
 
-The focus of this study is on responses to what \citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.
+The focus of this study is on responses to what \citet{avrahami2006responsiveness} call \textit{session initiation attempts} (SIA's). An SIA is any message that begins a new conversation session. Once users are engaged in a texting conversation, they tend to respond quickly~\citep{battestini2010large}, whereas we would expect more variation in responsiveness in deciding whether or not to engage with a conversation initiation.\footnote{This was also true in the data collected for this project, where responses to SIA messages had a median response time of a little over three minutes, whereas non-SIA messages had a median response time of 35 seconds.} Focusing on SIA's is useful in that it represents the moment a message sender likely has the least information available to them regarding the recipient's availability. In other words, once a recipient responds, the original message sender has received a response, he can assume the recipient is available to talk (or the recipient can explain that they are not currently available). Given the motivation of this project on better understanding how recipient responsiveness decisions may differ from sender expectations, SIA's provide a useful way to focus study towards this the largest discrepancy between sender and receiver information about receiver state.
 
-SIA's were identified using a heuristic similar to \citet{avrahami2006responsiveness}, where an SIA is any incoming message from a contact that is sent after some threshold has passed since the last received message from that contact. The threshold chosen for this study was 30 minutes, which was selected after reviewing large scale studies of texting behavior~\citep{battestini2010large,birnholtz2017attending}, as well as discussion with pilot study participants. To illustrate SIA's, note that in Figure~\ref{fig:sia} the incoming message that starts ``Hey, I don't want to wait...'' would be considered an SIA since days have passed since the last interaction, as would ``So like 1 or 2'' since it has been more than 30 minutes since the last message ``What time do you want to leave?'' was sent. However, the ``ok'' emoji would not be considered an SIA since only 11 minutes have passed.
+SIA's were identified using a heuristic similar to \citet{avrahami2006responsiveness}, where an SIA is any incoming message from a contact that is sent after some threshold has passed since the last interaction with that contact. The threshold chosen for this study was 30 minutes, which was selected after reviewing large scale studies of texting behavior~\citep{battestini2010large,birnholtz2017attending}, as well as discussion with pilot study participants.
+
+To illustrate SIA's, refer to Figure~\ref{fig:sia}. Grey text bubbles represent a participant and blue text bubbles represent a contact they text with. The incoming message that starts ``Hey, I don't want to wait...'' would be considered an SIA because it comes from the contact, and at least 30 minutes have passed since the last time the participant texted that contact. The message ``So like 1 or 2'' is also an SIA since it has been more than 30 minutes since the last  message ``Early afternoon'' was sent. However, the ``Okay I'll be ready at 2'' messages would not be considered an SIA since only 10 minutes have passed since the last time the participant texted the contact. 
+ 
+ To be clear, the determination of whether or not a message is an SIA is based only on the messages preceding it, but both messages from the participant and from the contact are used in making this determination. In Figure~\ref{fig:sia}, ``What time do you want to leave?'' is an SIA because it has been longer than 30 minutes since the participant texted the contact. In Figure~\ref{fig:sia2}, ``Where are yas?'' is an SIA because it has been 43 minutes since the last time the contact last texted the participant.
 
 %A potential issue with this heuristic approach is that it ignores ``follow up'' texts. Imagine, for example, that the session initiator in Figure~\ref{fig:sia} followed up their 12:56pm ``What time do you want to leave'' text with a 1:00pm text that just said ``??'', a technique that has been observed to heighten attention from a contact~\citep{heston2017worth}. In this case, we are still interested in responsiveness as it related to the initial 12:56pm text. To deal with this, if a message was registered as an SIA, any follow up texts sent during the next half hour were grouped with that initial text.
 
@@ -278,6 +282,13 @@ SIA's were identified using a heuristic similar to \citet{avrahami2006responsive
 \label{fig:sia}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/sia2}
+\caption{Example text message exchange}
+\label{fig:sia2}
+\end{figure}
+
 
 \subsection{Experience Sampling}
 
@@ -285,9 +296,9 @@ Whenever a participant responded to an SIA, they would receive a notification on
 
 It is important to note that, as a result of this decision, this study focuses only on SIA's that received a response during the study period. If an SIA was never responded to, no data about it could be collected. In other words, results should be interpreted as factors that affect mobile how quickly a user responds in the case where a message eventually receives a response, not if a user ever decides to respond at all.
 
-It should also be noted that SIA's were identified using a heuristic, and like any heuristic, it could at times be inaccurate. Consider, for example, a case where a participant texts a contact ``Goodnight'' at the end of the day. The contact doesn't see the message until an hour later, but still responds ``Goodnight.'' The following morning, the participant texts the contact ``Are we still on for lunch today?'' The app would consider this a response to an SIA, because since over 30 minutes has passed since they last sent a message, the contact's ``Goodnight'' would be considered an SIA. But including this in the dataset is inaccurate, since the participants morning message is not a response to the ``Goodnight'' message. To deal with these cases, participants were able to dismiss an ESM prompt as not being an SIA response.
+It should also be noted that SIA's were identified using a heuristic, and like any heuristic, it could at times be inaccurate. Consider, for example, a case where a participant texts a contact ``Goodnight'' at the end of the day. The contact doesn't see the message until an hour later, but still responds ``Goodnight.'' The following morning, the participant texts the contact ``Are we still on for lunch today?'' The app would consider this a response to an SIA, because since over 30 minutes has passed since they last sent a message, the contact's ``Goodnight'' would be considered an SIA. But including this in the dataset is inaccurate, since the participants morning message is not a response to the ``Goodnight'' message. To deal with these cases, participants were able to dismiss the ESM questionnaire by saying the message they just sent was not a response to to the received message. To ensure participants understood what messages the prompt referred to, they were shown timestamped copies of the message they just sent and what it was being recorded as a response to.
 
-When participants were taken to the questionnaire, however, they were shown the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
+After reviewing the message they just sent, the contact they sent it to, the initial SIA they were responding to, and the time that SIA was received. They were then asked to rate the following items:
 
 \textbf{Availability.} Participants first declared themselves as unavailable or available. If these were available, they then rated their availability on a 1--5 scale, with lower values indicating being busy or distracted and higher values indicating not being busy at all. In the results presented below, these values were collapsed into a 0-6 scale, where 0 indicates the participant having marked themselves as unavailable.
 
@@ -319,8 +330,6 @@ The distribution of availability across collected SIA's are shown in Figure~\ref
 \caption{Distribution of importance to contact for SIA messages.}
 \label{fig:importance_contact_distribution}
 \end{figure}
-
-
 
 
 \subsection{Post-Study Survey}
