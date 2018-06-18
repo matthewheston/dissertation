@@ -27,6 +27,7 @@
 \usepackage{graphicx}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DATA OF AUTHOR AND DISSERTATION %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -292,7 +293,34 @@ When participants were taken to the questionnaire, however, they were shown the 
 
 Other responsiveness studies have used sensor data, such as phone activity, to make inferences about availability, rather than using ESM to collect this directly~\citep[e.g.,][]{pielot2014didn}. However, such studies focus only on predicting responsiveness, rather than making inferences about responsiveness behavior. Given the focus of this work on understanding how different variables affect responsiveness, capturing an availability measure directly should allow for better inference in how message content and sender-receiver relationship interact with a participant's own subjective feeling of availability.
 
-\textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. Participants rated each SIA on a two 1--5 scales, ``How important is this message to you?'' (referred to in results as ``importance to participant'') and ``How important do you think this message is to the person who sent it to you?'' (referred to in results as ``importance to contact'').
+The distribution of availability across collected SIA's are shown in Figure~\ref{fig:availability_distribution}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/availability_distribution}
+\caption{Distribution of availability for SIA messages.}
+\label{fig:availability_distribution}
+\end{figure}
+
+
+
+\textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. Participants rated each SIA on a two 1--5 scales, ``How important is this message to you?'' (referred to in results as ``importance to participant'') and ``How important do you think this message is to the person who sent it to you?'' (referred to in results as ``importance to contact''). The distribution of each of these variables is shown in Figures~\ref{fig:importance_distribution} and \ref{fig:importance_contact_distribution}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/importance_distribution}
+\caption{Distribution of importance to participant for SIA messages.}
+\label{fig:importance_distribution}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/importance_distribution}
+\caption{Distribution of importance to contact for SIA messages.}
+\label{fig:importance_contact_distribution}
+\end{figure}
+
+
 
 
 \subsection{Post-Study Survey}
@@ -403,6 +431,65 @@ To demonstrate when SIA messages were received by participants, Figure~\ref{fig:
 \label{fig:sia_heatmap}
 \end{figure}
 
+\section{Descriptive Statistics}
+
+Mean, median, and standard deviation values for each continuous predictor variable are shown in Table~\ref{tab:descriptives}} .
+
+\begin{table}[ht]
+\fontsize{9}{9.5}\selectfont \centering 
+\begin{tabular}{llll}
+\hline
+                          & Mean & Median & Standard Deviation \\ \hline
+Availability              & 3.74 & 5.00   & 1.61               \\
+Importance to Participant & 3.39 & 3      & 1.38               \\
+Importance to Contact     & 3.58 & 4      & 1.37               \\
+Power                     & 2.68 & 2.66   & 1.07               \\
+Intimacy                  & 3.43 & 3.66   & 1.33               \\ \hline
+                          &      &        &                    \\
+                          &      &        &                    \\
+                          &      &        &                    \\
+                          &      &        &                    \\
+                          &      &        &                    \\
+                          &      &        &                   
+\end{tabular}
+\caption{Descriptive Statistics of Continuous Predictor Variables}
+\label{tab:descriptives}
+\end{table}
+
+Table~\ref{tab:correlation} shows the Pearson correlation matrix between each of the continuous predictor variables\footnote{Given high correlations between some predictor variables, examining variable inflation factor (VIF) is recommended to avoid collinearity in regression models. For the models specified below, VIF was calculated using the method described in \citet{zuur2009mixed} for multi-level models. All values were $< 5$, indicating multicollinearity is not problematic~\citep{sheather2009modern}.}. To better understand the relationship between the relationship between the continuous relational variables intimacy and power with the categorical proximity measure, Figures~\ref{fig:intimacy_by_distance} and \ref{fig:power_by_distance} plot the mean value for each of these continuous variables at the different proximity levels.
+
+\begin{table}[ht] 
+\fontsize{9}{9.5}\selectfont \centering 
+\begin{tabular}{rlllll}
+  \hline
+ & Availability & Importance to Participant & Importance to Contact & Power & Intimacy \\ 
+  \hline
+Availability & 1 &  &  &  &  \\ 
+  Importance to Participant & 0.22 & 1 &  &  &  \\ 
+  Importance to Contact & 0.21 & 0.66 & 1 &  &  \\ 
+  Power & 0.04 & 0.03 & -0.02 & 1 &  \\ 
+  Intimacy & 0.03 & 0.06 & 0.01 & 0.65 & 1 \\ 
+   \hline
+\end{tabular}
+  \caption{Correlation Matrix of Continuous Predictor Variables} 
+  \label{tab:correlation} 
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/intimacy_by_distance}
+\caption{Average contact intimacy across proximity measures.}
+\label{fig:intimacy_by_distance}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/power_by_distance}
+\caption{Average power across proximity measures.}
+\label{fig:power_by_distance}
+\end{figure}
+
+
 
 \section{Regression Results}
 
@@ -500,6 +587,14 @@ Akaike Inf. Crit. & 6,711.012 & 6,664.319 & 6,678.592 & 6,698.228 \\
   \caption{Multilevel Regression Results} 
   \label{tab:fixed_effects} 
 \end{table} 
+
+\subsection{Robustness Checks}
+
+Before interpreting the estimated regression models, it is useful first to ensure these effects are robust against alternative model specifications.
+
+In examining the Model 3, intimacy has a small, nonsignificant effect, whereas the ``Live Together'' level of the proximity measure has a large, significant effect. A possible explanation for this is that participants tended to live with significant others who they rated as highly significant, and therefore the inclusion of proximity could affect interpretation of the intimacy variable. However, removing proximity from the model only modestly increases the effect of availability (from -0.049 to -0.071) and the effect remains nonsignificant. Power is also unaffected.
+
+Additionally, the importance to contact measure could also feasibly explain some relational effects, i.e., messages from high power contacts are more likely to be thought of as important. However, emoving the importance to contact measure does not result in changes to the estimated relational effects.
 
 
 \subsection{Availability}
