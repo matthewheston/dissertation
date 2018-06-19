@@ -290,7 +290,8 @@ To illustrate SIA's, refer to Figure~\ref{fig:sia}. Grey text bubbles represent 
 \end{figure}
 
 
-\subsection{Experience Sampling}
+\subsubsection{Experience Sampling}
+\label{sec:esm}
 
 Whenever a participant responded to an SIA, they would receive a notification on their phone to fill out a short questionnaire about the message they were responding to, following an event-based approach to experience sampling method (ESM)~\citep{conner2009experience,csikszentmihalyi2014validity}. It is normally recommended experience sampling  be triggered immediately at the moment of interest~\citep{hormuth1986sampling}, e.g., in this case, participants could be asked about text message the moment it is received, rather than when they respond to it, removing the need for a retrospective answer. However, this could have other consequences which affect study validity. Our primary variable of interest is response time. Sending the user multiple notifications about an incoming message (i.e., both the notification for a message and the notification asking for their availability), could cause the participant to behave differently than they otherwise would, e.g., responding to the message when they otherwise wouldn't, since they are responding to our prompt anyway.
 
@@ -314,8 +315,10 @@ The distribution of availability across collected SIA's are shown in Figure~\ref
 \end{figure}
 
 
+\textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. It stands to reason that if mobile users follow some sort of prioritization strategy in thinking about when to respond to messages~\citep{cui2016beyond,wohn2015ambient}, their own subjective assessment of message importance should play a role in this decision. Participants rated each SIA on a 1--5 ``How important is this message to you?'' scale (referred to in results as ``importance to contact''). The distribution of this measure is shown in Figure~\ref{fig:importance_distribution}.
 
-\textbf{Message Importance.} In studies of other CMC platforms, such as email, the perceived importance of a received message affects how users prioritize messages~\citep{siu2006going,tsugawa2012estimating} and messages thought to be more important receive quicker responses~\citep{dabbish2005understanding,wainer2011should}. Participants rated each SIA on a two 1--5 scales, ``How important is this message to you?'' (referred to in results as ``importance to participant'') and ``How important do you think this message is to the person who sent it to you?'' (referred to in results as ``importance to contact''). The distribution of each of these variables is shown in Figures~\ref{fig:importance_distribution} and \ref{fig:importance_contact_distribution}.
+At the same time, mobile messaging users have reported some relational sensitivity in making this assessment~\citep{wohn2015ambient}, which could in turn affect their rating of importance, e.g., a mobile messaging user might not consider a message of particular importance to them, but still understand the contact who texted them believes it is important. To account for this, participants also rated each message on a 1--5 ``How important do you think this message is to the person who sent it to you?'' (referred to in results as ``importance to contact''). Distribution of this measure is shown in Figure~\ref{fig:importance_contact_distribution}.
+
 
 \begin{figure}[h]
 \centering
@@ -334,7 +337,7 @@ The distribution of availability across collected SIA's are shown in Figure~\ref
 
 \subsection{Post-Study Survey}
 
-After running the SMS tracking application for 7 days, participants were sent a final survey where they rated each of their contacts who sent them an SIA during the study on 2 relational scales. Intimacy was measured using a 3 item scale adapted from \citet{miller1982assessment}. Power was measured using a 3 item scale adapted from \citet{farrell2015relationship}. The distribution of these variables across contacts are shown in Figures \ref{fig:intimacy} and \ref{fig:power}. Higher levels on the intimacy scale refer to feeling closer to that contact and higher values on the power scale indicate the contact has more power over the participant.  To account for potential differences in texting behavior based on the proximity of the message sender to the message receiver (e.g., a person may have different texting habits with someone who lives in their same city that they see often versus a friend who lives in a different state who they see rarely), for each contact, participants also specified proximity from one of the following options: ``We live together,'' ``In the same city, but we don't live together,'' ``In the same state, but not the same city,'' ``In the same timezone, but not the same state,'' ''In a different time zone.''
+After running the SMS tracking application for 7 days, participants were sent a final survey where they rated each of their contacts who sent them an SIA during the study on 2 relational scales. Intimacy was measured using a 3 item scale adapted from \citet{miller1982assessment}. Power was measured using a 3 item scale adapted from \citet{farrell2015relationship}. The distribution of these variables across contacts are shown in Figures \ref{fig:intimacy} and \ref{fig:power}. Higher levels on the intimacy scale refer to feeling closer to that contact and higher values on the power scale indicate the contact has more power over the participant.  To account for potential differences in texting behavior based on the proximity of the message sender to the message receiver (e.g., a person may have different texting habits with someone who lives in their same city that they see often versus a friend who lives in a different state who they see rarely), for each contact, participants also specified proximity from one of the following options: ``We live together,'' ``In the same city, but we don't live together,'' ``In the same state, but not the same city,'' ``In the same timezone, but not the same state,'' ''In a different time zone.'' The distribution of the proximity measure is shown in Figure~\ref{fig:proximity}.
 
 
 \begin{figure}[h]
@@ -352,7 +355,27 @@ After running the SMS tracking application for 7 days, participants were sent a 
 \label{fig:power}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{figures/proximity_distribution}
+\caption{Distribution of proximity across contacts.}
+\label{fig:proximity}
+\end{figure}
+
+
 \subsection{Post-Study Content Coding}
+
+Section~\ref{sec:esm} discussed how participants rated each message on 2 1--5 scales assessing message importance. In addition to these subjective assessments of messages, there is some evidence that different types of messages also influence responsiveness behavior.
+
+Early work on CMC tended to broadly discuss messages as either social or task-oriented~\citep[e.g.,][]{addas2015many,dabbish2005understanding,walther1992interpersonal}, which could in turn affect responsiveness. \citet{dabbish2005understanding}, for example, found that social messages typically were responded to more slowly than task-oriented messages.
+
+However, these studies focused on workplace CMC platforms. The notion of ``task-based'' is likely different there than it is in mobile messaging, where users are messaging with a more diverse set of contacts about different topics, rather than work-related projects. Nevertheless, social vs. task-based does provide one useful way of thinking about messages in that it describes a schemata that distinguishes messages that are requesting something from a recipient vs. those that are not.
+
+A useful framework is provided by \citet{cui2016beyond}, whose qualitative study content coding mobile messages broadly defines messages as ``spontaneous interaction'' vs. ``purposive communication.'' Spontaneous interaction captures messages whose purpose was primarily just checking in with a contact, where purposive communication had a more clearly defined purpose, such as coordinating an activity. \citet{cui2016beyond} also found differences in response time to these messages, where coordination messages received faster responses.
+
+To account for how message type might affect responsiveness behavior, content coding of all SIA messages received by participants was performed following data collection. All messages that could be considered ``spontaneous interaction'' were coded as ``non-requests.'' ``Purposive communication'' messages were further broken down into ``information requests'' and ``action requests''. Information requests were any message that explicitly asked for information which could be received over text message (e.g., ``What time do you get off work tonight?''). Action requests explicitly required action from the participant, which could not be fulfilled by simply responding to the message (e.g., ``Can you pick up milk on your way home?'').
+
+The focus on request types rather than the labels ``spontaneous'' vs. ``purposive'' used by ~\citeauthor{cui2016beyond} is due to that his study interviewed mobile messaging users and his labels could refer to the intent behind their message. In contrast, there is no way to know the true purpose of why a contact of a participant sent a message must necessarily focus on what is explicitly shown in the message. Furthermore, distinguishing requests as either information requests or action requests follows a coding scheme by \citet{dabbish2005understanding}. Although this work did not focus on mobile messaging, it did find significant differences between these types of requests in email.
 
 Mobile messaging users have reported feeling the need to respond to certain types of messages faster, such as those requesting help with a task~\citep{cui2016beyond}. Following content coding used in \citet{dabbish2005understanding}, messages were coded as either not a request, an action request (asking someone for some offline action, e.g., ``Can you pick up milk on your way home?'') or an information request (e.g., ``What time do you get off work tonight?'') A majority of messages (72\%) were non-requests, 22\% were information requests, and 6\% were action requests.
 
