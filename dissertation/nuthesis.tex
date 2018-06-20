@@ -412,7 +412,7 @@ All SIA messages were coded by the author. To ensure coding validity, a secondar
 
 \section{Analysis}
 
-Given the hierarchical nature of the collected data (i.e., SIA's are grouped within contacts which are grouped within participants), data was analyzed using a series of multilevel models~\citep{gelman2007data}.
+Given the hierarchical nature of the collected data, data was analyzed using a series of multilevel models~\citep{gelman2007data}, with SIA's grouped within contacts grouped within participants.
 
 In all regression models, the dependent variable was the natural log of the seconds in response latency between the receipt of an SIA and the response. The distribution of response time in seconds, shown in Figure~\ref{fig:response_time}, is highly skewed, which is typical of response time distributions~\citep{kalman2006pauses}. Taking the log of this variable results in a more normal distribution, as shown in Figure~\ref{fig:log_response_time}. Other approaches to dealing with this type of skewed data include different classes of generalized linear models~\citep[see e.g.,][]{buntin2004too,dick2004beyond,manning2001estimating}, but experimentation with these models demonstrated poor model fit for the collected data.
 
@@ -494,12 +494,12 @@ To demonstrate when SIA messages were received by participants, Figure~\ref{fig:
 \label{fig:sia_heatmap}
 \end{figure}
 
-\section{Descriptive Statistics}
+\subsection{Predictor Variables}
 
-Mean, median, and standard deviation values for each continuous predictor variable are shown in Table~\ref{tab:descriptives} .
+Mean, median, and standard deviation values for each continuous predictor variable are shown in Table~\ref{tab:descriptives}.
 
 \begin{table}[ht]
-\fontsize{9}{9.5}\selectfont \centering 
+\fontsize{11}{11.5}\selectfont \centering 
 \begin{tabular}{llll}
 \hline
                           & Mean & Median & Standard Deviation \\ \hline
@@ -508,18 +508,12 @@ Importance to Participant & 3.39 & 3      & 1.38               \\
 Importance to Contact     & 3.58 & 4      & 1.37               \\
 Power                     & 2.68 & 2.66   & 1.07               \\
 Intimacy                  & 3.43 & 3.66   & 1.33               \\ \hline
-                          &      &        &                    \\
-                          &      &        &                    \\
-                          &      &        &                    \\
-                          &      &        &                    \\
-                          &      &        &                    \\
-                          &      &        &                   
 \end{tabular}
 \caption{Descriptive Statistics of Continuous Predictor Variables}
 \label{tab:descriptives}
 \end{table}
 
-Table~\ref{tab:correlation} shows the Pearson correlation matrix between each of the continuous predictor variables\footnote{Given high correlations between some predictor variables, examining variable inflation factor (VIF) is recommended to avoid collinearity in regression models. For the models specified below, VIF was calculated using the method described in \citet{zuur2009mixed} for multi-level models. All values were $< 5$, indicating multicollinearity is not problematic~\citep{sheather2009modern}.}. To better understand the relationship between the relationship between the continuous relational variables intimacy and power with the categorical proximity measure, Figures~\ref{fig:intimacy_by_distance} and \ref{fig:power_by_distance} plot the mean value for each of these continuous variables at the different proximity levels.
+Table~\ref{tab:correlation} shows the Pearson correlation matrix between each of the continuous predictor variables\footnote{Given high correlations between some predictor variables, examining variable inflation factor (VIF) is recommended to avoid multicollinearity in regression models. For the models specified below, VIF was calculated using the method described in \citet{zuur2009mixed} for multilevel models. All values were $< 5$, indicating multicollinearity is not problematic~\citep{sheather2009modern}.}. To better understand the relationship between the relationship between the continuous relational variables intimacy and power with the categorical proximity measure, Figures~\ref{fig:intimacy_by_distance} and \ref{fig:power_by_distance} plot the mean value for each of these continuous variables at the different proximity levels.
 
 \begin{table}[ht] 
 \fontsize{9}{9.5}\selectfont \centering 
@@ -655,9 +649,9 @@ Akaike Inf. Crit. & 6,711.012 & 6,664.319 & 6,678.592 & 6,698.228 \\
 
 Before interpreting the estimated regression models, it is useful first to ensure these effects are robust against alternative model specifications.
 
-In examining the Model 3, intimacy has a small, nonsignificant effect, whereas the ``Live Together'' level of the proximity measure has a large, significant effect. A possible explanation for this is that participants tended to live with significant others who they rated as highly significant, and therefore the inclusion of proximity could affect interpretation of the intimacy variable. However, removing proximity from the model only modestly increases the effect of availability (from -0.049 to -0.071) and the effect remains nonsignificant. Power is also unaffected.
+In examining the Model 3, intimacy has a small, nonsignificant effect, whereas the ``Live Together'' level of the proximity measure has a large, significant effect. A possible explanation for this is that participants tended to live with significant others who they rated as highly intimate, and therefore the inclusion of proximity could affect interpretation of the intimacy variable. However, removing proximity from the model only modestly increases the effect of availability (from -0.049 to -0.071) and the effect remains nonsignificant. Power is also unaffected.
 
-Additionally, the importance to contact measure could also feasibly explain some relational effects, i.e., messages from high power contacts are more likely to be thought of as important. However, emoving the importance to contact measure does not result in changes to the estimated relational effects.
+Additionally, the importance to contact measure could also feasibly explain some relational effects, i.e., messages from high power contacts are more likely to be thought of as important. However, removing the importance to contact measure does not result in changes to the estimated relational effects.
 
 
 \subsection{Availability}
@@ -681,7 +675,7 @@ These variables did not significantly improve model fit ($\chi^2(6) = 6.46$, p =
 
 Both \textit{RQ2} and \textit{RQ3} asked how message attributes and relational variables moderate the effect of availability on mobile responsiveness. Model 4 included interaction terms between message attribute and relational variables with availability.
 
-The inclusion of these interaction terms significantly improved model fit ($\chi^2(10) = 21.00$, p = .02). Significant interactions with availability were found for both importance measures as well as action requests. Figures~\ref{fig:importance_availability_interaction},~\ref{fig:importance_contact_availability_interaction}, and \ref{fig:request_availability_interaction} plot predicted values from Model 4 to visualize these interactions.
+The inclusion of these interaction terms significantly improved model fit over the message attribute model ($\chi^2(13) = 21.00$, p = .02). Significant interactions with availability were found for both importance measures as well as action requests. Figures~\ref{fig:importance_availability_interaction},~\ref{fig:importance_contact_availability_interaction}, and \ref{fig:request_availability_interaction} plot predicted values from Model 4 to visualize these interactions.
 
 \begin{figure}[h]
 \centering
