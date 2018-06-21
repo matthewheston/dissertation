@@ -660,9 +660,11 @@ Additionally, the importance to contact measure could also feasibly explain some
 
 Participants ran the data collection app on their phones for 7 days, after which no additional data was collected. One possible issue with this is under sampling messages that have long response delays due to a closing window over the sampling period. Messages that took 3 days to respond to, for example, would appear in the collected dataset if they were received within a participant's first 4 participation days, but not if they were received during the final 3.
 
-Since only 7 days of data are collected for each participant, one way to test any potential bias is to run a separate analysis restricted to messages received within a participant's first 3 days running the application. The reduction in the number of observations will result in higher standard errors, and therefore less significant effects. However, if estimated effects to this model are similar to the model above, it indicates data truncation may not result in bias in the model.
+Since only 7 days of data are collected for each participant, one way to test any potential bias is to examine a subset of the data restricted to messages received within a participant's first 3 days of running the application. Comparing this subset to the full dataset, both distributions have the same median response delay, but the 90\textsuperscript{th} percentile for the subset is 9667.87 seconds versus 7782.29 for the full dataset.
 
-The results of re-fitting Model 4 on this subset of data are shown in the appendix in Table~\ref{tab:robust_regression}. Effects of theoretical interest remain consistent.
+To test if this bias affects regression interpretation, Model 4 was re-fit on this subset of data. The reduction in the number of observations will result in higher standard errors, and therefore less significant effects. However, if estimated effects to this model are similar to the model above, it indicates data truncation may not result in bias in the model.
+
+The results of re-fitting Model 4 on this subset of data are shown in the appendix in Table~\ref{tab:robust_regression}. Effects of theoretical interest remain consistent, but there are some differences in proximity effects. This appears to be because the average response delay to the ``Same city'' proximity level is larger in the restricted analysis. In other words, the data collection method results in some data truncation of long ($> 2$ days) delays, many of which are responses to to contacts who live in the same city as the participant.
 
 
 \subsection{Availability}
@@ -843,66 +845,66 @@ This study was conducted to understand the effects of availability, message attr
 \hline \\[-1.8ex] 
  & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
 \cline{2-2} 
-\\[-1.8ex] & log(response\_delay) \\ 
+\\[-1.8ex] & log(Response Delay in Seconds) \\ 
 \hline \\[-1.8ex] 
- age & 0.008 \\ 
+ Age & 0.008 \\ 
   & (0.021) \\ 
   & \\ 
- genderMale & $-$0.327 \\ 
+ Gender (Male) & $-$0.327 \\ 
   & (0.334) \\ 
   & \\ 
- sent\_total & $-$0.100 \\ 
+ log(Total Messages Send by Participant over Study Period) & $-$0.100 \\ 
   & (0.129) \\ 
   & \\ 
- availability & $-$0.430$^{***}$ \\ 
+ Availability & $-$0.430$^{***}$ \\ 
   & (0.098) \\ 
   & \\ 
- importance & $-$0.175$^{**}$ \\ 
+ Importance to Participant & $-$0.175$^{**}$ \\ 
   & (0.083) \\ 
   & \\ 
- importance\_to\_contact & 0.124 \\ 
+ Importance to Contact & 0.124 \\ 
   & (0.082) \\ 
   & \\ 
- requestar & 0.752$^{**}$ \\ 
+ Action Request & 0.752$^{**}$ \\ 
   & (0.316) \\ 
   & \\ 
- requestir & $-$0.167 \\ 
+ Information Request & $-$0.167 \\ 
   & (0.209) \\ 
   & \\ 
- power & 0.172 \\ 
+ Power & 0.172 \\ 
   & (0.183) \\ 
   & \\ 
- intimacy & $-$0.030 \\ 
+ Intimacy & $-$0.030 \\ 
   & (0.143) \\ 
   & \\ 
- distance\_factorDifferent Timezone & 0.232 \\ 
+ rDifferent Timezone & 0.232 \\ 
   & (0.473) \\ 
   & \\ 
- distance\_factorLive Together & $-$0.683$^{*}$ \\ 
+Live Together & $-$0.683$^{*}$ \\ 
   & (0.364) \\ 
   & \\ 
- distance\_factorSame State & 0.038 \\ 
+Same State & 0.038 \\ 
   & (0.320) \\ 
   & \\ 
- distance\_factorSame Timezone & $-$1.083$^{**}$ \\ 
+Same Timezone & $-$1.083$^{**}$ \\ 
   & (0.533) \\ 
   & \\ 
- availability:importance & $-$0.125$^{***}$ \\ 
+ Availability:Importance to Participant & $-$0.125$^{***}$ \\ 
   & (0.043) \\ 
   & \\ 
- availability:importance\_to\_contact & 0.040 \\ 
+ Availability:Importance to Contact & 0.040 \\ 
   & (0.041) \\ 
   & \\ 
- availability:requestar & 0.445$^{***}$ \\ 
+ Availability:Action Request & 0.445$^{***}$ \\ 
   & (0.170) \\ 
   & \\ 
- availability:requestir & 0.076 \\ 
+ Availability:Information Request & 0.076 \\ 
   & (0.108) \\ 
   & \\ 
- availability:power & $-$0.053 \\ 
+ Availability:Power & $-$0.053 \\ 
   & (0.070) \\ 
   & \\ 
- availability:intimacy & $-$0.015 \\ 
+ Availability:Intimacy & $-$0.015 \\ 
   & (0.054) \\ 
   & \\ 
  Constant & 7.005$^{***}$ \\ 
@@ -921,7 +923,7 @@ Bayesian Inf. Crit. & 3,408.360 \\
   \label{tab:robust_regression} 
 \end{table} 
 
-\end{appendices}
+\end{appendix}
 
 
 %\appendices	        % If more than one appendix chapters,
