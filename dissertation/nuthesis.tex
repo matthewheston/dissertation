@@ -25,6 +25,9 @@
 \usepackage{comment}
 \usepackage{todonotes}
 \usepackage{graphicx}
+\usepackage[toc]{appendix}
+\usepackage{amsmath}
+
 
 
 
@@ -651,7 +654,15 @@ Before interpreting the estimated regression models, it is useful first to ensur
 
 In examining the Model 3, intimacy has a small, nonsignificant effect, whereas the ``Live Together'' level of the proximity measure has a large, significant effect. A possible explanation for this is that participants tended to live with significant others who they rated as highly intimate, and therefore the inclusion of proximity could affect interpretation of the intimacy variable. However, removing proximity from the model only modestly increases the effect of availability (from -0.049 to -0.071) and the effect remains nonsignificant. Power is also unaffected.
 
-Additionally, the importance to contact measure could also feasibly explain some relational effects, i.e., messages from high power contacts are more likely to be thought of as important. However, removing the importance to contact measure does not result in changes to the estimated relational effects.
+Additionally, the importance to contact measure could also feasibly explain some relational effects, i.e., messages from high power contacts are more likely to be thought of as important. However, removing the importance to contact measure does not result in changes to the estimated relational effects. In Table~\ref{tab:robust_regression}.
+
+\subsubsection{Sampling Bias}
+
+Participants ran the data collection app on their phones for 7 days, after which no additional data was collected. One possible issue with this is under sampling messages that have long response delays due to a closing window over the sampling period. Messages that took 3 days to respond to, for example, would appear in the collected dataset if they were received within a participant's first 4 participation days, but not if they were received during the final 3.
+
+Since only 7 days of data are collected for each participant, one way to test any potential bias is to run a separate analysis restricted to messages received within a participant's first 3 days running the application. The reduction in the number of observations will result in higher standard errors, and therefore less significant effects. However, if estimated effects to this model are similar to the model above, it indicates data truncation may not result in bias in the model.
+
+The results of re-fitting Model 4 on this subset of data are shown in the appendix in Table~\ref{tab:robust_regression}. Effects of theoretical interest remain consistent.
 
 
 \subsection{Availability}
@@ -820,7 +831,98 @@ This study was conducted to understand the effects of availability, message attr
 
 
 
-% \appendix		% Appendix begins here (optional).
+%\appendices		% Appendix begins here (optional).
+
+\begin{appendix}
+	
+\chapter{Regression Model on Subset of Data}
+
+\begin{table}[!htbp] \fontsize{7}{7.2}\selectfont \centering 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & log(response\_delay) \\ 
+\hline \\[-1.8ex] 
+ age & 0.008 \\ 
+  & (0.021) \\ 
+  & \\ 
+ genderMale & $-$0.327 \\ 
+  & (0.334) \\ 
+  & \\ 
+ sent\_total & $-$0.100 \\ 
+  & (0.129) \\ 
+  & \\ 
+ availability & $-$0.430$^{***}$ \\ 
+  & (0.098) \\ 
+  & \\ 
+ importance & $-$0.175$^{**}$ \\ 
+  & (0.083) \\ 
+  & \\ 
+ importance\_to\_contact & 0.124 \\ 
+  & (0.082) \\ 
+  & \\ 
+ requestar & 0.752$^{**}$ \\ 
+  & (0.316) \\ 
+  & \\ 
+ requestir & $-$0.167 \\ 
+  & (0.209) \\ 
+  & \\ 
+ power & 0.172 \\ 
+  & (0.183) \\ 
+  & \\ 
+ intimacy & $-$0.030 \\ 
+  & (0.143) \\ 
+  & \\ 
+ distance\_factorDifferent Timezone & 0.232 \\ 
+  & (0.473) \\ 
+  & \\ 
+ distance\_factorLive Together & $-$0.683$^{*}$ \\ 
+  & (0.364) \\ 
+  & \\ 
+ distance\_factorSame State & 0.038 \\ 
+  & (0.320) \\ 
+  & \\ 
+ distance\_factorSame Timezone & $-$1.083$^{**}$ \\ 
+  & (0.533) \\ 
+  & \\ 
+ availability:importance & $-$0.125$^{***}$ \\ 
+  & (0.043) \\ 
+  & \\ 
+ availability:importance\_to\_contact & 0.040 \\ 
+  & (0.041) \\ 
+  & \\ 
+ availability:requestar & 0.445$^{***}$ \\ 
+  & (0.170) \\ 
+  & \\ 
+ availability:requestir & 0.076 \\ 
+  & (0.108) \\ 
+  & \\ 
+ availability:power & $-$0.053 \\ 
+  & (0.070) \\ 
+  & \\ 
+ availability:intimacy & $-$0.015 \\ 
+  & (0.054) \\ 
+  & \\ 
+ Constant & 7.005$^{***}$ \\ 
+  & (0.659) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 786 \\ 
+Log Likelihood & $-$1,624.176 \\ 
+Akaike Inf. Crit. & 3,296.353 \\ 
+Bayesian Inf. Crit. & 3,408.360 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+  \caption{Multilevel Regression Results Fit on Subset of Data} 
+  \label{tab:robust_regression} 
+\end{table} 
+
+\end{appendices}
+
 
 %\appendices	        % If more than one appendix chapters,
 				% use appendices instead of appendix
