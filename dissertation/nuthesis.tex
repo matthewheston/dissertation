@@ -675,6 +675,14 @@ To test if this bias affects regression interpretation, Model 4 was re-fit on th
 
 The results of re-fitting Model 4 on this subset of data are shown in the appendix in Table~\ref{tab:robust_regression}. Effects of theoretical interest remain consistent, but there are some differences in proximity effects. This appears to be because the average response delay to the ``Same city'' proximity level is larger in the restricted analysis. In other words, the data collection method results in some data truncation of long ($> 2$ days) delays, many of which are responses to to contacts who live in the same city as the participant.
 
+\subsubsection{Participant Differences in Scale Responses}
+
+Many predictor variables come from a participant's subjective assessment of their availability and the content of a message. How these assessments are made will be unique to a participant and there are likely different distributions between participants, e.g., it is possible some participants are simply more likely to rate themselves as more available or a message as more important than other participants.
+
+One way to handle this is to normalize such variables on a per-participant basis. In other words, for a given participant and a given variable, we can normalize the variable by computing a z-score based on the distribution of that variable for that participant.
+
+The results of re-fitting the regression models above using these normalized variables is shown in the appendix in Table~\ref{tab:normalized_regression}. Effect sizes for these variables are different since the scale of these variables has been transformed. However, relatively speaking, effect sizes remain consistent.
+
 
 \subsection{Availability}
 
@@ -847,8 +855,9 @@ This study was conducted to understand the effects of availability, message attr
 %\appendices		% Appendix begins here (optional).
 
 \begin{appendix}
-	
-\chapter{Regression Model on Subset of Data}
+
+\chapter{Additional Regression Models}	
+\section{Regression Model on Subset of Data}
 
 \begin{table} \fontsize{5.5}{5.8}\selectfont \centering 
 \begin{tabular}{@{\extracolsep{5pt}}lc} 
@@ -933,6 +942,95 @@ Bayesian Inf. Crit. & 3,408.360 \\
   \caption{Multilevel Regression Results Fit on Subset of Data} 
   \label{tab:robust_regression} 
 \end{table} 
+
+\section{Regression Results with Normalized Predictors}
+\begin{table}[!htbp] \fontsize{5.5}{5.8}\selectfont \centering 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{log(Response Delay in Seconds)} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ Age & $-$0.005 & $-$0.005 & $-$0.005 & $-$0.003 \\ 
+  & (0.018) & (0.018) & (0.018) & (0.018) \\ 
+  & & & & \\ 
+ Gender (Male) & $-$0.133 & $-$0.161 & $-$0.171 & $-$0.127 \\ 
+  & (0.292) & (0.293) & (0.293) & (0.292) \\ 
+  & & & & \\ 
+ log(Total Messages Send by Participant over Study Period) & 0.0001 & 0.0002 & $-$0.028 & $-$0.023 \\ 
+  & (0.122) & (0.123) & (0.123) & (0.123) \\ 
+  & & & & \\ 
+Availability & $-$0.721$^{***}$ & $-$0.722$^{***}$ & $-$0.721$^{***}$ & $-$1.405$^{**}$ \\ 
+  & (0.049) & (0.049) & (0.049) & (0.617) \\ 
+  & & & & \\ 
+Importance to Participant &  & $-$0.136$^{**}$ & $-$0.141$^{**}$ & $-$0.184$^{***}$ \\ 
+  &  & (0.058) & (0.058) & (0.059) \\ 
+  & & & & \\ 
+Importance to Contact &  & 0.090 & 0.094 & 0.126$^{**}$ \\ 
+  &  & (0.058) & (0.058) & (0.058) \\ 
+  & & & & \\ 
+ Action Request &  & 1.918$^{**}$ & 1.776 & 1.302 \\ 
+  &  & (0.907) & (0.911) & (0.998) \\ 
+  & & & & \\ 
+ Information Request &  & 0.435 & 0.277 & $-$0.229 \\ 
+  &  & (0.892) & (0.897) & (0.985) \\ 
+  & & & & \\ 
+Power &  &  & 0.063 & 0.063 \\ 
+  &  &  & (0.109) & (0.108) \\ 
+  & & & & \\ 
+Intimacy &  &  & 0.032 & 0.036 \\ 
+  &  &  & (0.109) & (0.108) \\ 
+  & & & & \\ 
+Different Timezone &  &  & $-$0.070 & $-$0.158 \\ 
+  &  &  & (0.330) & (0.328) \\ 
+  & & & & \\ 
+Live Together &  &  & $-$0.529$^{*}$ & $-$0.530 \\ 
+  &  &  & (0.275) & (0.273) \\ 
+  & & & & \\ 
+Same State &  &  & 0.026 & 0.045 \\ 
+  &  &  & (0.225) & (0.223) \\ 
+  & & & & \\ 
+Same Timezone &  &  & $-$0.189 & $-$0.188 \\ 
+  &  &  & (0.382) & (0.379) \\ 
+  & & & & \\ 
+Availability:Importance to Participant &  &  &  & $-$0.176$^{***}$ \\ 
+  &  &  &  & (0.044) \\ 
+  & & & & \\ 
+Availability:Importance to Contact &  &  &  & 0.189$^{***}$ \\ 
+  &  &  &  & (0.054) \\ 
+  & & & & \\ 
+Availability:Action Request &  &  &  & 0.960 \\ 
+  &  &  &  & (0.644) \\ 
+  & & & & \\ 
+Availability:Information Request &  &  &  & 0.678 \\ 
+  &  &  &  & (0.626) \\ 
+  & & & & \\ 
+Availability:Power &  &  &  & 0.049 \\ 
+  &  &  &  & (0.076) \\ 
+  & & & & \\ 
+Availability:Intimacy &  &  &  & 0.060 \\ 
+  &  &  &  & (0.080) \\ 
+  & & & & \\ 
+ Constant & 5.812$^{***}$ & 5.312$^{***}$ & 5.725$^{***}$ & 6.180$^{***}$ \\ 
+  & (0.576) & (1.068) & (1.087) & (1.162) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Log Likelihood & $-$3,338.625 & $-$3,313.137 & $-$3,315.076 & $-$3,309.967 \\ 
+Akaike Inf. Crit. & 6,693.249 & 6,652.274 & 6,668.152 & 6,671.934 \\ 
+Bayesian Inf. Crit. & 6,736.405 & 6,722.403 & 6,770.647 & 6,812.191 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Notes:}  & \multicolumn{4}{p{\dimexpr 0.55\linewidth-2\tabcolsep}}{The variables availability, importance to participant, importance to contact, power, and intimacy, were all normalized using z-scores on a per-participant basis. $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular}
+  \caption{Multilevel Regression Results with Normalized Predictor Variables} 
+  \label{tab:normalized_regression} 
+\end{table}  	
+
+\end{appendix}
+
+
 
 \end{appendix}
 
