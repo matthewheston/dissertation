@@ -683,6 +683,15 @@ One way to handle this is to normalize such variables on a per-participant basis
 
 The results of re-fitting the regression models above using these normalized variables is shown in the appendix in Table~\ref{tab:normalized_regression}. Effect sizes for these variables are different since the scale of these variables has been transformed. However, relatively speaking, effect sizes remain consistent.
 
+\subsubsection{Temporal Effects}
+
+Availability was captured using a single measure at one point in time. However, there is likely a temporal effect on availability that this does not capture. Imagine, for example, a person in a movie theater. Given that it is impolite to use your phone during the movie, the person may rate themselves as unavailable throughout the entirety of the movie. However, if they receive a message at the beginning of the movie, they will continue to be unavailable for 90 minutes. If they receive a message in the last 5 minutes of the movie, their availability will soon change and they may be able to respond to the message then.
+
+To test for the presence of such temporal effects, we can compare SIA messages received by the same participant within some time window and examine differences in availability and responsiveness. However, since SIA messages occur fairly infrequently, an analysis of SIA messages which occurred close in time to another SIA message results in a fairly small dataset.
+
+Examining SIA messages that were received within an hour of another SIA message results in 205 messages. The distribution of the difference in availability between messages received within an hour of one another follows a normal distribution with mean 0 and a standard deviation of 1.5. In other words, if an SIA message was received within an hour of another SIA message, there tended not to be a difference in reported availability for each message. In examining differences in response time in such messages, in 90\% of cases, response times were within a 15 minute difference to one another. For example, imagine a participant who received an SIA message and it took them 20 minutes to respond. If they were to receive another SIA within one hour, this data suggests in 90\% of cases they would respond to this SIA in between 5 and 35 minutes.
+
+Although this analysis is based on a small subset of data, in the available cases, availability and responsiveness tended to stay fairly stable over an hour long period.
 
 \subsection{Availability}
 
